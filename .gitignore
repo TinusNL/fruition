@@ -2,5 +2,6 @@
 .idea
 .vscode
 
+# NPM / SCSS
 /src/package-lock.json
 /src/node_modules
