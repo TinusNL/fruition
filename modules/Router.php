@@ -13,7 +13,7 @@ class Router
 
         foreach ($dirs as $dir) {
             if (file_exists($dir . '/index.php')) {
-                self::$pages[$dir] = $dir . '/index.php';
+                self::$pages[str_replace('pages/', '', $dir)] = $dir . '/index.php';
             }
         }
 
@@ -29,7 +29,7 @@ class Router
         if (array_key_exists($url, Router::$pages)) {
             return include Router::$pages[$url];
         } else {
-            return include Router::$pages['pages/404'];
+            return include Router::$pages['404'];
         }
     }
 }
