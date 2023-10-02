@@ -14,9 +14,12 @@ require_once 'modules/Router.php';
 
 <body>
     <?php
-    Router::addPages('pages/*');
+    include_once 'components/header.php';
 
+    Router::addPages('pages/*');
     Router::getPageByUrl($_SERVER['REQUEST_URI']);
+
+
     ?>
 </body>
 
