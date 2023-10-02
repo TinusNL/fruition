@@ -1,0 +1,14 @@
+{
+    "name": "fruition",
+    "version": "1.0.0",
+    "description": "Fruition SCSS",
+    "scripts": {
+        "start": "sass --watch scss/main.scss ../css/main.css"
+    },
+    "keywords": [],
+    "author": "Fruition Partners",
+    "license": "ISC",
+    "dependencies": {
+        "sass": "^1.68.0"
+    }
+}
