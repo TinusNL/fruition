@@ -4,12 +4,13 @@
 - [NodeJS](https://nodejs.org/en/)
 
 ## Installation
-- `cd src/` - Navigate to the source folder
-- `npm install` - Install the dependencies
+1. `cd src/` - Navigate to the source folder
+2. `npm install` - Install the dependencies
 
 
 ## Usage
-- `npm run start` - Start the compiler
+1. `cd src/` - Navigate to the source folder
+2. `npm run start` - Start the compiler
 
 ## Other
 When adding a new `.scss` file make sure to add it in `src/scss/main.scss` as an import.
