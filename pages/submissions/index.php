@@ -1,7 +1,11 @@
 
 <div>
     <?php
-
+    use PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\src\Exception;
+    require 'PHPMailer/PHPMailer/src/Exception.php';
+    require 'PHPMailer/PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/PHPMailer/src/SMTP.php';
     
     // Process the form when it is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
