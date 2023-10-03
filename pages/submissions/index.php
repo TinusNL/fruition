@@ -8,6 +8,7 @@
         $name = $_POST["name"];
         $fruitType = $_POST["fruitType"];
         $description = $_POST["description"];
+        $email = $_POST["email"];
 
         // Photo upload processing
         if (isset($_FILES["photo"])) {
@@ -23,13 +24,13 @@
         // Here you can add the logic for sending the confirmation email
 
         // Example: Send a simple confirmation email
-        $to = "your@email.com";
+        $to = $_POST["email"];
         $subject = "Form Confirmation";
         $message = "Location: $location\n";
         $message .= "Name: $name\n";
         $message .= "Fruit Type: $fruitType\n";
         $message .= "Description: $description\n";
-        $headers = "From: webmaster@example.com";
+        $headers = "From: asaadhajar6@gamail.com";
 
         mail($to, $subject, $message, $headers);
     }
@@ -47,7 +48,7 @@
         <input type="text" name="fruitType" required><br>
 
         <label for="email">Email:</label>
-        <input type="email" name="email"
+        <input type="email" name="email"><br>
 
         <input id="emailConfirmation" type="checkbox"><span class="checkmark"></span>
         <label for="emailConfirmation">Send me an mail</label><br>
