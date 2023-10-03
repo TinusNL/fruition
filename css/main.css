@@ -4,6 +4,11 @@ nav.header {
   background-color: red;
 }
 
+#leaflet-map {
+  height: calc(100% - 50px);
+  width: 100%;
+}
+
 /* style.scss */
 /* Reset some default browser styles */
 body, h2, form {
@@ -68,6 +73,8 @@ input[type=submit]:hover {
 body {
   margin: 0px;
   padding: 0px;
+  width: 100vw;
+  height: 100vh;
 }
 
 /*# sourceMappingURL=main.css.map */

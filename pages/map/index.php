@@ -1,7 +1,7 @@
-<body>
-    <input type="text" id="search-box" placeholder="Search for a location..." style="margin: 10px;">
-    <div id="map" style="height: 95vh;"></div>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="scripts/map.js"></script>
+<body class="map">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <div id="leaflet-map"></div>
+    <script src="./scripts/leaflet.js"></script>
 </body>
