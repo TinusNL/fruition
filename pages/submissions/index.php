@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Form</title>
-</head>
-<body>
+
+<div>
     <?php
     // Process the form when it is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -58,5 +54,5 @@
 
         <input type="submit" value="Submit">
     </form>
-</body>
-</html>
+</div>
+
