@@ -3,6 +3,7 @@
 ## Creating a page
 1. Create a folder in `pages/` with the name of the page.
 2. Create a `index.php` in the newly created folder.
+###### Example: `pages/home/index.php`
 
 ## Adding SCSS to a page
 1. Create a `.scss` file with the name of the page in `src/scss/`.
