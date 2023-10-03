@@ -8,7 +8,7 @@ var locationMarker
 
 var btn = L.easyButton('<img src="./assets/location-crosshairs-solid.svg" id="location-crosshair">', function () {
     navigator.geolocation.getCurrentPosition((position) => {
-        map.setView([position.coords.latitude, position.coords.longitude], 19, { pan: { animate: true } })
+        map.setView([position.coords.latitude, position.coords.longitude], 16, { pan: { animate: true } })
 
         if (locationMarker) {
             locationMarker.removeFrom(map)
