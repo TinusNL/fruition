@@ -1,6 +1,8 @@
 
 <div>
     <?php
+
+    
     // Process the form when it is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Collect data from the form
@@ -14,11 +16,6 @@
         if (isset($_FILES["photo"])) {
             $uploadDir = "uploads/";
             $uploadFile = $uploadDir . basename($_FILES["photo"]["name"]);
-            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $uploadFile)) {
-                echo "The photo has been successfully uploaded.";
-            } else {
-                echo "An error occurred while uploading the photo.";
-            }
         }
 
         // Here you can add the logic for sending the confirmation email
