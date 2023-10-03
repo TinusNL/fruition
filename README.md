@@ -1,9 +1,9 @@
 # Getting started
 
 ## Project Requirements:
-- PHP _Functionality_
-- SASS _Styling_
-- MySQL _Database_
+- PHP - _Functionality_
+- SASS - _Styling_
+- MySQL - _Database_
 
 ## Docs
 - [Creating A Page](docs/Creating%20Pages.md)
