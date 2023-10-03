@@ -1,10 +1,5 @@
 <?php
-spl_autoload_register(function ($class_name) {
-    if (file_exists('modules/' . $class_name . '.php')) {
-        require_once 'modules/' . $class_name . '.php';
-    }
-});
-
+require_once 'config.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +16,6 @@ spl_autoload_register(function ($class_name) {
 
     Router::addPages('pages/*');
     Router::getPageByUrl($_SERVER['REQUEST_URI']);
-
 
     ?>
 </body>
