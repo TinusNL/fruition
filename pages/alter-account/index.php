@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['user_id'] = 1;
+    $_SESSION['profile-picture'] = 'https://avatars.githubusercontent.com/u/56132780?v=4';
     $_SESSION['user_first_name'] = 'Emirhan';
     $_SESSION['user_last_name'] = 'Boyacı';
     $_SESSION['username'] = 'emirhanbyc';
@@ -22,12 +23,14 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST['submit'])) {
             if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['confirm-password']) && !empty($_POST['email'])) {
+                $profilePicture = $_SESSION['profile-picture'];
                 $firstname = $_SESSION['user_first_name'];
                 $lastname = $_SESSION['user_last_name'];
                 $username = $_SESSION['username'];
                 $password = $_SESSION['user_password'];
                 $email = $_SESSION['user_email'];
 
+                $newProfilePicture = sanitizeInput($_POST['profile-picture']);
                 $newFirstname = sanitizeInput($_POST['firstname']);
                 $newLastname = sanitizeInput($_POST['lastname']);
                 $newUsername = sanitizeInput($_POST['username']);
@@ -36,6 +39,7 @@
                 $newEmail = sanitizeInput($_POST['email']);
 
                 if($firstname != $newFirstname || $lastname != $newLastname || $username != $newUsername || $password != $newPassword || $email != $newEmail && $newPassword == $newPasswordConfirm) {
+                    $_SESSION['profile-picture'] = $newProfilePicture;
                     $_SESSION['user_first_name'] = $newFirstname;
                     $_SESSION['user_last_name'] = $newLastname;
                     $_SESSION['username'] = $newUsername;
@@ -100,6 +104,10 @@
         <div class="form">
             <form action="" method="post">
                 <input type="hidden" name="user_id" data-value="<?= $_SESSION['user_id'] ?>">
+
+                <label for="profile-picture">Profile picture</label>
+                <?= '<img src="' . $_SESSION['profile-picture'] . '" alt="Profile picture" width="100px" height="100px">' ?>
+                <input type="file" name="profile-picture" id="profile-picture" data-value="<?php echo $_SESSION['profile-picture'] ?>">
 
                 <label for="firstname">First name</label>
                 <input type="text" name="firstname" id="firstname" data-value="<?php echo $_SESSION['user_first_name'] ?>">
