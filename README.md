@@ -32,6 +32,10 @@
 - - location: string {longitude, latitude}
 - - seasonId: string
 - - - returns: boolean
+- https://api.onthelink.nl/api/fruition/v1/insertRecommendation/:uid/:itemId
+- - uid: string
+- - itemId: string
+- - - returns: boolean
 - https://api.onthelink.nl/api/fruition/v1/getContributions/:uid
 - - uid: string
 - - - returns: array
