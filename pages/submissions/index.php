@@ -46,6 +46,12 @@
         <label for="fruitType">Fruit Type:</label>
         <input type="text" name="fruitType" required><br>
 
+        <label for="email">Email:</label>
+        <input type="email" name="email"
+
+        <input id="emailConfirmation" type="checkbox"><span class="checkmark"></span>
+        <label for="emailConfirmation">Send me an mail</label><br>
+        
         <label for="photo">Upload Photo:</label>
         <input type="file" name="photo" accept="image/*"><br>
 
