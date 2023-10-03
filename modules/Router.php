@@ -28,6 +28,8 @@ class Router
 
         if (array_key_exists($url, Router::$pages)) {
             return include Router::$pages[$url];
+        } else if ($url == '') {
+            return include Router::$pages['home'];
         } else {
             return include Router::$pages['404'];
         }
