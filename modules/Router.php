@@ -4,7 +4,6 @@
 class Router
 {
 
-    private static $urlPrefix = 'fruition';
     private static $pages;
 
     public static function addPages(string $source): bool
@@ -24,10 +23,12 @@ class Router
     {
         $url = explode('?', $url)[0];
         $url = strstr($url, '/');
-        $url = trim(str_replace(Router::$urlPrefix, '', $url), '/');
+        $url = trim(str_replace(URL_PREFIX, '', $url), '/');
 
         if (array_key_exists($url, Router::$pages)) {
             return include Router::$pages[$url];
+        } else if ($url == '') {
+            return include Router::$pages['home'];
         } else {
             return include Router::$pages['404'];
         }
