@@ -36,6 +36,14 @@
 - - uid: string
 - - itemId: string
 - - - returns: boolean
+- https://api.onthelink.nl/api/fruition/v1/userLogin/:email/:password
+- - email: string
+- - password: string
+- - - returns: userObject
+- https://api.onthelink.nl/api/fruition/v1/userRegister/:email/:password
+- - email: string
+- - password: string
+- - - returns: boolean
 - https://api.onthelink.nl/api/fruition/v1/getContributions/:uid
 - - uid: string
 - - - returns: array
