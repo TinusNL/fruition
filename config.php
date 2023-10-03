@@ -1,7 +1,7 @@
 <?php
 
 // Router
-define('URL_PREFIX', 'php/fruition');
+define('URL_PREFIX', 'fruition');
 
 // Database Connection
 define('DATABASE_HOST', 'localhost');
