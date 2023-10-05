@@ -83,6 +83,79 @@ input[type=submit]:hover {
   background-color: #0056b3;
 }
 
+.logosvg {
+  position: relative;
+  left: 50%;
+  top: -70%;
+  width: 400px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: popins;
+}
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(to right, lightgreen 50%, #fff 50%);
+}
+
+.login-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: darkblue; /* Changed text color to dark blue */
+  margin-bottom: 20px;
+}
+
+.input-container {
+  margin-bottom: 15px;
+  text-align: left; /* Align input labels to the left */
+}
+
+.input-container label {
+  color: darkblue; /* Changed text color to dark blue */
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: darkblue; /* Changed button background color */
+  color: white; /* Changed button text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #003366;
+}
+
 body {
   margin: 0px;
   padding: 0px;
