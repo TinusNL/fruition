@@ -1,12 +1,11 @@
-var map = L.map('leaflet-map').setView([50.370380, -4.142650], 15)
+const map = L.map('leaflet-map').setView([50.370380, -4.142650], 15)
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map)
 
 var locationMarker
-
-var btn = L.easyButton('<img src="./assets/icons/location-crosshairs-solid.svg" id="location-crosshair">', function () {
+const btn = L.easyButton('<img src="./assets/icons/location-crosshairs-solid.svg" id="location-crosshair">', function () {
     navigator.geolocation.getCurrentPosition((position) => {
         map.setView([position.coords.latitude, position.coords.longitude], 16, { pan: { animate: true } })
 
@@ -22,8 +21,10 @@ var btn = L.easyButton('<img src="./assets/icons/location-crosshairs-solid.svg" 
     })
 }).addTo(map)
 
-var markers = JSON.parse(markerJson)
+const markers = JSON.parse(markerJson)
 markers.forEach(markerInfo => {
-    var marker = L.marker([markerInfo.lat, markerInfo.lng]).addTo(map)
+    const marker = L.marker([markerInfo.lat, markerInfo.lng + 0.002], { icon: leafletIcons.apple }).addTo(map)
+    const marker2 = L.marker([markerInfo.lat, markerInfo.lng]).addTo(map)
     marker.bindPopup(`<b>${markerInfo.type}</b></br>${markerInfo.id}`)
+    marker2.bindPopup(`<b>${markerInfo.type}</b></br>${markerInfo.id}`)
 })
