@@ -13,7 +13,7 @@ require_once 'config.php';
 <body>
     <?php
 
-    Router::addPages('pages/*');
+    Router::addPages('pages');
     Router::getPageByUrl($_SERVER['REQUEST_URI']);
 
     ?>
