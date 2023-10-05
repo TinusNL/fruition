@@ -29,6 +29,8 @@ nav.header .top > .search > input {
   padding: 15px;
   margin: 0px;
   font-size: 1.15rem;
+  outline: none;
+  border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 nav.header .top > .search > img {
@@ -97,8 +99,8 @@ nav.header .bottom .logo > img {
 }
 
 .map {
-  width: 100%;
-  height: calc(100% - 50px);
+  width: calc(100% - 400px);
+  height: 100%;
 }
 .map #leaflet-map {
   height: 100%;
