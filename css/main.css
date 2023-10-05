@@ -7,6 +7,26 @@ nav.header {
   flex-direction: column;
   justify-content: space-between;
 }
+nav.header .top {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+nav.header .top > .search {
+  width: 100%;
+  height: 40px;
+}
+nav.header .top > .search > input {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  border-radius: 60px;
+  background-color: #182450;
+  color: #f6fff5;
+  padding: 15px;
+  margin: 0px;
+}
 nav.header .bottom {
   display: flex;
   flex-direction: row;

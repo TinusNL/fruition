@@ -1,10 +1,13 @@
 <nav class="header">
     <div class="top">
         <div class="search">
-            <input type="text" placeholder="Search">
+            <input id="search" type="text" placeholder="Search">
         </div>
         <div class="categories">
-
+            <button>
+                <img src="./assets/icons/categories.svg" alt="Categories">
+                <span>Apples</span>
+            </button>
         </div>
     </div>
     <div class="bottom">
