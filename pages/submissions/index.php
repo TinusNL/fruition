@@ -1,5 +1,5 @@
 <div>
-    <form action="send.php" method="post">
+    <form action="submissions/send" method="post">
         Email <input type="email"  name="email"> <br>
         Subject <input type="text"  name="subject"> <br>
         Messege <input type="text" id="message" name="message"> <br>

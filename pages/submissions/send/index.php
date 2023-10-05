@@ -29,12 +29,11 @@ if (isset($_POST['send'])) {
     $mail->send();
 
 
-    echo 
-    "
-    <script>
-    alert('sent successfully');
-    document.location.href = 'index.php';
-    </script>
-    ";
+    
+if(isset($_POST['send'])) {
+    header("Location: http://localhost/fruition");
+    exit();
+}
+
 }
 ?>
