@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 nav.header {
   width: 340px;
   height: calc(100% - 60px);
@@ -100,15 +101,15 @@ nav.header .bottom .logo > img {
   width: calc(100% - 400px);
   outline: none;
 }
-#leaflet-map :focus {
+.map #leaflet-map :focus {
   outline: none;
 }
-
-#location-crosshair {
+.map #location-crosshair {
   width: 100%;
   height: calc(100% - 2px);
   margin: 2px 0px;
 }
+
 
 /* style.scss */
 /* Reset some default browser styles */
@@ -178,6 +179,10 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: row;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
 }
 
 /*# sourceMappingURL=main.css.map */
