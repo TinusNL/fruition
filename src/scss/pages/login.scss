@@ -1,8 +1,8 @@
 .logosvg{
     position: relative;
-    left: 50%;
-    top: -50%;
-    width: 400px;
+    left: 60vw;
+    top: -35vw;
+    width: 500px;
 }
     body {
         margin: 0;
@@ -15,7 +15,7 @@
         height: 100vh;
         display: flex;
         flex-direction: row;
-        background: linear-gradient(to right, lightgreen 50%, #fff 50%);
+        background: linear-gradient(to right, #9BCE77 50%, #fff 50%);
     }
 
     .login-form {
