@@ -4,16 +4,19 @@ nav.header {
   background-color: red;
 }
 
-#leaflet-map {
+.map {
+  width: 100%;
   height: calc(100% - 50px);
+}
+.map #leaflet-map {
+  height: 100%;
   width: 100%;
   outline: none;
 }
-#leaflet-map :focus {
+.map #leaflet-map :focus {
   outline: none;
 }
-
-#location-crosshair {
+.map #location-crosshair {
   width: 100%;
   height: calc(100% - 2px);
   margin: 2px 0px;
