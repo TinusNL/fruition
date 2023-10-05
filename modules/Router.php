@@ -4,7 +4,7 @@
 class Router
 {
 
-    private static $pages;
+    private static array $pages = [];
 
     public static function addPages(string $source): bool
     {
