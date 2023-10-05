@@ -5,8 +5,24 @@
             <img src="./assets/icons/magnifying-glass.svg" alt="Magnifying Glass">
         </div>
         <div class="categories">
+            <button class="selected">
+                <img src="./assets/icons/food/apple.svg" alt="Categories">
+                <span>Apples</span>
+            </button>
             <button>
-                <img src="./assets/icons/categories.svg" alt="Categories">
+                <img src="./assets/icons/food/apple.svg" alt="Categories">
+                <span>Apples</span>
+            </button>
+            <button>
+                <img src="./assets/icons/food/apple.svg" alt="Categories">
+                <span>Apples</span>
+            </button>
+            <button>
+                <img src="./assets/icons/food/apple.svg" alt="Categories">
+                <span>Apples</span>
+            </button>
+            <button>
+                <img src="./assets/icons/food/apple.svg" alt="Categories">
                 <span>Apples</span>
             </button>
         </div>
