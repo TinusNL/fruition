@@ -19,6 +19,37 @@ nav.header {
   margin: 2px 0px;
 }
 
+.leaflet-popup-content-wrapper {
+  background-color: #F6FFF5 !important;
+  border: black 1px solid !important;
+  width: 390px;
+  height: 369px;
+}
+
+.popup-img {
+  position: relative;
+  width: 125px;
+  height: 125px;
+  max-width: 126px;
+  max-height: 126px;
+  border-radius: 200px;
+  display: flex;
+  left: 2vw;
+  margin: 0 auto;
+}
+
+.Createdby {
+  top: 48vh;
+  position: relative;
+  left: 38vh;
+}
+
+.timestamp {
+  top: 48vh;
+  position: relative;
+  right: 15vh;
+}
+
 /* style.scss */
 /* Reset some default browser styles */
 body, h2, form {
@@ -28,7 +59,7 @@ body, h2, form {
 
 /* Style the body */
 body {
-  font-family: 'Poppins';
+  font-family: Arial, sans-serif;
   background-color: #f0f0f0;
   padding: 20px;
 }
