@@ -7,9 +7,6 @@ nav.header {
   flex-direction: column;
   justify-content: space-between;
 }
-nav.header > * {
-  border: red 1px solid;
-}
 nav.header .bottom {
   display: flex;
   flex-direction: row;
@@ -19,7 +16,24 @@ nav.header .bottom {
 nav.header .bottom > div {
   height: 100%;
 }
-nav.header .bottom > div > img {
+nav.header .bottom .actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 15px;
+  height: 100%;
+  width: 100%;
+}
+nav.header .bottom .actions > a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav.header .bottom .actions > a > img {
+  height: 80%;
+}
+nav.header .bottom .logo > img {
   height: 100%;
 }
 
