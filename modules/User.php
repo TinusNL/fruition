@@ -41,18 +41,19 @@ class User
         $_SESSION['user_id'] = $loggedInUser['id'];
         $_SESSION['user_email'] = $loggedInUser['email'];
         $_SESSION['user_username'] = $loggedInUser['username'];
-        header('Location: ' . URL_PREFIX . '/');
+        header('Location: /' . URL_PREFIX . '/');
         exit();
     }
 
     public static function register(array $data): bool
     {
+        $default_role = 1;
         $query = "INSERT INTO users (email, username, password, roleId) VALUES (:email, :username, :password, :roleId)";
         $stmt = Database::prepare($query);
         $stmt->bindParam(':email', $data['email']);
         $stmt->bindParam(':username', $data['username']);
         $stmt->bindParam(':password', $data['password']);
-        $stmt->bindParam(':roleId', 1);
+        $stmt->bindParam(':roleId', $default_role);
         $stmt->execute();
 
         return true;

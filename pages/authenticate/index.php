@@ -1,7 +1,7 @@
 <?php
 // Check for POST submit
 if (empty($_POST)) {
-    header('Location: ' . URL_PREFIX . '/login');
+    header('Location: /' . URL_PREFIX . '/login');
     exit();
 }
 
@@ -45,10 +45,10 @@ if (isset($_POST['login'])) {
         } else {
             $data['error'] = 'Password incorrect';
 
-            header('Location: ' . URL_PREFIX . '/login?error=' . $data['error']);
+            header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
         }
     } else {
-        header('Location: ' . URL_PREFIX . '/login?error=' . $data['error']);
+        header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
     }
 }
 
@@ -100,13 +100,13 @@ if (isset($_POST['register'])) {
 
         // Register user
         if (User::register($data)) {
-            header('Location: ' . URL_PREFIX . '/login');
+            header('Location: /' . URL_PREFIX . '/login');
         } else {
             $data['error'] = 'Something went wrong';
 
-            header('Location: ' . URL_PREFIX . '/login?error=' . $data['error']);
+            header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
         }
     } else {
-        header('Location: ' . URL_PREFIX . '/login?error=' . $data['error']);
+        header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
     }
 }
