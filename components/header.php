@@ -1,8 +1,9 @@
 <nav class="header">
-    <a href="">a</a>
-    <a href="">b</a>
-    <a href="">c</a>
-    <a href="">d</a>
-    <a href="">e</a>
-    <a href="">f</a>
+    <div class="top"></div>
+    <div class="bottom">
+        <div class="actions"></div>
+        <div class="logo">
+            <img src="./assets/logo.svg" alt="Fruition Logo">
+        </div>
+    </div>
 </nav>
