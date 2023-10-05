@@ -12,9 +12,7 @@ class Router
         $dirs = Router::recursiveGrub($pagesDir);
 
         foreach ($dirs as $dir) {
-            echo $dir;
             if (file_exists($dir . '/index.php')) {
-                echo '- added<br>';
                 self::$pages[str_replace('pages/', '', $dir)] = $dir . '/index.php';
             }
         }
