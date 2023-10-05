@@ -1,5 +1,125 @@
 nav.header {
-    width: 100%;
-    height: 50px;
-    background-color: red;
+    width: 340px;
+    height: calc(100% - 60px);
+
+    background-color: #f6fff5;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .top {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        > .search {
+            width: 100%;
+            height: 50px;
+            position: relative;
+
+            > input {
+                width: calc(100% - 30px);
+                height: calc(100% - 30px);
+
+                border-radius: 60px;
+                background-color: #182450;
+                color: #f6fff5;
+
+                padding: 15px;
+                margin: 0px;
+
+                font-size: 1.15rem;
+
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+
+            > img {
+                position: absolute;
+                top: 0px;
+                right: 15px;
+
+                height: 100%;
+                width: 8%;
+            }
+        }
+
+        > .categories {
+            width: calc(100% - 40px);
+            padding: 0px 20px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 10px;
+
+            > button {
+                outline: none;
+                border: 0px;
+                background-color: #e5ffd2;
+                padding: 10px 20px;
+                border-radius: 60px;
+
+                height: 50px;
+                width: 100%;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+                &.selected {
+                    background-color: #9bce77;
+                }
+
+                > img {
+                    height: 80%;
+                }
+            }
+        }
+    }
+
+    .bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        height: 40px;
+
+        > div {
+            height: 100%;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 15px;
+
+            height: 100%;
+            width: 100%;
+
+            > a {
+                height: 100%;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                > img {
+                    height: 80%;
+                }
+            }
+        }
+
+        .logo > img {
+            height: 100%;
+        }
+    }
 }
