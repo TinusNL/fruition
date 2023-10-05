@@ -1,24 +1,20 @@
-
-<body>
-<div class="login-container">
-        <div class="login-form">
-            <div class="login-title">Login</div>
-            <form method="post" action="login.php">
-                <div class="input-container">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" placeholder="Your email" required>
-                </div>
-                <div class="input-container">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Your password" required>
-                </div>
-                <button type="submit" class="login-button">Log In</button>
-            </form>
-            <div class="signup-link">
-                Don't have an account? <a href="signup.php">Sign Up</a>
-            </div>
-        </div>
+<div class="login_form">
+    <div class="login_error">
+        <?php
+        if (isset($_GET['error'])) {
+            echo $_GET['error'];
+        }
+        ?>
     </div>
-    <div class="logosvg"> 
-    <img src="./assets/logo.svg" alt="logo">
+
+    <form action="authenticate" method="post">
+        <input type="email" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="submit" name="login" value="Login" />
+    </form>
+
+    <div class="login_extra">
+        <a href="register">Register</a>
+        <a href="forgot">Forgot Password</a>
+    </div>
 </div>
