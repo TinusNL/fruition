@@ -1,0 +1,21 @@
+.map {
+    width: 100%;
+    height: calc(100% - 50px);
+
+    #leaflet-map {
+        height: 100%;
+        width: 100%;
+
+        outline: none;
+        :focus {
+            outline: none;
+        }
+    }
+
+    #location-crosshair {
+        width: 100%;
+        height: calc(100% - 2px);
+
+        margin: 2px 0px;
+    }
+}

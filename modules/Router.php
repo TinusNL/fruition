@@ -6,9 +6,9 @@ class Router
 
     private static $pages;
 
-    public static function addPages(string $source): bool
+    public static function addPages(string $pagesDir): bool
     {
-        $dirs = glob($source, GLOB_ONLYDIR);
+        $dirs = Router::recursiveGrub($pagesDir);
 
         foreach ($dirs as $dir) {
             if (file_exists($dir . '/index.php')) {
@@ -32,5 +32,16 @@ class Router
         } else {
             return include Router::$pages['404'];
         }
+    }
+
+    private static function recursiveGrub(string $path): array
+    {
+        $dirs = glob($path . '/*', GLOB_ONLYDIR);
+
+        foreach ($dirs as $dir) {
+            $dirs = array_merge($dirs, self::recursiveGrub($dir));
+        }
+
+        return $dirs;
     }
 }

@@ -11,10 +11,9 @@ require_once 'config.php';
 </head>
 
 <body>
-    <?php include 'components/header.php' ?>
     <?php
 
-    Router::addPages('pages/*');
+    Router::addPages('pages');
     Router::getPageByUrl($_SERVER['REQUEST_URI']);
 
     ?>

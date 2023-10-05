@@ -4,6 +4,24 @@ nav.header {
   background-color: red;
 }
 
+.map {
+  width: 100%;
+  height: calc(100% - 50px);
+}
+.map #leaflet-map {
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+.map #leaflet-map :focus {
+  outline: none;
+}
+.map #location-crosshair {
+  width: 100%;
+  height: calc(100% - 2px);
+  margin: 2px 0px;
+}
+
 /* style.scss */
 /* Reset some default browser styles */
 body, h2, form {
@@ -68,6 +86,8 @@ input[type=submit]:hover {
 body {
   margin: 0px;
   padding: 0px;
+  width: 100vw;
+  height: 100vh;
 }
 
 /*# sourceMappingURL=main.css.map */
