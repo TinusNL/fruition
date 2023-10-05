@@ -1,61 +1,20 @@
 <?php
-    session_start();
-    $_SESSION['user_id'] = 1;
-    $_SESSION['profile-picture'] = 'https://avatars.githubusercontent.com/u/56132780?v=4';
-    $_SESSION['user_first_name'] = 'Emirhan';
-    $_SESSION['user_last_name'] = 'Boyacı';
-    $_SESSION['username'] = 'emirhanbyc';
-    $_SESSION['user_password'] = '123456';
-    $_SESSION['user_email'] = 'emirhanbyc12@gmail.com';
-    $_SESSION['user_role'] = 'user';
-
-    function sanitizeInput($input) {
-        $input = trim($input);
-        $input = htmlspecialchars($input);
-        $input = stripslashes($input);
-        return $input;
+    $dev = true;
+    if ($dev) {
+        $userId = $_SESSION['user_id'] ?? 12;
+    } else {
+        $userId = $_SESSION['user_id'];
     }
 
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(isset($_POST['submit'])) {
-            if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['confirm-password']) && !empty($_POST['email'])) {
-                $profilePicture = $_SESSION['profile-picture'];
-                $firstname = $_SESSION['user_first_name'];
-                $lastname = $_SESSION['user_last_name'];
-                $username = $_SESSION['username'];
-                $password = $_SESSION['user_password'];
-                $email = $_SESSION['user_email'];
-
-                $newProfilePicture = sanitizeInput($_POST['profile-picture']);
-                $newFirstname = sanitizeInput($_POST['firstname']);
-                $newLastname = sanitizeInput($_POST['lastname']);
-                $newUsername = sanitizeInput($_POST['username']);
-                $newPassword = sanitizeInput($_POST['password']);
-                $newPasswordConfirm = sanitizeInput($_POST['confirm-password']);
-                $newEmail = sanitizeInput($_POST['email']);
-
-                if($firstname != $newFirstname || $lastname != $newLastname || $username != $newUsername || $password != $newPassword || $email != $newEmail && $newPassword == $newPasswordConfirm) {
-                    $_SESSION['profile-picture'] = $newProfilePicture;
-                    $_SESSION['user_first_name'] = $newFirstname;
-                    $_SESSION['user_last_name'] = $newLastname;
-                    $_SESSION['username'] = $newUsername;
-                    $_SESSION['user_password'] = $newPassword;
-                    $_SESSION['user_email'] = $newEmail;
-                } else {
-                    echo 'You did not change anything.';
-                }
-
-                echo '<pre>';
-                print_r($_SESSION);
-                echo '</pre>';
-            }
-        }
+    if($userId == '') {
+        header('Location: /' . URL_PREFIX . '/');
     }
 
+    // get the user form the database
+    $stmt = Database::prepare("SELECT * FROM users WHERE id = :id");
+    $stmt->bindParam(':id', $userId);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <style>
@@ -102,33 +61,61 @@
 <main class="main">
     <div class="alter-account">
         <div class="form">
-            <form action="" method="post">
+            <form action="/<?= URL_PREFIX ?>/alter-account/process-request" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="user_id" data-value="<?= $_SESSION['user_id'] ?>">
 
                 <label for="profile-picture">Profile picture</label>
-                <?= '<img src="' . $_SESSION['profile-picture'] . '" alt="Profile picture" width="100px" height="100px">' ?>
-                <input type="file" name="profile-picture" id="profile-picture" data-value="<?php echo $_SESSION['profile-picture'] ?>">
-
-                <label for="firstname">First name</label>
-                <input type="text" name="firstname" id="firstname" data-value="<?php echo $_SESSION['user_first_name'] ?>">
-
-                <label for="lastname">Last name</label>
-                <input type="text" name="lastname" id="lastname" data-value="<?php echo $_SESSION['user_last_name'] ?>">
+                <img style="width:100px;height:100px;" src="data:image/*;base64,<?= base64_encode($user['profile_image']) ?>" alt="Profile picture">
+                <input type="file" name="profile-picture" id="profile-picture" accept="image/*">
 
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" data-value="<?php echo $_SESSION['username'] ?>">
+                <input type="text" name="username" id="username" value="<?= $user['username'] ?>">
 
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" data-value="<?php echo $_SESSION['user_password'] ?>">
+                <label for="current-password">Current password</label>
+                <input type="password" name="current-password" id="current-password">
 
-                <label for="confirm-password">Confirm password</label>
+                <label for="password">New password</label>
+                <input type="password" name="password" id="password">
+
+                <label for="confirm-password">Confirm new password</label>
                 <input type="password" name="confirm-password" id="confirm-password">
                 
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" data-value="<?php echo $_SESSION['user_email'] ?>">
+                <input type="email" name="email" id="email" value="<?= $user['email'] ?>">
 
-                <button type="submit" name="submit">Submit</button>
+                <label for="phone-number">Phone number</label>
+                <input type="tel" name="phone-number" id="phone-number" value="<?= $user['phone_number'] ?>">
+
+                <button type="submit" name="alter-account">Submit</button>
+                <p>Or delete your account & data here</p>
+            </form>
+            
+            <form action="/<?= URL_PREFIX ?>/alter-account/process-request" method="post">
+                <button type="submit" name="delete-account">Delete account</button>
             </form>
         </div>
     </div>
+
+    <!-- <div class="users">
+        <table>
+            <thead>
+                <tr>
+                    <th>Profile picture</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="<?= $user['profile_image'] ?>" alt="Profile picture" width="100px" height="100px"></td>
+                    <td><?= $user['username'] ?></td>
+                    <td><?= $user['password'] ?></td>
+                    <td><?= $user['email'] ?></td>
+                    <td><?= $user['phone_number'] ?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
 </main>
