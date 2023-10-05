@@ -28,6 +28,7 @@ nav.header .top > .search > input {
   padding: 15px;
   margin: 0px;
   font-size: 1.15rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 nav.header .top > .search > img {
   position: absolute;
@@ -56,6 +57,7 @@ nav.header .top > .categories > button {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 nav.header .top > .categories > button.selected {
   background-color: #9bce77;

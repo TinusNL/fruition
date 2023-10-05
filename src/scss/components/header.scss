@@ -34,6 +34,8 @@ nav.header {
                 margin: 0px;
 
                 font-size: 1.15rem;
+
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             }
 
             > img {
@@ -69,6 +71,8 @@ nav.header {
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
+
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
                 &.selected {
                     background-color: #9bce77;
