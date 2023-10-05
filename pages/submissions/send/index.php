@@ -23,8 +23,20 @@ if (isset($_POST['send'])) {
 
     $mail->isHTML(true);
 
-    $mail->Subject = $_POST['subject'];
-    $mail->Body = $_POST['message'];
+    $body = "Plant name: " . $_POST['plant_name']. "<br>";
+    $body .= "Location: " . $_POST['location']. "<br>";
+    
+    $body .= "Start date: " . $_POST['start_date']. "<br>";
+    $body .= "End date: " . $_POST['end_date']. "<br>";
+
+    $mail->Subject = "Thank you for ur submission!";
+    $mail->Body = $body;
+    $mail->AddAttachment = $_POST['photo'];
+   
+    // $mail->Body = $_POST['location'];
+    // $mail->Body = $_POST['photo'];
+    // $mail->Body = $_POST['start_date'];
+    // $mail->Body = $_POST['end_date'];
     
     $mail->send();
 
