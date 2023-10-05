@@ -6,7 +6,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var locationMarker
 
-var btn = L.easyButton('<img src="./assets/location-crosshairs-solid.svg" id="location-crosshair">', function () {
+var btn = L.easyButton('<img src="./assets/icons/location-crosshairs-solid.svg" id="location-crosshair">', function () {
     navigator.geolocation.getCurrentPosition((position) => {
         map.setView([position.coords.latitude, position.coords.longitude], 16, { pan: { animate: true } })
 
