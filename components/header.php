@@ -4,26 +4,14 @@
             <input id="search" type="text" placeholder="Search">
             <img src="./assets/icons/magnifying-glass.svg" alt="Magnifying Glass">
         </div>
-        <div class="categories">
-            <button class="selected">
-                <img src="./assets/icons/food/apple.svg" alt="Categories">
+        <div class="categories" id="categories-holder">
+            <button data-id="1" data-label="Apples" class="selected">
+                <img src="./assets/icons/food/apple.svg" alt="Category">
                 <span>Apples</span>
             </button>
-            <button>
-                <img src="./assets/icons/food/apple.svg" alt="Categories">
-                <span>Apples</span>
-            </button>
-            <button>
-                <img src="./assets/icons/food/apple.svg" alt="Categories">
-                <span>Apples</span>
-            </button>
-            <button>
-                <img src="./assets/icons/food/apple.svg" alt="Categories">
-                <span>Apples</span>
-            </button>
-            <button>
-                <img src="./assets/icons/food/apple.svg" alt="Categories">
-                <span>Apples</span>
+            <button data-id="2" data-label="Berries">
+                <img src="./assets/icons/food/berry.svg" alt="Category">
+                <span>Berries</span>
             </button>
         </div>
     </div>
@@ -38,3 +26,5 @@
         </div>
     </div>
 </nav>
+
+<script src="./<?= Router::getOffset() ?>scripts/search.js"></script>
