@@ -1,6 +1,3 @@
-<?php
-
-?>
 <div>
     <form action="send.php" method="post">
         Email <input type="email"  name="email"> <br>
