@@ -5,25 +5,41 @@ class Router
 {
 
     private static $pages;
+    public static $url;
 
-    public static function addPages(string $pagesDir): bool
+    public static function loadPages(string $pagesDir)
     {
         $dirs = Router::recursiveGrub($pagesDir);
 
         foreach ($dirs as $dir) {
+            echo $dir;
             if (file_exists($dir . '/index.php')) {
+                echo '- added<br>';
                 self::$pages[str_replace('pages/', '', $dir)] = $dir . '/index.php';
             }
         }
-
-        return true;
     }
 
-    public static function getPageByUrl(string $url)
+    public static function loadUrl(string $url)
     {
         $url = explode('?', $url)[0];
         $url = strstr($url, '/');
-        $url = trim(str_replace(URL_PREFIX, '', $url), '/');
+        $url = str_replace(URL_PREFIX, '', $url);
+        $url = ltrim($url, '/');
+
+        Router::$url = $url;
+    }
+
+    public static function getOffset()
+    {
+        $url = explode('/', Router::$url);
+
+        return str_repeat('../', count($url) - 1);
+    }
+
+    public static function getContent()
+    {
+        $url = trim(Router::$url, '/');
 
         if (array_key_exists($url, Router::$pages)) {
             return include Router::$pages[$url];
