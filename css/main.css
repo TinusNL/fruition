@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 nav.header {
   width: 100%;
   height: 50px;
@@ -22,138 +23,75 @@ nav.header {
   margin: 2px 0px;
 }
 
-/* style.scss */
-/* Reset some default browser styles */
-body, h2, form {
-  margin: 0;
-  padding: 0;
+.body {
+  font-family: "Poppins";
 }
 
-/* Style the body */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-/* Style the form container */
-form {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* Style form labels */
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* Style form inputs and textareas */
-input[type=text],
-textarea {
+.main_login {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* Style the file input */
-input[type=file] {
-  margin-top: 5px;
-}
-
-/* Style the submit button */
-input[type=submit] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-/* Style the submit button on hover */
-input[type=submit]:hover {
-  background-color: #0056b3;
-}
-
-.logosvg {
-  position: relative;
-  left: 60vw;
-  top: -35vw;
-  width: 500px;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: popins;
-}
-
-.login-container {
-  width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: row;
-  background: linear-gradient(to right, #9BCE77 50%, #fff 50%);
-}
-
-.login-form {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+  justify-content: center;
+}
+.main_login .left_login, .main_login .right_login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.main_login .left_login {
+  font-family: "Poppins";
+  color: #182450;
+  background-color: #9BCE77;
+  width: 40%;
+}
+.main_login .left_login .sign-in {
+  color: #E5FFD2;
+  position: relative;
+  left: 20vw;
+  bottom: 4.5vh;
+  width: 7vw;
+  height: 2vw;
+  border-radius: 52px;
+  background-color: #182450;
+  border: 0px;
+}
+.main_login .right_login {
+  font-family: "Poppins";
+  color: #182450;
+  background-color: #E5FFD2;
+  width: 60%;
+  height: 10;
+}
+.main_login .right_login .logo {
+  padding: 100px;
 }
 
-.login-title {
-  font-size: 24px;
+.form {
+  font-family: "Poppins";
+  color: #182450;
   font-weight: bold;
-  color: darkblue; /* Changed text color to dark blue */
-  margin-bottom: 20px;
+  width: 20vw;
+  position: relative;
+  right: 3.5vw;
 }
 
-.input-container {
-  margin-bottom: 15px;
-  text-align: left; /* Align input labels to the left */
+.input-box {
+  outline: 0px;
+  font-family: "Poppins";
+  width: 27vw;
+  height: 2vw;
+  border-radius: 52px;
+  background-color: #E5FFD2;
+  border: 0px;
 }
 
-.input-container label {
-  color: darkblue; /* Changed text color to dark blue */
-}
-
-.input-container input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.signup-link {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.login-button {
-  width: 100%;
-  padding: 12px;
-  background-color: darkblue; /* Changed button background color */
-  color: white; /* Changed button text color */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.login-button:hover {
-  background-color: #003366;
+.login-text {
+  font-size: 50px;
+  font-weight: bold;
 }
 
 body {
