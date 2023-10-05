@@ -16,7 +16,8 @@ nav.header .top {
 }
 nav.header .top > .search {
   width: 100%;
-  height: 40px;
+  height: 50px;
+  position: relative;
 }
 nav.header .top > .search > input {
   width: calc(100% - 30px);
@@ -26,6 +27,18 @@ nav.header .top > .search > input {
   color: #f6fff5;
   padding: 15px;
   margin: 0px;
+  font-size: 1.15rem;
+}
+nav.header .top > .search > img {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  height: 100%;
+  width: 8%;
+}
+nav.header .top > .categories {
+  width: calc(100% - 40px);
+  padding: 0px 20px;
 }
 nav.header .bottom {
   display: flex;

@@ -2,6 +2,7 @@
     <div class="top">
         <div class="search">
             <input id="search" type="text" placeholder="Search">
+            <img src="./assets/icons/magnifying-glass.svg" alt="Magnifying Glass">
         </div>
         <div class="categories">
             <button>

@@ -19,7 +19,8 @@ nav.header {
 
         > .search {
             width: 100%;
-            height: 40px;
+            height: 50px;
+            position: relative;
 
             > input {
                 width: calc(100% - 30px);
@@ -31,10 +32,23 @@ nav.header {
 
                 padding: 15px;
                 margin: 0px;
+
+                font-size: 1.15rem;
+            }
+
+            > img {
+                position: absolute;
+                top: 0px;
+                right: 15px;
+
+                height: 100%;
+                width: 8%;
             }
         }
 
         > .categories {
+            width: calc(100% - 40px);
+            padding: 0px 20px;
         }
     }
 
