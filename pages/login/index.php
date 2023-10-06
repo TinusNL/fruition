@@ -3,7 +3,7 @@
         <h1 class="login-text">Login</h1>
         <div class="login_error">
             <?php
-            if (isset($_GET['error'])) {
+            if (isset($_GET['error'])) {    
                 echo $_GET['error'];
             }
             ?>
