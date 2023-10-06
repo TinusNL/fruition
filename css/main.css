@@ -28,13 +28,65 @@ nav.header {
 }
 
 .main_login {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  justify-items: center;
-  align-content: center;
-  background: linear-gradient(to right, #9BCE77 0%, #9BCE77 40%, #E5FFD2 40%, #E5FFD2 100%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.main_login .left_login, .main_login .right_login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.main_login .left_login {
+  font-family: "Poppins";
+  color: #182450;
+  background-color: #9BCE77;
+  width: 40%;
+}
+.main_login .left_login .sign-in {
+  color: #E5FFD2;
+  position: relative;
+  left: 20vw;
+  bottom: 4.5vh;
+  width: 7vw;
+  height: 2vw;
+  border-radius: 52px;
+  background-color: #182450;
+  border: 0px;
+}
+.main_login .right_login {
+  font-family: "Poppins";
+  color: #182450;
+  background-color: #E5FFD2;
+  width: 60%;
+  height: 10;
+}
+.main_login .right_login .logo {
+  padding: 100px;
+}
+
+.form {
+  font-family: "Poppins";
+  color: #182450;
+  font-weight: bold;
+  width: 20vw;
+  position: relative;
+  right: 3.5vw;
+}
+
+.input-box {
+  outline: 0px;
+  font-family: "Poppins";
+  width: 27vw;
+  height: 2vw;
+  border-radius: 52px;
+  background-color: #E5FFD2;
+  border: 0px;
 }
 
 .left_login {
