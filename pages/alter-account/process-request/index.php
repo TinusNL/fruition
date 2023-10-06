@@ -8,16 +8,16 @@ if ($dev) {
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['alter-account'])) {
-        // if(isset($_FILES['profile-picture']) && $_FILES['profile-picture']['error'] === 0) {
-        //     $imgContent = file_get_contents($_FILES['profile-picture']['tmp_name']);
+        if(isset($_FILES['profile-picture']) && $_FILES['profile-picture']['error'] === 0) {
+            $imgContent = file_get_contents($_FILES['profile-picture']['tmp_name']);
 
-        //     $stmt = Database::prepare("UPDATE users SET profile_image = :profile_image WHERE id = :id");
-        //     $stmt->bindParam(':profile_image', $imgContent, PDO::PARAM_LOB);
-        //     $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
-        //     $stmt->execute();
+            $stmt = Database::prepare("UPDATE users SET profile_image = :profile_image WHERE id = :id");
+            $stmt->bindParam(':profile_image', $imgContent, PDO::PARAM_LOB);
+            $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+            $stmt->execute();
 
-        //     $newProfilePicture = $imgContent;
-        // }
+            $newProfilePicture = $imgContent;
+        }
         if(!empty($_POST['username']) && !empty($_POST['current-password']) && !empty($_POST['password']) && !empty($_POST['confirm-password']) && !empty($_POST['email']) && !empty($_POST['phone-number'])) {
             $newUsername = $_POST['username'];
             $newPassword = $_POST['password'];
