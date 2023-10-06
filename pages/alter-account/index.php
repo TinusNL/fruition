@@ -22,13 +22,13 @@
     <div class="alter-account">
         <div class="form">
             <form action="/<?= URL_PREFIX ?>/alter-account/process-request" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="user_id" data-value="<?= $_SESSION['user_id'] ?>">
+                <input type="hidden" name="user_id" data-value="<?= $userId ?>">
 
-                <label for="profile-picture">Profile picture</label>
+                <!-- <label for="profile-picture">Profile picture</label> -->
                 <!-- Delete the inline style from image when app is finished and ready for styling. -->
                 <!-- example ----→ <img src="" alt="Profile picture"> -->
-                <img style="width:100px;height:100px;" src="data:image/*;base64,<?= base64_encode($user['profile_image']) ?>" alt="Profile picture">
-                <input type="file" name="profile-picture" id="profile-picture" accept="image/*">
+                <!-- <img style="width:100px;height:100px;" src="data:image/*;base64,<?= base64_encode($user['profile_image']) ?>" alt="Profile picture"> -->
+                <!-- <input type="file" name="profile-picture" id="profile-picture" accept="image/*"> -->
 
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" value="<?= $user['username'] ?>">
