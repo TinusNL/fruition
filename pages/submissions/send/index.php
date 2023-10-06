@@ -51,7 +51,8 @@ if (isset($_POST['send'])) {
         $mail->isHTML(true);
 
         $body = "Name: " . $_POST['plant_name']. "<br>";
-        $body .= "Location: " . $_POST['location']. "<br>";
+        $body .= "Location: " . $_POST['location']. "<br>". "Season:  ". $_POST['season']. "<br>". "Type: ".$_POST['types'];
+
         
 
         $mail->Subject = "Thank you for ur submission!";
