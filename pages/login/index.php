@@ -30,12 +30,12 @@
                 <img src="./assets/Pinterest.svg" alt="">
             </div>
             <div class="logo-hidden-login">
-            <img src="./assets/logo.svg" alt="logo" class="logo">
+            <img src="./assets/logo_light.svg" alt="logo" class="logo">
             </div>
         </div>
     </div>
     <div class="right_login">
-        <img src="./assets/logo_light.png" alt="logo" class="logo">
+        <img src="./assets/logo.svg" alt="logo" class="logo">
         <h2>Free Food For All</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie luctus tellus, at viverra purus pulvinar vitae. Vivamus vitae lobortis magna, mollis mollis orci.</p>
     </div>

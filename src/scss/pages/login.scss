@@ -89,9 +89,15 @@
 
 .socials {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 20px;
 }
+
+.socials img {
+    width: 30px;
+}
+
 
 @media screen and (max-width:375.9px){
     .main_login {
