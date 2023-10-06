@@ -1,4 +1,5 @@
 <?php
+    // When the application is finished, remove following lines: 3-8
     $dev = true;
     if ($dev) {
         $userId = $_SESSION['user_id'] ?? 12;
@@ -10,54 +11,13 @@
         header('Location: /' . URL_PREFIX . '/');
     }
 
-    // get the user form the database
+    // get the user from the database
     $stmt = Database::prepare("SELECT * FROM users WHERE id = :id");
     $stmt->bindParam(':id', $userId);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
-<style>
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    label {
-        margin-top: 1rem;
-    }
-
-    input {
-        margin-top: 0.5rem;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 20rem;
-    }
-
-    button {
-        margin-top: 1rem;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 20rem;
-        background-color: #ccc;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #ddd;
-    }
-
-    .alter-account {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
-</style>
 <main class="main">
     <div class="alter-account">
         <div class="form">
@@ -65,6 +25,8 @@
                 <input type="hidden" name="user_id" data-value="<?= $_SESSION['user_id'] ?>">
 
                 <label for="profile-picture">Profile picture</label>
+                <!-- Delete the inline style from image when app is finished and ready for styling. -->
+                <!-- example ----→ <img src="" alt="Profile picture"> -->
                 <img style="width:100px;height:100px;" src="data:image/*;base64,<?= base64_encode($user['profile_image']) ?>" alt="Profile picture">
                 <input type="file" name="profile-picture" id="profile-picture" accept="image/*">
 
@@ -95,27 +57,4 @@
             </form>
         </div>
     </div>
-
-    <!-- <div class="users">
-        <table>
-            <thead>
-                <tr>
-                    <th>Profile picture</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Email</th>
-                    <th>Phone number</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img src="<?= $user['profile_image'] ?>" alt="Profile picture" width="100px" height="100px"></td>
-                    <td><?= $user['username'] ?></td>
-                    <td><?= $user['password'] ?></td>
-                    <td><?= $user['email'] ?></td>
-                    <td><?= $user['phone_number'] ?></td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
 </main>
