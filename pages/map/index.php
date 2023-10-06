@@ -42,5 +42,3 @@
 // $mysqli->close();
 
 ?>
-
-<p>test</p>

@@ -23,81 +23,28 @@ var btn = L.easyButton('<img src="./assets/location-crosshairs-solid.svg" id="lo
 }).addTo(map)
 
 var markers = JSON.parse(markerJson);
-var markers = [
-    {
-        id: 1,
-        photoName: '77069d90-e7e1-47a9-b5e0-41d70e45a956.webp',
-        type: 'apple',
-        lat: 50.373380,
-        lng: -4.142650,
-        timestamp: 1633440000,
-        createdBy: 'John Doe',
-        season: 'Spring', // Example season field
-        location: 'Garden', // Example location field
-    },
-    {
-        id: 2,
-        photoName: 'andere-foto-naam.webp',
-        type: 'apple',
-        lat: 50.370380,
-        lng: -4.142650,
-        timestamp: 1633441200,
-        createdBy: 'Jane Smith',
-        season: 'Summer', // Example season field
-        location: 'Orchard', // Example location field
-    },
-    // Add more marker data as needed
-];
 
 markers.forEach(markerInfo => {
     var marker = L.marker([markerInfo.lat, markerInfo.lng]).addTo(map);
 
-    // Create a Date object from the timestamp
     var timestamp = new Date(markerInfo.timestamp);
+    var photoUrl = `Images/${markerInfo.photoName}`;
 
-    // Generate the photo URL based on the photo name
-    var photoUrl = generatePhotoUrl(markerInfo.photoName);
-
-    // Create a container div for styling purposes
-    var popupContent = document.createElement('div');
-    popupContent.className = 'popup-container';
-
-    // Create HTML elements for each piece of information
-    var typeElement = document.createElement('p');
-    typeElement.textContent = 'Type: ' + markerInfo.type;
-    var createdByElement = document.createElement('p');
-    createdByElement.textContent = 'Created by: ' + markerInfo.createdBy;
-    var timestampElement = document.createElement('p');
-    timestampElement.textContent = 'Timestamp: ' + timestamp.toLocaleString();
-    var seasonElement = document.createElement('p');
-    seasonElement.textContent = 'Season: ' + markerInfo.season;
-    var locationElement = document.createElement('p');
-    locationElement.textContent = 'Location: ' + markerInfo.location;
-    var imgElement = document.createElement('img');
-    imgElement.src = photoUrl;
-    imgElement.alt = 'Marker Photo';
-    imgElement.className = 'popup-img';
-    timestampElement.className = 'timestamp';
-    typeElement.className = 'type';
-
-    // Append each element to the container
-    popupContent.appendChild(imgElement);
-    popupContent.appendChild(typeElement);
-    popupContent.appendChild(createdByElement);
-    popupContent.appendChild(timestampElement);
-    popupContent.appendChild(seasonElement);
-    popupContent.appendChild(locationElement);
-
-    marker.bindPopup(popupContent, {
+    marker.bindPopup(`
+        <div class="popup-container">
+            <p class="timestamp">${timestamp.toLocaleString()}</p>
+            <img src="${photoUrl}" alt="Marker Photo" class="popup-img">
+            <p class="type">Type: ${markerInfo.type}</p>
+            <p class="createdby">Created by: ${markerInfo.createdBy}</p>
+            <p class="season">Season: ${markerInfo.season}</p>
+            <p class="location">Location: ${markerInfo.location}</p>
+        </div>
+    `, {
         className: 'custom-popup'
     });
-
-    function generatePhotoUrl(photoName) {
-        // Replace this with your logic to generate the correct photo URL based on the name
-        // For example, if the photos are in the same directory as the HTML page:
-        return `Images/${photoName}`;
-    }
 });
+
+
 
 
 

@@ -38,16 +38,10 @@ nav.header {
   margin: 0 auto;
 }
 
-.Createdby {
-  top: 48vh;
-  position: relative;
-  left: 38vh;
-}
-
 .timestamp {
   top: 48vh;
   position: relative;
-  right: 15vh;
+  right: 15px;
 }
 
 /* style.scss */
