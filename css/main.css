@@ -185,6 +185,58 @@ body .main {
   align-items: center;
 }
 
+.fourofour_main {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  justify-items: center;
+  align-content: center;
+  background: linear-gradient(to right, #9BCE77 0%, #9BCE77 40%, #E5FFD2 40%, #E5FFD2 100%);
+}
+
+.fourofour_left {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.fourofour {
+  font-size: 70pt;
+  font-family: "Poppins";
+  font-weight: 600;
+  color: rgb(24, 36, 80);
+  margin-top: 0;
+  margin-bottom: 0;
+  align-self: center;
+}
+
+.go_back {
+  font-size: 15pt;
+  font-family: "Poppins";
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  align-self: center;
+  background-color: #182450;
+  padding: 12pt;
+  width: 120pt;
+  border-radius: 25pt;
+  text-decoration: none;
+}
+
+.sorry_we_c {
+  font-size: 20pt;
+  font-family: "Poppins";
+  font-weight: 600;
+  color: rgb(24, 36, 80);
+  align-self: center;
+  text-align: center;
+}
+
+.logo_404 {
+  width: 50vw;
+  align-self: center;
+}
+
 body {
   margin: 0px;
   padding: 0px;
