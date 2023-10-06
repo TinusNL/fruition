@@ -1,5 +1,8 @@
 <?php
 require_once 'config.php';
+
+Router::loadPages('pages');
+Router::loadUrl($_SERVER['REQUEST_URI']);
 ?>
 
 <!DOCTYPE html>
@@ -7,14 +10,13 @@ require_once 'config.php';
 
 <head>
     <title>Fruition</title>
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./<?= Router::getOffset() ?>css/main.css">
 </head>
 
 <body>
     <?php
 
-    Router::addPages('pages/*');
-    Router::getPageByUrl($_SERVER['REQUEST_URI']);
+    Router::getContent();
 
     ?>
 </body>
