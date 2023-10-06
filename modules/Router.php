@@ -1,13 +1,10 @@
 <?php
-
-
 class Router
 {
+    private static array $pages = [];
+    public static string $url = '';
 
-    private static $pages;
-    public static $url;
-
-    public static function loadPages(string $pagesDir)
+    public static function loadPages(string $pagesDir): void
     {
         $dirs = Router::recursiveGrub($pagesDir);
 
@@ -18,7 +15,7 @@ class Router
         }
     }
 
-    public static function loadUrl(string $url)
+    public static function loadUrl(string $url): void
     {
         $url = explode('?', $url)[0];
         $url = strstr($url, '/');
@@ -28,7 +25,7 @@ class Router
         Router::$url = $url;
     }
 
-    public static function getOffset()
+    public static function getOffset(): string
     {
         $url = explode('/', Router::$url);
 

@@ -2,12 +2,11 @@
 
 class Database
 {
-    public static $conn;
+    public static PDO $conn;
 
-    public static function prepare($query)
+    public static function prepare($query): bool|PDOStatement
     {
-        $stmt = self::$conn->prepare($query);
-        return $stmt;
+        return self::$conn->prepare($query);
     }
 }
 
