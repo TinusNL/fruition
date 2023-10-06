@@ -18,17 +18,17 @@
         <label for="season">Season:</label>
         <select name="season" required>
             <option value="" disabled selected>Select a season</option>
-            <option value="autumn">Autumn</option>
-            <option value="spring">Spring</option>
-            <option value="summer">Summer</option>
-            <option value="winter">Winter</option>
+            <option value="1">1. Autumn</option>
+            <option value="2">2. Spring</option>
+            <option value="3">3. Summer</option>
+            <option value="4">4. Winter</option>
         </select><br><br>
 
         <label for="types">types:</label>
         <select name="types" required>
             <option value="" disabled selected>Select a type</option>
-            <option value="food">1. Food</option>
-            <option value="unknown">2. Unknown</option>
+            <option value="1">1. Food</option>
+            <option value="2">2. Unknown</option>
         </select><br><br>
 
         <!-- Hidden fields to store latitude and longitude -->
@@ -60,3 +60,29 @@
         document.getElementById("getLocationButton").addEventListener("click", getLocation);
     </script>
 </div>
+<?php
+        session_start(); 
+
+        include('Database.php');
+
+        if (isset($_POST["plant_name"], $_POST["types"], $_POST["season"], $_POST["location"])) {
+            $email = $_SESSION['user_id'];
+            $plant_name = $_POST["plant_name"];
+            $type = $_POST["types"];
+            $season = $_POST["season"];
+            $location = $_POST["location"];
+
+            $stmt = $conn->prepare("INSERT INTO items (userId, name, typeId, seasonId, location) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param($email, $plant_name, $type, $season, $location);
+
+            if ($stmt->execute()) {
+                echo "Data has been inserted successfully!";
+            } else {
+                echo "Error inserting data: " . $stmt->error;
+            }
+
+            $stmt->close();
+        } else {
+            echo "Not all required fields are filled in.";
+        }
+?>
