@@ -89,51 +89,11 @@ nav.header {
   border: 0px;
 }
 
-.left_login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form-login {
-  color: #182450;
-}
-
-.form-login label {
-  font-size: 14pt;
-  font-weight: bold;
-  color: #182450;
-}
-
-.form-login input[type=password], input[type=email] {
-  width: 100%;
-  background-color: #E5FFD2;
-  border: none;
-  outline: none;
-  padding: 5px 15px;
-  border-radius: 15pt;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.account-signin {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+.login-text {
+  font-size: 50px;
   font-weight: bold;
 }
 
-.sign-up a, a:active, a:visited {
-  text-decoration: none;
-  color: #182450;
-}
-
-@media only screen and (max-width: 375.9px) {
-  .main_login {
-    background-color: red;
-  }
-}
 body {
   margin: 0px;
   padding: 0px;

@@ -8,14 +8,14 @@
             }
             ?>
         </div>
-        <div class="form-login">
+        <div class="form">
             <form action="authenticate" method="post" class="login-form"><br>
                 <label for="email">Email</label><br>
                 <input class="input-box" type="email" name="email" placeholder="    janedoe@mail.com">
                 <br>
                 <label for="password">Password</label><br>
                 <input class="input-box" type="password" name="password" placeholder="  *******">
-                <div class="account-signin">
+                <div>
                     <p>Don't have an account? <a href="" class="sign-up">Sign up</a></p>
                     <input type="submit" name="login" class="sign-in" value="Sign in" clss="sign-in">
                 </div>
