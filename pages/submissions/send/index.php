@@ -31,19 +31,16 @@ if (isset($_POST['send'])) {
 
     $mail->Subject = "Thank you for ur submission!";
     $mail->Body = $body;
-    $mail->AddAttachment = $_POST['photo'];
+    $mail->$attachment = chunk_split(base64_encode(file_get_contents($_POST['photo'])));
    
-    // $mail->Body = $_POST['location'];
-    // $mail->Body = $_POST['photo'];
-    // $mail->Body = $_POST['start_date'];
-    // $mail->Body = $_POST['end_date'];
+
     
     $mail->send();
 
 
     
 if(isset($_POST['send'])) {
-    header("Location: http://localhost/fruition");
+    header("Location: http://localhost/fruition/map");
     exit();
 }
 
