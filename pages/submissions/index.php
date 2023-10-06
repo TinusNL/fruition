@@ -60,29 +60,3 @@
         document.getElementById("getLocationButton").addEventListener("click", getLocation);
     </script>
 </div>
-<?php
-        session_start(); 
-
-        include('Database.php');
-
-        if (isset($_POST["plant_name"], $_POST["types"], $_POST["season"], $_POST["location"])) {
-            $email = $_SESSION['user_id'];
-            $plant_name = $_POST["plant_name"];
-            $type = $_POST["types"];
-            $season = $_POST["season"];
-            $location = $_POST["location"];
-
-            $stmt = $conn->prepare("INSERT INTO items (userId, name, typeId, seasonId, location) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param($email, $plant_name, $type, $season, $location);
-
-            if ($stmt->execute()) {
-                echo "Data has been inserted successfully!";
-            } else {
-                echo "Error inserting data: " . $stmt->error;
-            }
-
-            $stmt->close();
-        } else {
-            echo "Not all required fields are filled in.";
-        }
-?>
