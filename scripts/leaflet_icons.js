@@ -1,6 +1,6 @@
-var leafletIcons = {
-    "apple": L.icon({
-        iconUrl: './assets/markers/apple.svg',
+function icon(img) {
+    return L.icon({
+        iconUrl: img,
         shadowUrl: './assets/markers/shadow.png',
 
         iconSize: [37, 37],
@@ -9,4 +9,10 @@ var leafletIcons = {
         shadowAnchor: [13, 39],
         popupAnchor: [0, -30]
     })
+}
+
+
+var leafletIcons = {
+    "apple": icon('./assets/markers/apple.svg'),
+    "berry": icon('./assets/markers/berry.svg'),
 }  

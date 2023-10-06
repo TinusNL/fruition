@@ -49,6 +49,7 @@ nav.header .top > .categories {
   gap: 10px;
 }
 nav.header .top > .categories > button {
+  cursor: pointer;
   outline: none;
   border: 0px;
   background-color: #e5ffd2;
@@ -82,6 +83,7 @@ nav.header .bottom .actions {
   flex-direction: row;
   justify-content: flex-start;
   gap: 15px;
+  position: relative;
   height: 100%;
   width: 100%;
 }
@@ -93,6 +95,65 @@ nav.header .bottom .actions > a {
 }
 nav.header .bottom .actions > a > img {
   height: 80%;
+}
+nav.header .bottom .actions .profile:hover + .popup,
+nav.header .bottom .actions .popup:hover {
+  display: block;
+}
+nav.header .bottom .actions .popup {
+  display: none;
+  width: 150px;
+  height: 90px;
+  background-color: #182450;
+  position: absolute;
+  bottom: 150%;
+  left: -22px;
+  border-radius: 20px;
+}
+nav.header .bottom .actions .popup > div:not(.triangle) {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav.header .bottom .actions .popup > div:not(.triangle).signup {
+  background-color: #9bce77;
+  color: #182450;
+  text-decoration: none;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+nav.header .bottom .actions .popup > div:not(.triangle).signup :active,
+nav.header .bottom .actions .popup > div:not(.triangle).signup :visited,
+nav.header .bottom .actions .popup > div:not(.triangle).signup :link {
+  color: #182450;
+  text-decoration: none;
+}
+nav.header .bottom .actions .popup > div:not(.triangle).signup :hover {
+  color: #e5ffd2;
+}
+nav.header .bottom .actions .popup > div:not(.triangle).login {
+  background-color: #182450;
+  color: #e5ffd2;
+  text-decoration: none;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+nav.header .bottom .actions .popup > div:not(.triangle).login :active,
+nav.header .bottom .actions .popup > div:not(.triangle).login :visited,
+nav.header .bottom .actions .popup > div:not(.triangle).login :link {
+  color: #e5ffd2;
+  text-decoration: none;
+}
+nav.header .bottom .actions .popup > div:not(.triangle).login :hover {
+  color: #9bce77;
+}
+nav.header .bottom .actions .popup .triangle {
+  margin-left: 20px;
+  width: 0px;
+  border: transparent 20px solid;
+  border-top-color: #182450;
 }
 nav.header .bottom .logo > img {
   height: 100%;
