@@ -9,14 +9,15 @@
             <label for="fullname">Full name</label>
             <input type="text">
             <label for="password">Password</label>
-            <input type="text">
+            <input type="password">
             <label for="confirm_password">Confirm password</label>
             <input type="text">
             <div id="button">
-                <label for="text">Dont have an account? <a href="#">Sign in</a></label>
-                <button>Sign in</button>
+                <label id="label" for="text">Dont have an account? <a href="#">Sign in</a></label>
+                <button class="button">Sign in</button>
             </div>
         </form>
+        <img class="img_g" src="assets/google.svg" alt="Google">
     </div>
     <div class="side">
 

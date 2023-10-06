@@ -11,6 +11,7 @@ h1{
     color: #182450;
     font-weight: 600;
     font-size: 40px;
+    margin: 0;
 }
 
 #form{
@@ -34,4 +35,26 @@ h1{
 
 #button{
     display: flex;
+    margin-top: 30px;
+}
+
+#button label{
+    margin-right: 2vw;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+#button .button{
+    background-color: #182450;
+    border: none;
+    border-radius: 22px;
+    padding: 5px 55px;
+    color: white;
+}
+
+.img_g{
+    width: 25px;
+    background-color: #E5FFD2;
+    border-radius: 30px;
+    padding: 5px;
 }
