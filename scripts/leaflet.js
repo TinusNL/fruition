@@ -23,12 +23,14 @@ var btn = L.easyButton('<img src="./assets/location-crosshairs-solid.svg" id="lo
 }).addTo(map)
 
 var markers = JSON.parse(markerJson);
-
 markers.forEach(markerInfo => {
-    var marker = L.marker([markerInfo.lat, markerInfo.lng]).addTo(map);
+    var marker = L.marker([markerInfo.location.lat, markerInfo.location.lng]).addTo(map);
 
     var timestamp = new Date(markerInfo.timestamp);
     var photoUrl = `Images/${markerInfo.photoName}`;
+
+    // Convert latitude and longitude to a Google Maps link
+    var googleMapsLink = `https://www.google.com/maps?q=${markerInfo.location.lat},${markerInfo.location.lng}`;
 
     marker.bindPopup(`
         <div class="popup-container">
@@ -37,12 +39,14 @@ markers.forEach(markerInfo => {
             <p class="type">Type: ${markerInfo.type}</p>
             <p class="createdby">Created by: ${markerInfo.createdBy}</p>
             <p class="season">Season: ${markerInfo.season}</p>
-            <p class="location">Location: ${markerInfo.location}</p>
+            <p class="location"><a href="${googleMapsLink}" target="_blank">Location: ${markerInfo.location.lat}, ${markerInfo.location.lng}</a></p>
         </div>
     `, {
         className: 'custom-popup'
     });
 });
+
+
 
 
 
