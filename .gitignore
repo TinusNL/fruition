@@ -3,6 +3,7 @@
 .vscode
 
 # NPM / SCSS
+/node_modules
 /src/package-lock.json
 /src/node_modules
 /css/main.css.map
