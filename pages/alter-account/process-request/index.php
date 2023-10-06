@@ -18,23 +18,51 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $newProfilePicture = $imgContent;
         }
-        if(!empty($_POST['username']) && !empty($_POST['current-password']) && !empty($_POST['password']) && !empty($_POST['confirm-password']) && !empty($_POST['email']) && !empty($_POST['phone-number'])) {
+
+        if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['phone-number'])) {
             $newUsername = $_POST['username'];
-            $newPassword = $_POST['password'];
-            $newPasswordConfirm = $_POST['confirm-password'];
             $newEmail = $_POST['email'];
             $newPhoneNumber = $_POST['phone-number'];
 
-            $stmt = Database::prepare("UPDATE users SET username = :username, password = :password, email = :email, phone_number = :phone_number WHERE id = :id");
+            $stmt = Database::prepare("UPDATE users SET username = :username, email = :email, phone_number = :phone_number WHERE id = :id");
             $stmt->bindParam(':username', $newUsername);
-            $stmt->bindParam(':password', $newPassword);
             $stmt->bindParam(':email', $newEmail);
             $stmt->bindParam(':phone_number', $newPhoneNumber);
             $stmt->bindParam(':id', $userId);
             $stmt->execute();
-
-            header('Location: /' . URL_PREFIX . '/alter-account/');
         }
+
+        if(!empty($_POST['current-password']) && !empty($_POST['password']) && !empty($_POST['confirm-password'])) {
+            $currentPassword = $_POST['current-password'];
+            $newPassword = $_POST['password'];
+            $newPasswordConfirm = $_POST['confirm-password'];
+
+            // check if the current password is correct
+            $stmt = Database::prepare("SELECT password FROM users WHERE id = :id");
+            $stmt->bindParam(':id', $userId);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!password_verify($currentPassword, $user['password'])) {
+                header('Location: /' . URL_PREFIX . '/alter-account/');
+                exit;
+            }
+
+            // check if the new password and the confirm password are the same
+            if($newPassword !== $newPasswordConfirm) {
+                header('Location: /' . URL_PREFIX . '/alter-account/');
+                exit;
+            }
+
+            // hash the new password
+            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $stmt = Database::prepare("UPDATE users SET password = :password WHERE id = :id");
+            $stmt->bindParam(':password', $newPassword);
+            $stmt->bindParam(':id', $userId);
+            $stmt->execute();
+        }
+
+        header('Location: /' . URL_PREFIX . '/alter-account/');
     }
 
     if (isset($_POST['delete-account'])) {
