@@ -11,7 +11,8 @@
 
     <div id="leaflet-map"></div>
     <script>
-        var markerJson = '[{"id":1,"type":"apple","lat":50.373380,"lng":-4.142650},{"id":2,"type":"apple","lat":50.370380,"lng":-4.142650}]';
+        var markerJson = '[{"id":1,"type":"apple","lat":50.373380,"lng":-4.142650},{"id":2,"type":"berry","lat":50.370380,"lng":-4.142650}]';
     </script>
+    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
     <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
 </div>

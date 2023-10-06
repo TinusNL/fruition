@@ -1,62 +1,62 @@
-
 <div>
-    <?php
+<form action="submissions/send" method="post">
+        Email <input type="email" name="email"><br>
 
-    
-    // Process the form when it is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Collect data from the form
-        $location = $_POST["location"];
-        $name = $_POST["name"];
-        $fruitType = $_POST["fruitType"];
-        $description = $_POST["description"];
-        $email = $_POST["email"];
+        <label for="plant_name">Plant Name:</label>
+        <input type="text" name="plant_name" required><br><br>
 
-        // Photo upload processing
-        if (isset($_FILES["photo"])) {
-            $uploadDir = "uploads/";
-            $uploadFile = $uploadDir . basename($_FILES["photo"]["name"]);
+        
+            
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location" required>
+        <button type="button" id="getLocationButton">Get Location</button><br><br>
+
+        <label for="photo">Photo:</label>
+        <input type="file" name="photo"  required><br><br>
+
+        <!-- Select element for season -->
+        <label for="season">Season:</label>
+        <select name="season" required>
+            <option value="" disabled selected>Select a season</option>
+            <option value="1">1. Autumn</option>
+            <option value="2">2. Spring</option>
+            <option value="3">3. Summer</option>
+            <option value="4">4. Winter</option>
+        </select><br><br>
+
+        <label for="types">types:</label>
+        <select name="types" required>
+            <option value="" disabled selected>Select a type</option>
+            <option value="1">1. Food</option>
+            <option value="2">2. Unknown</option>
+        </select><br><br>
+
+        <!-- Hidden fields to store latitude and longitude -->
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+
+        <button type="submit" id="send" name="send">Send</button>
+    </form>
+
+    <script>
+         function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    document.getElementById("latitude").value = latitude;
+                    document.getElementById("longitude").value = longitude;
+                    document.getElementById("location").value = latitude + " " + longitude;
+                }, function (error) {
+                    // Handle location error here
+                    console.error(error.message);
+                });
+            } else {
+                document.getElementById("location").value = "Geolocation is not supported in this browser.";
+            }
         }
 
-        // Here you can add the logic for sending the confirmation email
-
-        // Example: Send a simple confirmation email
-        $to = $_POST["email"];
-        $subject = "Form Confirmation";
-        $message = "Location: $location\n";
-        $message .= "Name: $name\n";
-        $message .= "Fruit Type: $fruitType\n";
-        $message .= "Description: $description\n";
-        $headers = "From: asaadhajar6@gamail.com";
-
-        mail($to, $subject, $message, $headers);
-    }
-    ?>
-
-    <h2>Form</h2>
-    <form method="post" enctype="multipart/form-data">
-        <label for="location">Location:</label>
-        <input type="text" name="location" required><br>
-
-        <label for="name">Name:</label>
-        <input type="text" name="name" required><br>
-
-        <label for="fruitType">Fruit Type:</label>
-        <input type="text" name="fruitType" required><br>
-
-        <label for="email">Email:</label>
-        <input type="email" name="email"><br>
-
-        <input id="emailConfirmation" type="checkbox"><span class="checkmark"></span>
-        <label for="emailConfirmation">Send me an mail</label><br>
-        
-        <label for="photo">Upload Photo:</label>
-        <input type="file" name="photo" accept="image/*"><br>
-
-        <label for="description">Description:</label><br>
-        <textarea name="description" rows="4" cols="50" required></textarea><br>
-
-        <input type="submit" value="Submit">
-    </form>
+        // Attach the getLocation function to a button click event
+        document.getElementById("getLocationButton").addEventListener("click", getLocation);
+    </script>
 </div>
-

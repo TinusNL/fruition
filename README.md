@@ -12,3 +12,4 @@
 
 ## Useful
 - [Database Structure](docs/Database%20Structure.md)
+- [Fruit Types](docs/Fruits.md)
