@@ -114,6 +114,10 @@ nav.header {
   width: 30px;
 }
 
+.logo-mobile {
+  width: 80vw;
+}
+
 @media screen and (max-width: 375.9px) {
   .main_login {
     background: #9BCE77;

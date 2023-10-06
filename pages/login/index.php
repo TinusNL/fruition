@@ -30,7 +30,7 @@
                 <img src="./assets/Pinterest.svg" alt="">
             </div>
             <div class="logo-hidden-login">
-            <img src="./assets/logo_light.svg" alt="logo" class="logo">
+            <img src="./assets/logo_light.png" alt="logo" class="logo-mobile">
             </div>
         </div>
     </div>
