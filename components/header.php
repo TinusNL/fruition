@@ -17,7 +17,16 @@
     </div>
     <div class="bottom">
         <div class="actions">
-            <a href="#"><img src="./assets/icons/user.svg" alt="Profile"></a>
+            <a class="profile" href="#"><img src="./assets/icons/user.svg" alt="Profile"></a>
+            <div class="popup">
+                <div class="signup">
+                    <a href="#">Sign up</a>
+                </div>
+                <div class="login">
+                    <a href="#">Log in</a>
+                </div>
+                <div class="triangle"></div>
+            </div>
             <a href="#"><img src="./assets/icons/settings.svg" alt="Settings"></a>
             <a href="#"><img src="./assets/icons/submission.svg" alt="Submission"></a>
         </div>
