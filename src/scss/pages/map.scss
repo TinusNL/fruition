@@ -1,6 +1,6 @@
 .map {
-    width: 100%;
-    height: calc(100% - 50px);
+    width: calc(100% - 400px);
+    height: 100%;
 
     #leaflet-map {
         height: 100%;
@@ -19,3 +19,12 @@
         margin: 2px 0px;
     }
 }
+
+.popup-img{
+    max-width: 150px;
+    display: grid;
+    place-content: center;
+    place-items: center;
+   border-radius: 100%;
+}
+
