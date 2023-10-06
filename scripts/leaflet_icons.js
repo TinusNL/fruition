@@ -14,5 +14,12 @@ function icon(img) {
 
 var leafletIcons = {
     "apple": icon('./assets/markers/apple.svg'),
+    "apricot": icon('./assets/markers/apricot.svg'),
     "berry": icon('./assets/markers/berry.svg'),
+    "grapefruit": icon('./assets/markers/grapefruit.svg'),
+    "grapes": icon('./assets/markers/grapes.svg'),
+    "lemon": icon('./assets/markers/lemon.svg'),
+    "orange": icon('./assets/markers/orange.svg'),
+    "pear": icon('./assets/markers/pear.svg'),
+    "strawberry": icon('./assets/markers/strawberry.svg'),
 }  
