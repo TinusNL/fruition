@@ -187,67 +187,7 @@ nav.header .bottom .logo > img {
   border-radius: 100%;
 }
 
-/* style.scss */
-/* Reset some default browser styles */
-body, h2, form {
-  margin: 0;
-  padding: 0;
-}
-
-/* Style the body */
-body {
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-/* Style the form container */
-form {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* Style form labels */
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* Style form inputs and textareas */
-input[type=text],
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* Style the file input */
-input[type=file] {
-  margin-top: 5px;
-}
-
-/* Style the submit button */
-input[type=submit] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-/* Style the submit button on hover */
-input[type=submit]:hover {
-  background-color: #0056b3;
-}
-
-.sign-up {
+.authenticate {
   background-color: #9BCE77;
   width: 45%;
   height: 100vh;
@@ -312,7 +252,7 @@ h1 {
   font-family: "Poppins";
 }
 
-.main_login {
+.main_authenticate {
   font-family: "Poppins";
   width: 100vw;
   height: 100vh;
@@ -323,23 +263,23 @@ h1 {
   background: linear-gradient(to right, #9BCE77 0%, #9BCE77 40%, #E5FFD2 40%, #E5FFD2 100%);
 }
 
-.left_login {
+.left_authenticate {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.form-login {
+.form-authenticate {
   color: #182450;
 }
 
-.form-login label {
+.form-authenticate label {
   font-size: 14pt;
   font-weight: bold;
   color: #182450;
 }
 
-.form-login input[type=password], input[type=email] {
+.form-authenticate input[type=password], .form-authenticate input[type=email], .form-authenticate input[type=text] {
   width: 90%;
   background-color: #E5FFD2;
   border: none;
@@ -350,7 +290,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-.account-signin {
+.account-authenticate {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -359,12 +299,12 @@ h1 {
   font-weight: bold;
 }
 
-.sign-up a, a:active, a:visited {
+.authenticate a, a:active, a:visited {
   text-decoration: none;
   color: #182450;
 }
 
-.sign-in {
+.authenicate_l {
   background-color: #182450;
   color: #E5FFD2;
   border: none;
@@ -372,19 +312,19 @@ h1 {
   border-radius: 15pt;
 }
 
-.left_login h1 {
+.left_authenticate h1 {
   font-weight: 900;
 }
 
-.right_login {
+.right_authenticate {
   width: 80%;
 }
 
-.right_login h2, p {
+.right_authenticate h2, p {
   text-align: center;
 }
 
-.logo-hidden-login {
+.logo-hidden-authenticate {
   display: none;
 }
 
@@ -404,19 +344,19 @@ h1 {
 }
 
 @media screen and (max-width: 375.9px) {
-  .main_login {
+  .main_authenticate {
     background: #9BCE77;
   }
-  .left_login {
+  .left_authenticate {
     grid-template-columns: 1fr;
     width: 80vw;
     justify-content: center;
     align-items: center;
   }
-  .right_login {
+  .right_authenticate {
     display: none;
   }
-  .logo-hidden-login {
+  .logo-hidden-authenticate {
     display: block;
   }
 }
