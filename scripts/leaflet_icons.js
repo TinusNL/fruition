@@ -13,5 +13,6 @@ function icon(img) {
 
 
 var leafletIcons = {
-    "apple": icon('./assets/markers/apple.svg')
+    "apple": icon('./assets/markers/apple.svg'),
+    "berry": icon('./assets/markers/berry.svg'),
 }  
