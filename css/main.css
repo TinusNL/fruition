@@ -117,6 +117,14 @@ nav.header .bottom .logo > img {
   margin: 2px 0px;
 }
 
+.popup-img {
+  max-width: 150px;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  border-radius: 100%;
+}
+
 body {
   margin: 0px;
   padding: 0px;
