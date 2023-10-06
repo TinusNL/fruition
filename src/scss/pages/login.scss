@@ -6,72 +6,63 @@
 }
 
 .main_login {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    
-
-    .left_login, .right_login {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .left_login {
-        font-family: "Poppins";
-        color: #182450;
-        background-color: #9BCE77;
-        width: 40%;
-        .sign-in{
-            color: #E5FFD2;
-            position: relative;
-            left: 20vw;
-            bottom: 4.5vh;
-            width: 7vw;
-            height: 2vw;
-            border-radius: 52px;
-            background-color: #182450;
-            border: 0px;
-        }
-    }
-
-    .right_login {
-        font-family: "Poppins";
-        color: #182450;
-        background-color: #E5FFD2;
-        width: 60%;
-        height: 10;
-        .logo{
-            padding: 100px; 
-            
-        }
-    }
- }
-
- .form{
-    font-family: 'Poppins';
-    color: #182450;
-    font-weight: bold;
-    width: 20vw;
-    position: relative;
-    right: 3.5vw;
- }
- .input-box{
-    outline: 0px;
-    font-family: "Poppins";
-    width: 27vw;
-    height: 2vw;
-    border-radius: 52px;
-    background-color: #E5FFD2;
-    border: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    justify-items: center;
+    align-content: center;
+    background: linear-gradient(
+        to right,
+        #9BCE77 0%,
+        #9BCE77 40%,
+        #E5FFD2 40%,
+        #E5FFD2 100%
+      );
 }
 
-.login-text{
-    font-size: 50px;
+.left_login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-login {
+    color: #182450;
+}
+
+.form-login label{
+    font-size: 14pt;
     font-weight: bold;
+    color: #182450;
+}
+
+.form-login input[type=password], input[type=email]  {
+    width: 100%;
+    background-color: #E5FFD2;
+    border: none;
+    outline: none;
+    padding: 5px 15px;
+    border-radius: 15pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.account-signin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.sign-up a, a:active, a:visited{
+    text-decoration: none;
+    color: #182450;
+}
+
+@media only screen and (max-width:375.9px){
+    .main_login {
+        background-color: red;
+    }
 }
