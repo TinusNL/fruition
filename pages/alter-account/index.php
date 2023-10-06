@@ -33,6 +33,13 @@
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" value="<?= $user['username'] ?>">
 
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" value="<?= $user['email'] ?>">
+                
+                <label for="phone-number">Phone number</label>
+                <input type="tel" name="phone-number" id="phone-number" value="<?= $user['phone_number'] ?>">
+
+
                 <label for="current-password">Current password</label>
                 <input type="password" name="current-password" id="current-password">
 
@@ -42,19 +49,14 @@
                 <label for="confirm-password">Confirm new password</label>
                 <input type="password" name="confirm-password" id="confirm-password">
                 
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" value="<?= $user['email'] ?>">
-
-                <label for="phone-number">Phone number</label>
-                <input type="tel" name="phone-number" id="phone-number" value="<?= $user['phone_number'] ?>">
-
                 <button type="submit" name="alter-account">Submit</button>
                 <p>Or delete your account & data here</p>
             </form>
             
             <form action="/<?= URL_PREFIX ?>/alter-account/process-request" method="post">
                 <button type="submit" name="delete-account">Delete account</button>
-            </form>
+            </form>            
+            <a href="javascript:history.back()">Go back</a>
         </div>
     </div>
 </main>
