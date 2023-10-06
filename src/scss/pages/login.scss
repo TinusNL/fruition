@@ -87,6 +87,12 @@
     display: none;
 }
 
+.socials {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 @media screen and (max-width:375.9px){
     .main_login {
         background: #9BCE77;

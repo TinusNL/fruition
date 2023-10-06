@@ -24,10 +24,10 @@
                 </div>
             </form>
             <div class="socials">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
+                <img src="./assets/Discord.svg" alt="">
+                <img src="./assets/Facebook.svg" alt="">
+                <img src="./assets/Instagram.svg" alt="">
+                <img src="./assets/Pinterest.svg" alt="">
             </div>
             <div class="logo-hidden-login">
             <img src="./assets/logo.svg" alt="logo" class="logo">
