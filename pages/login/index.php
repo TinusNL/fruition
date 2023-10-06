@@ -16,11 +16,10 @@
                 <label for="password">Password</label><br>
                 <input class="input-box" type="password" name="password" placeholder="  *******">
                 <div class="account-signin">
-                    <p>Don't have an account? <a href="" class="sign-up">Sign up</a></p>
-                    <input type="submit" name="login" class="sign-in" value="Sign in" clss="sign-in">
+                    <p>Don't have an account? <a href="register" class="sign-up">Sign up</a></p>
+                    <input type="submit" name="login" class="sign-in" value="Sign in">
                 </div>
                 <div class="login_extra">
-                    <a href="register">Register</a>
                     <a href="forgot">Forgot Password</a>
                 </div>
             </form>
@@ -30,11 +29,14 @@
                 <img src="" alt="">
                 <img src="" alt="">
             </div>
+            <div class="logo-hidden-login">
+            <img src="./assets/logo.svg" alt="logo" class="logo">
+            </div>
         </div>
     </div>
     <div class="right_login">
-        <img src="./assets/logo.svg" alt="logo" class="logo">
+        <img src="./assets/logo_light.png" alt="logo" class="logo">
         <h2>Free Food For All</h2>
-        <p>kuavhlivgalivgiaufgaisugvaisuhgviueagliu\gfaligvbliugliueagfviuafiuvlz</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie luctus tellus, at viverra purus pulvinar vitae. Vivamus vitae lobortis magna, mollis mollis orci.</p>
     </div>
 </div>

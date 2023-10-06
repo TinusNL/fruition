@@ -28,6 +28,7 @@ nav.header {
 }
 
 .main_login {
+  font-family: "Poppins";
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -54,7 +55,7 @@ nav.header {
 }
 
 .form-login input[type=password], input[type=email] {
-  width: 100%;
+  width: 90%;
   background-color: #E5FFD2;
   border: none;
   outline: none;
@@ -68,6 +69,7 @@ nav.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   font-weight: bold;
 }
@@ -77,9 +79,45 @@ nav.header {
   color: #182450;
 }
 
-@media only screen and (max-width: 375.9px) {
+.sign-in {
+  background-color: #182450;
+  color: #E5FFD2;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 15pt;
+}
+
+.left_login h1 {
+  font-weight: 900;
+}
+
+.right_login {
+  width: 80%;
+}
+
+.right_login h2, p {
+  text-align: center;
+}
+
+.logo-hidden-login {
+  display: none;
+}
+
+@media screen and (max-width: 375.9px) {
   .main_login {
-    background-color: red;
+    background: #9BCE77;
+  }
+  .left_login {
+    grid-template-columns: 1fr;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+  }
+  .right_login {
+    display: none;
+  }
+  .logo-hidden-login {
+    display: block;
   }
 }
 body {
