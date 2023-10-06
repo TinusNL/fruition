@@ -1,108 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 nav.header {
+  width: 340px;
+  height: calc(100% - 60px);
+  background-color: #f6fff5;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+nav.header .top {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+nav.header .top > .search {
   width: 100%;
   height: 50px;
-  background-color: red;
+  position: relative;
+}
+nav.header .top > .search > input {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  border-radius: 60px;
+  background-color: #182450;
+  color: #f6fff5;
+  padding: 15px;
+  margin: 0px;
+  font-size: 1.15rem;
+  outline: none;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+nav.header .top > .search > img {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  height: 100%;
+  width: 8%;
+}
+nav.header .top > .categories {
+  width: calc(100% - 40px);
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+nav.header .top > .categories > button {
+  cursor: pointer;
+  outline: none;
+  border: 0px;
+  background-color: #e5ffd2;
+  padding: 10px 20px;
+  border-radius: 60px;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+nav.header .top > .categories > button.selected {
+  background-color: #9bce77;
+}
+nav.header .top > .categories > button > img {
+  height: 80%;
+}
+nav.header .bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40px;
+}
+nav.header .bottom > div {
+  height: 100%;
+}
+nav.header .bottom .actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 15px;
+  height: 100%;
+  width: 100%;
+}
+nav.header .bottom .actions > a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav.header .bottom .actions > a > img {
+  height: 80%;
+}
+nav.header .bottom .logo > img {
+  height: 100%;
 }
 
-#leaflet-map {
-  height: calc(100% - 50px);
+.map {
+  width: calc(100% - 400px);
+  height: 100%;
+}
+.map #leaflet-map {
+  height: 100%;
   width: 100%;
   outline: none;
 }
-#leaflet-map :focus {
+.map #leaflet-map :focus {
   outline: none;
 }
-
-#location-crosshair {
+.map #location-crosshair {
   width: 100%;
   height: calc(100% - 2px);
   margin: 2px 0px;
-}
-
-.leaflet-popup-content-wrapper {
-  background-color: #F6FFF5 !important;
-  border: black 1px solid !important;
-  width: 390px;
-  height: 369px;
-}
-
-.popup-img {
-  position: relative;
-  width: 125px;
-  height: 125px;
-  max-width: 126px;
-  max-height: 126px;
-  border-radius: 200px;
-  display: flex;
-  left: 2vw;
-  margin: 0 auto;
-}
-
-.timestamp {
-  top: 48vh;
-  position: relative;
-  right: 15px;
-}
-
-/* style.scss */
-/* Reset some default browser styles */
-body, h2, form {
-  margin: 0;
-  padding: 0;
-}
-
-/* Style the body */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-/* Style the form container */
-form {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* Style form labels */
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* Style form inputs and textareas */
-input[type=text],
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* Style the file input */
-input[type=file] {
-  margin-top: 5px;
-}
-
-/* Style the submit button */
-input[type=submit] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-/* Style the submit button on hover */
-input[type=submit]:hover {
-  background-color: #0056b3;
 }
 
 body {
@@ -110,6 +122,12 @@ body {
   padding: 0px;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
 }
 
 /*# sourceMappingURL=main.css.map */
