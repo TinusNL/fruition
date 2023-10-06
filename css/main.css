@@ -49,6 +49,7 @@ nav.header .top > .categories {
   gap: 10px;
 }
 nav.header .top > .categories > button {
+  cursor: pointer;
   outline: none;
   border: 0px;
   background-color: #e5ffd2;
