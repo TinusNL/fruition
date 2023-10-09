@@ -84,6 +84,7 @@
 }
 
 .logo-hidden-authenticate {
+    margin-top: 25px;
     display: none;
 }
 
@@ -103,14 +104,14 @@
 }
 
 
-@media screen and (max-width:375.9px){
+@media screen and (max-width:1023.9px){
     .main_authenticate {
         background: #9BCE77;
     }
 
     .left_authenticate {
         grid-template-columns: 1fr;
-        width: 80vw;
+        width: 100vw;
         justify-content: center;
         align-items: center;
     }
