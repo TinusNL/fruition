@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         192.168.12.1
--- Server versie:                11.1.2-MariaDB-1:11.1.2+maria~deb12 - mariadb.org binary distribution
--- Server OS:                    debian-linux-gnu
+-- Host:                         127.0.0.1
+-- Server versie:                10.4.28-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
 -- HeidiSQL Versie:              12.5.0.6677
 -- --------------------------------------------------------
 
@@ -39,9 +39,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `latitude` decimal(8,6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `types` (`type`),
-  KEY `seasons` (`season`),
   KEY `users` (`author`),
-  CONSTRAINT `seasons` FOREIGN KEY (`season`) REFERENCES `seasons` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `types` FOREIGN KEY (`type`) REFERENCES `types` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `users` FOREIGN KEY (`author`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -78,7 +76,7 @@ DELETE FROM `seasons`;
 INSERT INTO `seasons` (`id`, `name`, `start`, `end`) VALUES
 	(1, 'Spring', '0000-03-21', '0000-06-21'),
 	(2, 'Summer', '0000-06-21', '0000-09-23'),
-	(3, 'Autumn', '0000-09-23', '0000-12-21'),
+	(3, 'Fall', '0000-09-23', '0000-12-21'),
 	(4, 'Winter', '0000-12-21', '0000-03-21');
 
 -- Structuur van  tabel fruition.submissions wordt geschreven
@@ -97,14 +95,27 @@ DELETE FROM `submissions`;
 
 -- Structuur van  tabel fruition.types wordt geschreven
 CREATE TABLE IF NOT EXISTS `types` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `label` varchar(255) NOT NULL,
   `season` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`),
+  KEY `seasons` (`season`),
+  CONSTRAINT `seasons` FOREIGN KEY (`season`) REFERENCES `seasons` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumpen data van tabel fruition.types: ~0 rows (ongeveer)
+-- Dumpen data van tabel fruition.types: ~9 rows (ongeveer)
 DELETE FROM `types`;
+INSERT INTO `types` (`id`, `name`, `label`, `season`) VALUES
+	(1, 'apple', 'Apple', 2),
+	(2, 'apricot', 'Apricot', 2),
+	(3, 'berry', 'Berries', 1),
+	(4, 'grapefruit', 'Grapefruit', 4),
+	(5, 'grapes', 'Grapes', 2),
+	(6, 'lemon', 'Lemon', 4),
+	(7, 'orange', 'Orange', 4),
+	(8, 'pear', 'Pear', 3),
+	(9, 'strawberry', 'Strawberry', 2);
 
 -- Structuur van  tabel fruition.users wordt geschreven
 CREATE TABLE IF NOT EXISTS `users` (
@@ -122,8 +133,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`),
   KEY `FK_users_roles` (`role`),
   KEY `images` (`profile_image`),
-  CONSTRAINT `FK_users_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `images` FOREIGN KEY (`profile_image`) REFERENCES `images` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `images` FOREIGN KEY (`profile_image`) REFERENCES `images` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumpen data van tabel fruition.users: ~0 rows (ongeveer)
