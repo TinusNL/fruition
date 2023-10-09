@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS `items` (
   `author` int(11) NOT NULL,
   `description` longtext DEFAULT NULL,
   `type` int(11) NOT NULL,
-  `season` int(11) NOT NULL,
   `longtitude` decimal(8,6) NOT NULL,
   `latitude` decimal(8,6) NOT NULL,
   PRIMARY KEY (`id`),
@@ -100,6 +99,7 @@ DELETE FROM `submissions`;
 CREATE TABLE IF NOT EXISTS `types` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
+  `season` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

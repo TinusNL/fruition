@@ -36,6 +36,7 @@
 |-------------|-----------------|-------------------------------|
 | id          | INT(11)         | NOT NULL, AUTO_INCREMENT, PRIMARY KEY |
 | name        | VARCHAR(255)    | NOT NULL                       |
+| season      | INT(11)         | NOT NULL, FOREIGN KEY (seasonId) REFERENCES seasons(id) |
 
 ### items
 | Column Name | Data Type        | Constraints                   |
@@ -44,7 +45,6 @@
 | author      | INT(11)         | NOT NULL, FOREIGN KEY (userId) REFERENCES users(id) |
 | description | LONGTEXT        | NOT NULL                       |
 | type        | INT(11)         | NOT NULL, FOREIGN KEY (typeId) REFERENCES types(id) |
-| season      | INT(11)         | NOT NULL, FOREIGN KEY (seasonId) REFERENCES seasons(id) |
 | longitude   | INT(11)         | NOT NULL                       |
 | latitude    | INT(11)         | NOT NULL                       |
 
