@@ -6,36 +6,46 @@ class Item
 
     public int $id;
     public string $author; // TODO: Change to User object
-    public string $description;
+    public string | null $description;
+    public string $image;
 
     // TODO: Change to Type object
     public int $typeId;
     public string $typeName;
 
-    public int $longitude;
-    public int $latitude;
+    public int $seasonId;
+    public string $seasonName;
+
+    public float $longitude;
+    public float $latitude;
 
     public function __construct(
         int $id,
         string $author,
-        string $description,
+        string | null $description,
+        string $image,
         int $typeId,
         string $typeName,
-        int $longitude,
-        int $latitude
+        int $seasonId,
+        string $seasonName,
+        float $longitude,
+        float $latitude
     ) {
         $this->id = $id;
         $this->author = $author;
         $this->description = $description;
+        $this->image = $image;
         $this->typeId = $typeId;
         $this->typeName = $typeName;
+        $this->seasonId = $seasonId;
+        $this->seasonName = $seasonName;
         $this->longitude = $longitude;
         $this->latitude = $latitude;
     }
 
     public static function getAll()
     {
-    } // Probable not going to be used. Because of resources
+    } // Probable not going to be used. Because of resource intesity
 
     public static function getInRadius(
         int $longitude,
@@ -53,15 +63,23 @@ class Item
             i.id AS id,
             i.author AS author,
             i.description AS description,
+            img.data AS image,
             t.id AS typeId,
             t.name AS typeName,
+            s.id AS seasonId,
+            s.name AS seasonName,
             i.longitude AS longitude,
             i.latitude AS latitude
         FROM
             items i,
-            types t
+            types t,
+            images img,
+            seasons s
         WHERE
-            i.longitude BETWEEN :minLongitude AND :maxLongitude 
+            i.type = t.id
+        AND img.id = i.image
+        AND s.id = t.season
+        AND i.longitude BETWEEN :minLongitude AND :maxLongitude 
         AND i.latitude BETWEEN :minLatitude AND :maxLatitude;");
         $stmt->bindParam(':minLongitude', $minLongitude);
         $stmt->bindParam(':maxLongitude', $maxLongitude);
@@ -71,19 +89,22 @@ class Item
 
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $items = array_map(function ($item) {
+        $itemObjects = array_map(function ($item) {
             return new Item(
                 $item['id'],
                 $item['author'],
                 $item['description'],
+                $item['image'],
                 $item['typeId'],
                 $item['typeName'],
+                $item['seasonId'],
+                $item['seasonName'],
                 $item['longitude'],
                 $item['latitude']
             );
         }, $items);
 
-        return $items;
+        return $itemObjects;
     }
 
     public static function getInRadiusJson(
@@ -91,19 +112,22 @@ class Item
         int $latitude,
         int $radius
     ) {
-        $items = self::getInRadius($longitude, $latitude, $radius);
+        $itemObjects = self::getInRadius($longitude, $latitude, $radius);
 
         $items = array_map(function ($item) {
             return [
                 'id' => $item->id,
                 'author' => $item->author,
                 'description' => $item->description,
+                'image' => $item->image,
                 'typeId' => $item->typeId,
                 'typeName' => $item->typeName,
+                'seasonId' => $item->seasonId,
+                'seasonName' => $item->seasonName,
                 'longitude' => $item->longitude,
                 'latitude' => $item->latitude
             ];
-        }, $items);
+        }, $itemObjects);
 
         return json_encode($items);
     }

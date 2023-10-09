@@ -8,19 +8,20 @@ const markerLayers = {}
 const markers = JSON.parse(markerJson)
 
 markers.forEach(markerInfo => {
-    const marker = L.marker([markerInfo.location.lat, markerInfo.location.lng], {
-        icon: leafletIcons[markerInfo.type],
+    console.log(markerInfo)
+
+    const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
+        icon: leafletIcons[markerInfo.typeName],
         riseOnHover: true
     })
 
     marker.bindPopup(`
         <div class="popup-container">
-            <img src="Images/${markerInfo.photoName}" alt="Marker Photo" class="popup-img">
-            <p class="type">Type: ${markerInfo.type}</p>
+            <img src="${markerInfo.image}" alt="Marker Photo" class="popup-img">
+            <p class="type">Type: ${markerInfo.typeName}</p>
             <p class="createdby">Created by: ${markerInfo.createdBy}</p>
-            <p class="timestamp">Timestamp: ${new Date(markerInfo.timestamp).toLocaleString()}</p>
-            <p class="season">Season: ${markerInfo.season}</p>
-            <p class="location"><a href="https://www.google.com/maps?q=${markerInfo.location.lat},${markerInfo.location.lng}" target="_blank">Location: ${markerInfo.location.lat}, ${markerInfo.location.lng}</a></p>
+            <p class="season">Season: ${markerInfo.seasonName}</p>
+            <p class="location"><a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank">Route: ${markerInfo.longitude}, ${markerInfo.latitude}</a></p>
         </div>
     `)
 

@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `description` longtext DEFAULT NULL,
   `image` int(11) NOT NULL,
   `type` int(11) NOT NULL,
-  `longtitude` decimal(8,6) NOT NULL,
+  `longitude` decimal(8,6) NOT NULL,
   `latitude` decimal(8,6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `types` (`type`),
