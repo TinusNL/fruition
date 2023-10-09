@@ -13,6 +13,7 @@ class Item
     public int $typeId;
     public string $typeName;
 
+    // TODO: Change to Season object
     public int $seasonId;
     public string $seasonName;
 
@@ -43,15 +44,78 @@ class Item
         $this->latitude = $latitude;
     }
 
-    public static function getAll()
+    public static function getAll(): array
     {
-    } // Probable not going to be used. Because of resource intesity
+        $stmt = Database::prepare("
+        SELECT
+            i.id AS id,
+            i.author AS author,
+            i.description AS description,
+            img.data AS image,
+            t.id AS typeId,
+            t.name AS typeName,
+            s.id AS seasonId,
+            s.name AS seasonName,
+            i.longitude AS longitude,
+            i.latitude AS latitude
+        FROM
+            items i,
+            types t,
+            images img,
+            seasons s
+        WHERE
+            i.type = t.id
+        AND img.id = i.image
+        AND s.id = t.season;");
+        $stmt->execute();
+
+        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $itemObjects = array_map(function ($item) {
+            return new Item(
+                $item['id'],
+                $item['author'],
+                $item['description'],
+                $item['image'],
+                $item['typeId'],
+                $item['typeName'],
+                $item['seasonId'],
+                $item['seasonName'],
+                $item['longitude'],
+                $item['latitude']
+            );
+        }, $items);
+
+        return $itemObjects;
+    }
+
+    public static function getAllJson(): string
+    {
+        $itemObjects = self::getAll();
+
+        $items = array_map(function ($item) {
+            return [
+                'id' => $item->id,
+                'author' => $item->author,
+                'description' => $item->description,
+                'image' => $item->image,
+                'typeId' => $item->typeId,
+                'typeName' => $item->typeName,
+                'seasonId' => $item->seasonId,
+                'seasonName' => $item->seasonName,
+                'longitude' => $item->longitude,
+                'latitude' => $item->latitude
+            ];
+        }, $itemObjects);
+
+        return json_encode($items);
+    }
 
     public static function getInRadius(
         int $longitude,
         int $latitude,
         int $radius
-    ) {
+    ): array {
         $minLongitude = $longitude - $radius;
         $maxLongitude = $longitude + $radius;
 
@@ -111,7 +175,7 @@ class Item
         int $longitude,
         int $latitude,
         int $radius
-    ) {
+    ): string {
         $itemObjects = self::getInRadius($longitude, $latitude, $radius);
 
         $items = array_map(function ($item) {

@@ -5,14 +5,12 @@
             <img src="./assets/icons/magnifying-glass.svg" alt="Magnifying Glass">
         </div>
         <div class="categories" id="categories-holder">
-            <button data-type="apple" data-label="Apples">
-                <img src="./assets/icons/food/apple.svg" alt="Category">
-                <span>Apples</span>
-            </button>
-            <button data-type="berry" data-label="Berries">
-                <img src="./assets/icons/food/berry.svg" alt="Category">
-                <span>Berries</span>
-            </button>
+            <?php foreach (Type::getAll() as $type) : ?>
+                <button data-type="<?= $type->name ?>" data-label="<?= $type->label ?>">
+                    <img src="./assets/icons/food/<?= $type->name ?>.svg" alt="Category">
+                    <span><?= $type->label ?></span>
+                </button>
+            <?php endforeach; ?>
         </div>
     </div>
     <div class="bottom">

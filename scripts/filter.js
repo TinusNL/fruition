@@ -27,6 +27,7 @@ const selectedFilters = []
 
 function refreshFilter() {
     const children = categoriesElement.children
+    console.log(selectedFilters)
 
     for (let i = 0; i < children.length; i++) {
         const child = children[i]
@@ -38,6 +39,7 @@ function refreshFilter() {
             child.classList.remove('selected')
             continue
         }
+
 
         if (selectedFilters.includes(child.dataset.type)) {
             if (child.classList.contains('selected')) {

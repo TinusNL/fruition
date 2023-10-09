@@ -10,8 +10,7 @@
 
     <div id="leaflet-map"></div>
     <script>
-        var markerJson = '<?= Item::getInRadiusJson(50.370380, -4.142650, 1) ?>';
-        // console.log(markerJson);
+        var markerJson = '<?= Item::getAllJson() ?>';
     </script>
     <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
     <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>

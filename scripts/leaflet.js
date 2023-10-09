@@ -1,3 +1,18 @@
+// User Location
+let locationMarker
+var userLoc = localStorage.getItem('userLocation') ?? false
+if (!userLoc) {
+    navigator.geolocation.getCurrentPosition((position) => {
+        setCurrentLocation([position.coords.latitude, position.coords.longitude])
+
+        localStorage.setItem('userLocation', JSON.stringify([position.coords.latitude, position.coords.longitude]))
+    })
+}
+
+userLoc = JSON.parse(userLoc)
+
+console.log(userLoc)
+
 // Background
 const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -8,8 +23,6 @@ const markerLayers = {}
 const markers = JSON.parse(markerJson)
 
 markers.forEach(markerInfo => {
-    console.log(markerInfo)
-
     const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
         icon: leafletIcons[markerInfo.typeName],
         riseOnHover: true
@@ -25,41 +38,55 @@ markers.forEach(markerInfo => {
         </div>
     `)
 
-    markerLayers[markerInfo.type] = markerLayers[markerInfo.type] || L.layerGroup()
-    marker.addTo(markerLayers[markerInfo.type])
+    markerLayers[markerInfo.typeName] = markerLayers[markerInfo.typeName] || L.layerGroup()
+    marker.addTo(markerLayers[markerInfo.typeName])
 })
 
 // Create map
 const map = L.map('leaflet-map', {
-    center: [50.370380, -4.142650],
-    zoom: 15,
+    center: [0, 0],
+    zoom: 1,
     layers: [tileLayer, ...Object.values(markerLayers).flat()]
 })
+if (userLoc) {
+    setCurrentLocation(userLoc, true)
+}
 
 // Current Location
-let locationMarker
+function setCurrentLocation(coords) {
+    map.setView(coords, 16, { pan: { animate: true } })
+
+    if (locationMarker) {
+        locationMarker.removeFrom(map)
+    }
+
+    locationMarker = L.circle(coords, {
+        color: '#006ACD',
+        fillColor: '#006ACD',
+        radius: 10
+    }).addTo(map)
+}
+
 const btn = L.easyButton('<img src="./assets/icons/location-crosshair.svg" id="location-crosshair">', function () {
+    setCurrentLocation(userLoc)
+
     navigator.geolocation.getCurrentPosition((position) => {
-        map.setView([position.coords.latitude, position.coords.longitude], 16, { pan: { animate: true } })
+        setCurrentLocation([position.coords.latitude, position.coords.longitude])
 
-        if (locationMarker) {
-            locationMarker.removeFrom(map)
-        }
-
-        locationMarker = L.circle([position.coords.latitude, position.coords.longitude], {
-            color: '#006ACD',
-            fillColor: '#006ACD',
-            radius: 10
-        }).addTo(map)
+        localStorage.setItem('userLocation', JSON.stringify([position.coords.latitude, position.coords.longitude]))
     })
 }).addTo(map)
 
 // Open Functions
 function hideMarkerType(type) {
+    if (!markerLayers[type]) return
+
     map.removeLayer(markerLayers[type])
 }
 
 function showMarkerType(type) {
+    if (!markerLayers[type]) return
+
     map.addLayer(markerLayers[type])
 }
 
