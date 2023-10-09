@@ -16,35 +16,6 @@
     <script>
         var markerJson = '[{"id":1,"photoName":"77069d90-e7e1-47a9-b5e0-41d70e45a956.webp","type":"apple","location":{"lat":50.373380,"lng":-4.142650},"timestamp":1633440000,"createdBy":"John Doe", "userId": 123, "name": "Apple Tree 1", "typeId": 1, "seasonId": 2}, {"id":2,"type":"apple","location":{"lat":50.370380,"lng":-4.142650},"timestamp":1633441200,"createdBy":"Jane Smith","photoName":"andere-foto-naam.webp", "userId": 456, "name": "Apple Tree 2", "typeId": 1, "seasonId": 3}]';
     </script>
-    <script src="./scripts/leaflet.js"></script>
-</body>
-
-<?php
-
-// function getMarkerData($mysqli)
-// {
-//     $query = "SELECT * FROM EXAMPLE_TABLE";
-//     $result = $mysqli->query($query);
-
-//     if ($result->num_rows > 0) {
-//         $data = array();
-
-//         while ($row = $result->fetch_assoc()) {
-//             $data[] = $row;
-//         }
-
-//         return json_encode($data);
-//     } else {
-//         return "[]"; 
-//     }
-// }
-
-// $markerJSON = getMarkerData($mysqli);
-
-// $mysqli->close();
-
-?>
-    </script>
     <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
     <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
 </div>
