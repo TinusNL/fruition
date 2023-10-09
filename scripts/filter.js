@@ -14,6 +14,11 @@ function refreshSearch(value) {
             child.style.display = 'none'
         }
     }
+
+
+    if (document.documentElement.clientWidth < 376 && value.length > 0) {
+        categoriesElement.style.display = 'flex'
+    }
 }
 
 document.getElementById('search').addEventListener('keyup', function () {
@@ -27,7 +32,6 @@ const selectedFilters = []
 
 function refreshFilter() {
     const children = categoriesElement.children
-    console.log(selectedFilters)
 
     for (let i = 0; i < children.length; i++) {
         const child = children[i]
@@ -72,3 +76,16 @@ for (let i = 0; i < children.length; i++) {
         toggleFilter(this.dataset.type)
     })
 }
+
+// Hide categories when on mobile
+document.getElementById('search').addEventListener('focusin', function () {
+    if (document.documentElement.clientWidth < 376 && this.value.length == 0) {
+        categoriesElement.style.display = 'flex'
+    }
+})
+
+document.getElementById('search').addEventListener('focusout', function () {
+    if (document.documentElement.clientWidth < 376 && this.value.length == 0) {
+        categoriesElement.style.display = 'none'
+    }
+})

@@ -11,8 +11,6 @@ if (!userLoc) {
 
 userLoc = JSON.parse(userLoc)
 
-console.log(userLoc)
-
 // Background
 const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,

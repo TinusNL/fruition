@@ -198,3 +198,28 @@ nav.header {
         }
     }
 }
+
+@media screen and (max-width: 376px) {
+    nav.header {
+        position: absolute;
+        background-color: transparent;
+        z-index: 401;
+        pointer-events: none;
+
+        width: calc(100% - 60px);
+
+        .top {
+            > .search > input {
+                pointer-events: auto;
+            }
+
+            > .categories {
+                display: none;
+
+                > button {
+                    pointer-events: auto;
+                }
+            }
+        }
+    }
+}

@@ -1,7 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-.body{
+.body {
     font-family: "Poppins";
 }
 
@@ -13,13 +12,7 @@
     grid-template-columns: 2fr 3fr;
     justify-items: center;
     align-content: center;
-    background: linear-gradient(
-        to right,
-        #9BCE77 0%,
-        #9BCE77 40%,
-        #E5FFD2 40%,
-        #E5FFD2 100%
-      );
+    background: linear-gradient(to right, #9bce77 0%, #9bce77 40%, #e5ffd2 40%, #e5ffd2 100%);
 }
 
 .left_login {
@@ -32,15 +25,16 @@
     color: #182450;
 }
 
-.form-login label{
+.form-login label {
     font-size: 14pt;
     font-weight: bold;
     color: #182450;
 }
 
-.form-login input[type=password], input[type=email]  {
+.form-login input[type="password"],
+input[type="email"] {
     width: 90%;
-    background-color: #E5FFD2;
+    background-color: #e5ffd2;
     border: none;
     outline: none;
     padding: 5px 15px;
@@ -58,14 +52,16 @@
     font-weight: bold;
 }
 
-.sign-up a, a:active, a:visited{
+.sign-up a,
+a:active,
+a:visited {
     text-decoration: none;
     color: #182450;
 }
 
 .sign-in {
     background-color: #182450;
-    color: #E5FFD2;
+    color: #e5ffd2;
     border: none;
     padding: 5px 15px;
     border-radius: 15pt;
@@ -79,7 +75,8 @@
     width: 80%;
 }
 
-.right_login h2, p {
+.right_login h2,
+p {
     text-align: center;
 }
 
@@ -102,10 +99,9 @@
     width: 80vw;
 }
 
-
-@media screen and (max-width:375.9px){
+@media screen and (max-width: 376px) {
     .main_login {
-        background: #9BCE77;
+        background: #9bce77;
     }
 
     .left_login {
