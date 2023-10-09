@@ -1,61 +1,104 @@
-/* style.scss */
-
-/* Reset some default browser styles */
-body, h2, form {
+h1{
+    text-align: center;
+    padding-top: 8vh;
+    margin-bottom: 0;
+    color: #182450;
+    font-weight: 600;
+    font-size: 40px;
     margin: 0;
-    padding: 0;
 }
 
-/* Style the body */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    padding: 20px;
+
+
+
+.submission-form {
+    background-color: #9BCE77;
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-/* Style the form container */
-form {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 0 auto;
+
+
+#plant-name{
+    background-color: #E5FFD2;
+    border: 0.5px solid #E5FFD2;
+    border-radius: 22px;
+    box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
 }
 
-/* Style form labels */
-label {
-    display: block;
-    margin-bottom: 5px;
+#location{
+    background-color: #E5FFD2;
+    border: 0.5px solid #E5FFD2;
+    border-radius: 22px;
+    box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
 }
 
-/* Style form inputs and textareas */
-input[type="text"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+#photo{
+    color: transparent;
+    width: 80px;
+    border: 0.3x solid #182450;
+    border-radius: 100px;
+    box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
 }
 
-/* Style the file input */
-input[type="file"] {
-    margin-top: 5px;
+#img-link{   background-color: #E5FFD2;
+    border: 0.5px solid #E5FFD2;
+    border-radius: 22px;
+    box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
+
 }
 
-/* Style the submit button */
-input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 3px;
+#season{
+    background-color: #E5FFD2;
+    border: 0.5px solid #E5FFD2;
+    border-radius: 22px;
+    box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
+    justify-content: right;
+}
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    
 }
 
-/* Style the submit button on hover */
-input[type="submit"]:hover {
-    background-color: #0056b3;
+#types{
+    background-color: #E5FFD2;
+    border: 0.5px solid #E5FFD2;
+    border-radius: 22px;
+    box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
+}
+
+button{
+    border: 0.5px solid #182450;
+    border-radius: 22px;
+    box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
+    color: #ffff;
+    background-color: #182450;
+}
+
+.labels {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
 }
