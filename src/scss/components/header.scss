@@ -205,10 +205,14 @@ nav.header {
         background-color: transparent;
         z-index: 401;
         pointer-events: none;
+        padding: 0px;
 
         width: calc(100% - 60px);
+        height: 100%;
 
         .top {
+            padding: 30px;
+
             > .search > input {
                 pointer-events: auto;
             }
@@ -217,6 +221,20 @@ nav.header {
                 display: none;
 
                 > button {
+                    pointer-events: auto;
+                }
+            }
+        }
+
+        .bottom {
+            width: 100%;
+            height: 30px;
+            padding: 20px 30px;
+            background-color: #e5ffd2;
+
+            > .actions {
+                > a,
+                > .popup {
                     pointer-events: auto;
                 }
             }

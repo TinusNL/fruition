@@ -167,7 +167,12 @@ nav.header .bottom .logo > img {
     background-color: transparent;
     z-index: 401;
     pointer-events: none;
+    padding: 0px;
     width: calc(100% - 60px);
+    height: 100%;
+  }
+  nav.header .top {
+    padding: 30px;
   }
   nav.header .top > .search > input {
     pointer-events: auto;
@@ -176,6 +181,16 @@ nav.header .bottom .logo > img {
     display: none;
   }
   nav.header .top > .categories > button {
+    pointer-events: auto;
+  }
+  nav.header .bottom {
+    width: 100%;
+    height: 30px;
+    padding: 20px 30px;
+    background-color: #e5ffd2;
+  }
+  nav.header .bottom > .actions > a,
+  nav.header .bottom > .actions > .popup {
     pointer-events: auto;
   }
 }
