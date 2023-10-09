@@ -85,4 +85,26 @@ class Item
 
         return $items;
     }
+
+    public static function getInRadiusJson(
+        int $longitude,
+        int $latitude,
+        int $radius
+    ) {
+        $items = self::getInRadius($longitude, $latitude, $radius);
+
+        $items = array_map(function ($item) {
+            return [
+                'id' => $item->id,
+                'author' => $item->author,
+                'description' => $item->description,
+                'typeId' => $item->typeId,
+                'typeName' => $item->typeName,
+                'longitude' => $item->longitude,
+                'latitude' => $item->latitude
+            ];
+        }, $items);
+
+        return json_encode($items);
+    }
 }

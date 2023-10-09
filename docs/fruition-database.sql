@@ -34,14 +34,17 @@ CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` int(11) NOT NULL,
   `description` longtext DEFAULT NULL,
+  `image` int(11) NOT NULL,
   `type` int(11) NOT NULL,
   `longtitude` decimal(8,6) NOT NULL,
   `latitude` decimal(8,6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `types` (`type`),
   KEY `users` (`author`),
-  CONSTRAINT `types` FOREIGN KEY (`type`) REFERENCES `types` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `users` FOREIGN KEY (`author`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+  KEY `FK_items_images` (`image`),
+  CONSTRAINT `FK_items_images` FOREIGN KEY (`image`) REFERENCES `images` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_items_types` FOREIGN KEY (`type`) REFERENCES `types` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_items_users` FOREIGN KEY (`author`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumpen data van tabel fruition.items: ~0 rows (ongeveer)
@@ -100,8 +103,8 @@ CREATE TABLE IF NOT EXISTS `types` (
   `label` varchar(255) NOT NULL,
   `season` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `seasons` (`season`),
-  CONSTRAINT `seasons` FOREIGN KEY (`season`) REFERENCES `seasons` (`id`) ON UPDATE CASCADE
+  KEY `FK_types_seasons` (`season`),
+  CONSTRAINT `FK_types_seasons` FOREIGN KEY (`season`) REFERENCES `seasons` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumpen data van tabel fruition.types: ~9 rows (ongeveer)
@@ -133,8 +136,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`),
   KEY `FK_users_roles` (`role`),
   KEY `images` (`profile_image`),
-  CONSTRAINT `images` FOREIGN KEY (`profile_image`) REFERENCES `images` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `FK_users_images` FOREIGN KEY (`profile_image`) REFERENCES `images` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `FK_users_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumpen data van tabel fruition.users: ~0 rows (ongeveer)
