@@ -21,6 +21,7 @@
                 </div>
                 <div class="login_extra">
                     <a href="forgot">Forgot Password</a>
+                    <a href="/<?= URL_PREFIX ?>/">Back to home</a>
                 </div>
             </form>
             <div class="socials">

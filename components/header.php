@@ -18,15 +18,20 @@
             <a class="profile" href="#"><img src="./assets/icons/user.svg" alt="Profile"></a>
             <div class="popup">
                 <div class="signup">
-                    <a href="#">Sign up</a>
+                    <a href="/<?= URL_PREFIX ?>/signup">Sign up</a>
                 </div>
                 <div class="login">
-                    <a href="#">Log in</a>
+                    <a href="/<?= URL_PREFIX ?>/login">Log in</a>
                 </div>
                 <div class="triangle"></div>
             </div>
-            <a href="./alter-account"><img src="./assets/icons/settings.svg" alt="Settings"></a>
-            <a href="./submissions"><img src="./assets/icons/submission.svg" alt="Submission"></a>
+            <?php
+            if (isset($_SESSION['user_id'])) {
+                echo '<a href="./alter-account"><img src="./assets/icons/settings.svg" alt="Settings"></a>';
+                echo '<a href="./submissions"><img src="./assets/icons/submission.svg" alt="Submission"></a>';
+            }
+            ?>
+
         </div>
         <div class="logo">
             <img src="./assets/logo.svg" alt="Fruition Logo">

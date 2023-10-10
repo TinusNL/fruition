@@ -1,4 +1,7 @@
 <?php
+// Start Session
+session_start();
+
 require_once 'config.php';
 
 Router::loadPages('pages');

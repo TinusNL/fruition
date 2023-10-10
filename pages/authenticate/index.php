@@ -53,7 +53,7 @@ if (isset($_POST['login'])) {
 }
 
 // Check for register
-if (isset($_POST['register'])) {
+if (isset($_POST['signup'])) {
     // Sanitize POST data
     $_POST = filter_input_array(INPUT_POST);
 
@@ -69,21 +69,41 @@ if (isset($_POST['register'])) {
     // Validate email
     if (empty($data['email'])) {
         $data['error'] = 'Please make sure all fields are filled out';
+    } else {
+        // Check email
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $data['error'] = 'Please enter a valid email';
+        }
     }
 
     // Validate username
     if (empty($data['username'])) {
         $data['error'] = 'Please make sure all fields are filled out';
+    } else {
+        // Check username
+        if (!preg_match('/^[a-zA-Z0-9]{6,12}+$/', $data['username'])) {
+            $data['error'] = 'Please enter a valid username <span class="details">(6-12 characters, letters and numbers only)</span>';
+        }
     }
 
     // Validate password
     if (empty($data['password'])) {
         $data['error'] = 'Please make sure all fields are filled out';
+    } else {
+        // Check password
+        if (!password_strength_check($data['password'])) {
+            $data['error'] = 'Please enter a valid password <span class="details">(8-70 characters, at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 symbol)</span>';
+        }
     }
 
     // Validate confirm password
     if (empty($data['confirm_password'])) {
         $data['error'] = 'Please make sure all fields are filled out';
+    } else {
+        // Check confirm password
+        if ($data['password'] != $data['confirm_password']) {
+            $data['error'] = 'Passwords do not match';
+        }
     }
 
     // Check for user/email
@@ -108,5 +128,22 @@ if (isset($_POST['register'])) {
         }
     } else {
         header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
+    }
+}
+
+function password_strength_check($password, $min_len = 8, $max_len = 70, $req_digit = 1, $req_lower = 1, $req_upper = 1, $req_symbol = 1): bool
+{
+    // Build regex string depending on requirements for the password
+    $regex = '/^';
+    if ($req_digit == 1) { $regex .= '(?=.*\d)'; }              // Match at least 1 digit
+    if ($req_lower == 1) { $regex .= '(?=.*[a-z])'; }           // Match at least 1 lowercase letter
+    if ($req_upper == 1) { $regex .= '(?=.*[A-Z])'; }           // Match at least 1 uppercase letter
+    if ($req_symbol == 1) { $regex .= '(?=.*[^a-zA-Z\d])'; }    // Match at least 1 character that is none of the above
+    $regex .= '.{' . $min_len . ',' . $max_len . '}$/';
+
+    if(preg_match($regex, $password)) {
+        return TRUE;
+    } else {
+        return FALSE;
     }
 }
