@@ -60,7 +60,8 @@ markers.forEach(markerInfo => {
 const map = L.map('leaflet-map', {
     center: [0, 0],
     zoom: 1,
-    layers: [tileLayer, ...Object.values(markerLayers).flat()]
+    layers: [tileLayer, ...Object.values(markerLayers).flat()],
+    attributionControl: false
 })
 if (userLoc) {
     setCurrentLocation(userLoc, true)

@@ -1,6 +1,7 @@
 # IDE's
 .idea
 .vscode
+**/.DS_Store
 
 # NPM / SCSS
 /node_modules
