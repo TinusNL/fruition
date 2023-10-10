@@ -1,0 +1,127 @@
+div.faq {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #182450;
+    background-color: #e5ffd2;
+
+    > .content {
+        height: calc(100% - 100px);
+        width: calc(60% - 100px);
+        padding: 50px;
+        gap: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+
+        background-color: #9bce77;
+
+        > .search {
+            width: 70%;
+            height: 50px;
+            position: relative;
+
+            > input {
+                width: calc(100% - 30px);
+                height: calc(100% - 30px);
+
+                border-radius: 10px;
+                background-color: #182450;
+                color: #f6fff5;
+
+                padding: 15px;
+                margin: 0px;
+
+                font-size: 1.15rem;
+
+                outline: none;
+                border: none;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+
+            > img {
+                position: absolute;
+                top: 15%;
+                right: 15px;
+
+                height: 70%;
+                width: 8%;
+            }
+        }
+
+        > h3 {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        > .cards {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+
+            > .question-card {
+                width: 100%;
+
+                > h4 {
+                    cursor: pointer;
+                    text-align: center;
+                    margin: 0px;
+                    padding: 0px;
+
+                    &:hover {
+                        color: #3f4a70;
+                    }
+                }
+
+                > p {
+                    text-align: left;
+                    margin-top: 0px;
+                    display: none;
+                }
+
+                &.active {
+                    > p {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        > .disclaimer {
+            width: 50%;
+            word-wrap: normal;
+
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        > a,
+        > a:hover,
+        > a:visited,
+        > a:active {
+            padding: 15px 115px;
+            background-color: #182450;
+            border-radius: 60px;
+
+            color: #f6fff5;
+            text-decoration: none;
+        }
+    }
+
+    > img {
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+
+        width: 200px;
+    }
+}

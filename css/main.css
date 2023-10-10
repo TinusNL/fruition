@@ -477,6 +477,106 @@ h1 {
     display: block;
   }
 }
+div.faq {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #182450;
+  background-color: #e5ffd2;
+}
+div.faq > .content {
+  height: calc(100% - 100px);
+  width: calc(60% - 100px);
+  padding: 50px;
+  gap: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: #9bce77;
+}
+div.faq > .content > .search {
+  width: 70%;
+  height: 50px;
+  position: relative;
+}
+div.faq > .content > .search > input {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  border-radius: 10px;
+  background-color: #182450;
+  color: #f6fff5;
+  padding: 15px;
+  margin: 0px;
+  font-size: 1.15rem;
+  outline: none;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+div.faq > .content > .search > img {
+  position: absolute;
+  top: 15%;
+  right: 15px;
+  height: 70%;
+  width: 8%;
+}
+div.faq > .content > h3 {
+  margin: 0px;
+  padding: 0px;
+}
+div.faq > .content > .cards {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+div.faq > .content > .cards > .question-card {
+  width: 100%;
+}
+div.faq > .content > .cards > .question-card > h4 {
+  cursor: pointer;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+div.faq > .content > .cards > .question-card > h4:hover {
+  color: #3f4a70;
+}
+div.faq > .content > .cards > .question-card > p {
+  text-align: left;
+  margin-top: 0px;
+  display: none;
+}
+div.faq > .content > .cards > .question-card.active > p {
+  display: block;
+}
+div.faq > .content > .disclaimer {
+  width: 50%;
+  word-wrap: normal;
+  text-align: center;
+  text-decoration: underline;
+}
+div.faq > .content > a,
+div.faq > .content > a:hover,
+div.faq > .content > a:visited,
+div.faq > .content > a:active {
+  padding: 15px 115px;
+  background-color: #182450;
+  border-radius: 60px;
+  color: #f6fff5;
+  text-decoration: none;
+}
+div.faq > img {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  width: 200px;
+}
+
 body .main {
   width: 100%;
   height: 100%;
@@ -537,7 +637,8 @@ body .main {
   align-self: center;
 }
 
-body, html {
+body,
+html {
   margin: 0px;
   padding: 0px;
   width: 100vw;
