@@ -11,6 +11,6 @@
     <h5>how to add a new location?</h5>
     <h5>how to upload images</h5>
     <h5>how to change email</h5>
-    <h3>Need further assistance? feel free to chat with ourchatbot Fuity!</h3>
+    <h3>Need further assistance? feel free to chat with our chatbot Fruity!</h3>
 </body>
 </html>
