@@ -14,6 +14,11 @@ function refreshSearch(value) {
             child.style.display = 'none'
         }
     }
+
+
+    if (document.documentElement.clientWidth < 376 && value.length > 0) {
+        categoriesElement.style.display = 'flex'
+    }
 }
 
 document.getElementById('search').addEventListener('keyup', function () {
@@ -38,6 +43,7 @@ function refreshFilter() {
             child.classList.remove('selected')
             continue
         }
+
 
         if (selectedFilters.includes(child.dataset.type)) {
             if (child.classList.contains('selected')) {
@@ -70,3 +76,16 @@ for (let i = 0; i < children.length; i++) {
         toggleFilter(this.dataset.type)
     })
 }
+
+// Hide categories when on mobile
+document.getElementById('search').addEventListener('focusin', function () {
+    if (document.documentElement.clientWidth < 376 && this.value.length == 0) {
+        categoriesElement.style.display = 'flex'
+    }
+})
+
+document.getElementById('search').addEventListener('focusout', function () {
+    if (document.documentElement.clientWidth < 376 && this.value.length == 0) {
+        categoriesElement.style.display = 'none'
+    }
+})

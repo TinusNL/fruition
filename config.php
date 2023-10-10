@@ -4,9 +4,17 @@
 define('URL_PREFIX', 'fruition');
 
 // Database Connection
-define('DATABASE_HOST', '192.168.12.1');
-define('DATABASE_USER', 'fruition_dev');
-define('DATABASE_PASS', 'lVERmetZEARAnlCULSHRa');
+
+// // Server
+// define('DATABASE_HOST', '192.168.12.1');
+// define('DATABASE_USER', 'fruition_dev');
+// define('DATABASE_PASS', 'lVERmetZEARAnlCULSHRa');
+// define('DATABASE_NAME', 'fruition');
+
+// Localhost
+define('DATABASE_HOST', '127.0.0.1');
+define('DATABASE_USER', 'root');
+define('DATABASE_PASS', '');
 define('DATABASE_NAME', 'fruition');
 
 // Autoload modules when used

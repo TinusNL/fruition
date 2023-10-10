@@ -20,11 +20,16 @@
     }
 }
 
-.popup-img{
+.popup-img {
     max-width: 150px;
     display: grid;
     place-content: center;
     place-items: center;
-   border-radius: 100%;
+    border-radius: 100%;
 }
 
+@media screen and (max-width: 376px) {
+    .map {
+        width: 100%;
+    }
+}
