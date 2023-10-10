@@ -1,3 +1,9 @@
+<?php
+// If the user is already logged in, redirect to the homepage
+if (isset($_SESSION['user_id'])) {
+    header('Location: /' . URL_PREFIX . '/');
+}
+?>
 <div class="main_authenticate">
     <div class="left_authenticate">
         <h1 class="login-text">Login</h1>
