@@ -15,7 +15,7 @@
                 <br>
                 <label for="password">Password</label><br>
                 <input class="input-box" type="password" name="password" placeholder="  *******">
-                <input type="submit" name="login" class="authenicate_l" value="Sign in">
+                <input type="submit" name="login" class="authenicate_l" value="Login">
                 <div class="account-authenticate">
                     <p>Don't have an account? <a href="signup" class="authenticate">Sign up</a></p>
                 </div>
