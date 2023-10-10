@@ -161,39 +161,6 @@ nav.header .bottom .logo > img {
   height: 100%;
 }
 
-@media screen and (max-width: 376px) {
-  nav.header {
-    position: absolute;
-    background-color: transparent;
-    z-index: 401;
-    pointer-events: none;
-    padding: 0px;
-    width: calc(100% - 60px);
-    height: 100%;
-  }
-  nav.header .top {
-    padding: 30px;
-  }
-  nav.header .top > .search > input {
-    pointer-events: auto;
-  }
-  nav.header .top > .categories {
-    display: none;
-  }
-  nav.header .top > .categories > button {
-    pointer-events: auto;
-  }
-  nav.header .bottom {
-    width: 100%;
-    height: 30px;
-    padding: 20px 30px;
-    background-color: #e5ffd2;
-  }
-  nav.header .bottom > .actions > a,
-  nav.header .bottom > .actions > .popup {
-    pointer-events: auto;
-  }
-}
 .map {
   width: calc(100% - 400px);
   height: 100%;
@@ -220,72 +187,7 @@ nav.header .bottom .logo > img {
   border-radius: 100%;
 }
 
-@media screen and (max-width: 376px) {
-  .map {
-    width: 100%;
-  }
-}
-/* style.scss */
-/* Reset some default browser styles */
-body, h2, form {
-  margin: 0;
-  padding: 0;
-}
-
-/* Style the body */
-body {
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-/* Style the form container */
-form {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* Style form labels */
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* Style form inputs and textareas */
-input[type=text],
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* Style the file input */
-input[type=file] {
-  margin-top: 5px;
-}
-
-/* Style the submit button */
-input[type=submit] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-/* Style the submit button on hover */
-input[type=submit]:hover {
-  background-color: #0056b3;
-}
-
-.sign-up {
+.authenticate {
   background-color: #9BCE77;
   width: 45%;
   height: 100vh;
@@ -350,7 +252,7 @@ h1 {
   font-family: "Poppins";
 }
 
-.main_login {
+.main_authenticate {
   font-family: "Poppins";
   width: 100vw;
   height: 100vh;
@@ -358,29 +260,28 @@ h1 {
   grid-template-columns: 2fr 3fr;
   justify-items: center;
   align-content: center;
-  background: linear-gradient(to right, #9bce77 0%, #9bce77 40%, #e5ffd2 40%, #e5ffd2 100%);
+  background: linear-gradient(to right, #9BCE77 0%, #9BCE77 40%, #E5FFD2 40%, #E5FFD2 100%);
 }
 
-.left_login {
+.left_authenticate {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.form-login {
+.form-authenticate {
   color: #182450;
 }
 
-.form-login label {
+.form-authenticate label {
   font-size: 14pt;
   font-weight: bold;
   color: #182450;
 }
 
-.form-login input[type=password],
-input[type=email] {
+.form-authenticate input[type=password], .form-authenticate input[type=email], .form-authenticate input[type=text] {
   width: 90%;
-  background-color: #e5ffd2;
+  background-color: #E5FFD2;
   border: none;
   outline: none;
   padding: 5px 15px;
@@ -389,7 +290,7 @@ input[type=email] {
   margin-bottom: 10px;
 }
 
-.account-signin {
+.account-authenticate {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -398,35 +299,33 @@ input[type=email] {
   font-weight: bold;
 }
 
-.sign-up a,
-a:active,
-a:visited {
+.authenticate a, a:active, a:visited {
   text-decoration: none;
   color: #182450;
 }
 
-.sign-in {
+.authenicate_l {
   background-color: #182450;
-  color: #e5ffd2;
+  color: #E5FFD2;
   border: none;
   padding: 5px 15px;
   border-radius: 15pt;
 }
 
-.left_login h1 {
+.left_authenticate h1 {
   font-weight: 900;
 }
 
-.right_login {
+.right_authenticate {
   width: 80%;
 }
 
-.right_login h2,
-p {
+.right_authenticate h2, p {
   text-align: center;
 }
 
-.logo-hidden-login {
+.logo-hidden-authenticate {
+  margin-top: 25px;
   display: none;
 }
 
@@ -445,20 +344,20 @@ p {
   width: 80vw;
 }
 
-@media screen and (max-width: 376px) {
-  .main_login {
-    background: #9bce77;
+@media screen and (max-width: 1023.9px) {
+  .main_authenticate {
+    background: #9BCE77;
   }
-  .left_login {
+  .left_authenticate {
     grid-template-columns: 1fr;
-    width: 80vw;
+    width: 100vw;
     justify-content: center;
     align-items: center;
   }
-  .right_login {
+  .right_authenticate {
     display: none;
   }
-  .logo-hidden-login {
+  .logo-hidden-authenticate {
     display: block;
   }
 }
