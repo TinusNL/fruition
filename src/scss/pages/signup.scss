@@ -1,0 +1,60 @@
+.authenticate{
+    background-color: #9BCE77;
+    width: 45%;
+    height: 100vh;
+}
+
+h1{
+    text-align: center;
+    padding-top: 8vh;
+    margin-bottom: 0;
+    color: #182450;
+    font-weight: 600;
+    font-size: 40px;
+    margin: 0;
+}
+
+#form{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#form label{
+    color: #182450;
+    padding-left: 1vw;
+    font-weight: 500;
+}
+
+#form input{
+    background-color: #E5FFD2;
+    border: 0.5px solid #E5FFD2;
+    border-radius: 22px;
+    box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
+}
+
+#button{
+    display: flex;
+    margin-top: 30px;
+}
+
+#button label{
+    margin-right: 2vw;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+#button .button{
+    background-color: #182450;
+    border: none;
+    border-radius: 22px;
+    padding: 5px 55px;
+    color: white;
+}
+
+.img_g{
+    width: 25px;
+    background-color: #E5FFD2;
+    border-radius: 30px;
+    padding: 5px;
+}

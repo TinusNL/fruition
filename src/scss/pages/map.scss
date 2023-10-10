@@ -1,6 +1,6 @@
 .map {
-    width: 100%;
-    height: calc(100% - 50px);
+    width: calc(100% - 400px);
+    height: 100%;
 
     #leaflet-map {
         height: 100%;
@@ -17,5 +17,39 @@
         height: calc(100% - 2px);
 
         margin: 2px 0px;
+    }
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 0px !important;
+}
+
+.leaflet-popup-content {
+    margin: 0px !important;
+}
+
+.leaflet-popup-close-button span {
+    color: white !important;
+    // background-color: red !important;
+}
+
+.popup-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+
+    width: 250px;
+
+    > img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .map {
+        width: 100%;
     }
 }

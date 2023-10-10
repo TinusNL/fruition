@@ -1,0 +1,126 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.body{
+    font-family: "Poppins";
+}
+
+.main_authenticate {
+    font-family: "Poppins";
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    justify-items: center;
+    align-content: center;
+    background: linear-gradient(
+        to right,
+        #9BCE77 0%,
+        #9BCE77 40%,
+        #E5FFD2 40%,
+        #E5FFD2 100%
+      );
+}
+
+.left_authenticate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-authenticate {
+    color: #182450;
+}
+
+.form-authenticate label{
+    font-size: 14pt;
+    font-weight: bold;
+    color: #182450;
+}
+
+.form-authenticate input[type=password], .form-authenticate input[type=email], .form-authenticate input[type=text]  {
+    width: 90%;
+    background-color: #E5FFD2;
+    border: none;
+    outline: none;
+    padding: 5px 15px;
+    border-radius: 15pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.account-authenticate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.authenticate a, a:active, a:visited{
+    text-decoration: none;
+    color: #182450;
+}
+
+.authenicate_l {
+    background-color: #182450;
+    color: #E5FFD2;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 15pt;
+}
+
+.left_authenticate h1 {
+    font-weight: 900;
+}
+
+.right_authenticate {
+    width: 80%;
+}
+
+.right_authenticate h2, p {
+    text-align: center;
+}
+
+.logo-hidden-authenticate {
+    margin-top: 25px;
+    display: none;
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.socials img {
+    width: 30px;
+}
+
+.logo-mobile {
+    width: 80vw;
+}
+
+
+@media screen and (max-width:1023.9px){
+    .main_authenticate {
+        background: #9BCE77;
+    }
+
+    .left_authenticate {
+        grid-template-columns: 1fr;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .right_authenticate {
+        display: none;
+    }
+
+    .logo-hidden-authenticate {
+        display: block;
+    }
+}
