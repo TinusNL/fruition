@@ -27,23 +27,26 @@ markers.forEach(markerInfo => {
     })
 
     console.log(markerInfo)
+    markerInfo.description = 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
-    // <p class="location"><a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank">Route: ${markerInfo.longitude}, ${markerInfo.latitude}</a></p>
     marker.bindPopup(`
         <div class="popup-container">
             <img src="${markerInfo.image}" alt="Marker Photo" class="popup-img">
+            <h2>${markerInfo.typeLabel}</h2>
+            ${markerInfo.description ? `<p>${markerInfo.description}</p>` : ''}
             <table>
                 <tbody>
-                    <tr><td>Season</td><td>Summer</td></tr>
-                    <tr><td>Type</td><td>Apple</td></tr>
+                    <tr><td>Type</td><td>${markerInfo.typeLabel}</td></tr>
+                    <tr><td>Season</td><td>${markerInfo.seasonName}</td></tr>
                 </tbody>
             </table>
 
             <div class="actions">
-                <span>John Doe</span>
+                <span>${markerInfo.author}</span>
                 <div class="icons">
-                    <a><img src="./assets/route.svg" alt="Favorite"/></a>
-                    <a><img src="./assets/route.svg" alt="Route"/></a>
+                    <a href="#"><img src="./assets/heart-empty.svg" alt="Favorite"/></a>
+                    <a href="#"><img src="./assets/flag.svg" alt="Report"/></a>
+                    <a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/route.svg" alt="Route"/></a>
                 </div>
             </div>
         </div>

@@ -12,6 +12,7 @@ class Item
     // TODO: Change to Type object
     public int $typeId;
     public string $typeName;
+    public string $typeLabel;
 
     // TODO: Change to Season object
     public int $seasonId;
@@ -27,6 +28,7 @@ class Item
         string $image,
         int $typeId,
         string $typeName,
+        string $typeLabel,
         int $seasonId,
         string $seasonName,
         float $longitude,
@@ -38,6 +40,7 @@ class Item
         $this->image = $image;
         $this->typeId = $typeId;
         $this->typeName = $typeName;
+        $this->typeLabel = $typeLabel;
         $this->seasonId = $seasonId;
         $this->seasonName = $seasonName;
         $this->longitude = $longitude;
@@ -49,22 +52,25 @@ class Item
         $stmt = Database::prepare("
         SELECT
             i.id AS id,
-            i.author AS author,
+            u.username AS author,
             i.description AS description,
             img.data AS image,
             t.id AS typeId,
             t.name AS typeName,
+            t.label AS typeLabel,
             s.id AS seasonId,
             s.name AS seasonName,
             i.longitude AS longitude,
             i.latitude AS latitude
         FROM
             items i,
+            users u,
             types t,
             images img,
             seasons s
         WHERE
-            i.type = t.id
+            i.author = u.id 
+        AND i.type = t.id
         AND img.id = i.image
         AND s.id = t.season;");
         $stmt->execute();
@@ -79,6 +85,7 @@ class Item
                 $item['image'],
                 $item['typeId'],
                 $item['typeName'],
+                $item['typeLabel'],
                 $item['seasonId'],
                 $item['seasonName'],
                 $item['longitude'],
@@ -101,6 +108,7 @@ class Item
                 'image' => $item->image,
                 'typeId' => $item->typeId,
                 'typeName' => $item->typeName,
+                'typeLabel' => $item->typeLabel,
                 'seasonId' => $item->seasonId,
                 'seasonName' => $item->seasonName,
                 'longitude' => $item->longitude,
@@ -161,6 +169,7 @@ class Item
                 $item['image'],
                 $item['typeId'],
                 $item['typeName'],
+                $item['typeLabel'],
                 $item['seasonId'],
                 $item['seasonName'],
                 $item['longitude'],
