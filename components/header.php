@@ -18,10 +18,10 @@
             <a class="profile" href="#"><img src="./assets/icons/user.svg" alt="Profile"></a>
             <div class="popup">
                 <div class="signup">
-                    <a href="#">Sign up</a>
+                    <a href="./signup">Sign up</a>
                 </div>
                 <div class="login">
-                    <a href="#">Log in</a>
+                    <a href="./login ">Log in</a>
                 </div>
                 <div class="triangle"></div>
             </div>
