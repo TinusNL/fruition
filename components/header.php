@@ -25,8 +25,8 @@
                 </div>
                 <div class="triangle"></div>
             </div>
-            <a href="#"><img src="./assets/icons/settings.svg" alt="Settings"></a>
-            <a href="#"><img src="./assets/icons/submission.svg" alt="Submission"></a>
+            <a href="./alter-account"><img src="./assets/icons/settings.svg" alt="Settings"></a>
+            <a href="./submissions"><img src="./assets/icons/submission.svg" alt="Submission"></a>
         </div>
         <div class="logo">
             <img src="./assets/logo.svg" alt="Fruition Logo">

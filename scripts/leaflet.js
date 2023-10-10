@@ -44,9 +44,9 @@ markers.forEach(markerInfo => {
             <div class="actions">
                 <span>${markerInfo.author}</span>
                 <div class="icons">
-                    <a href="#"><img src="./assets/heart-empty.svg" alt="Favorite"/></a>
-                    <a href="#"><img src="./assets/flag.svg" alt="Report"/></a>
-                    <a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/route.svg" alt="Route"/></a>
+                    <a href="#"><img src="./assets/icons/heart-empty.svg" alt="Favorite"/></a>
+                    <a href="#"><img src="./assets/icons/flag.svg" alt="Report"/></a>
+                    <a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/icons/route.svg" alt="Route"/></a>
                 </div>
             </div>
         </div>
