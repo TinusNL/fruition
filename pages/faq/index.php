@@ -29,7 +29,7 @@
             </div>
         </div>
         <h3 class="disclaimer">Need further assistance? Feel free to chat with our chatbot <i>Fruity</i>!</h3>
-        <a href="#">Back</a>
+        <a href="./">Back</a>
     </div>
     <img src="./assets/logo.svg" alt="Fruition Logo">
     <script src="./<?= Router::getOffset() ?>scripts/faq.js"></script>
