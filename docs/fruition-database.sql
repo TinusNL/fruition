@@ -19,6 +19,21 @@
 CREATE DATABASE IF NOT EXISTS `fruition` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `fruition`;
 
+-- Structuur van  tabel fruition.favorites wordt geschreven
+CREATE TABLE IF NOT EXISTS `favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `item` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_favorites_users` (`user`),
+  KEY `FK_favorites_items` (`item`),
+  CONSTRAINT `FK_favorites_items` FOREIGN KEY (`item`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_favorites_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumpen data van tabel fruition.favorites: ~0 rows (ongeveer)
+DELETE FROM `favorites`;
+
 -- Structuur van  tabel fruition.images wordt geschreven
 CREATE TABLE IF NOT EXISTS `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

@@ -63,3 +63,10 @@
 | admin       | INT(11)         | NOT NULL, FOREIGN KEY (userId) REFERENCES users(id) |
 | created_at  | DATETIME      | DEFAULT CURRENT_TIMESTAMP                          |
 | updated_at  | DATETIME      | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP |
+
+### favorites
+| Column Name | Data Type        | Constraints                   |
+|-------------|-----------------|-------------------------------|
+| id          | INT(11)         | NOT NULL, AUTO_INCREMENT, PRIMARY KEY |
+| user        | INT(11)         | NOT NULL, FOREIGN KEY (userId) REFERENCES users(id) |
+| item        | INT(11)         | NOT NULL, FOREIGN KEY (itemId) REFERENCES items(id) |
