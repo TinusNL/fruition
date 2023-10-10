@@ -20,11 +20,13 @@
     }
 }
 
+// Marker Popup
 .leaflet-popup-content-wrapper {
     padding: 0px !important;
 }
 
 .leaflet-popup-content {
+    width: unset !important;
     margin: 0px !important;
 }
 
@@ -37,13 +39,44 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    gap: 10px;
     border-radius: 10px;
     overflow: hidden;
 
     width: 250px;
+    background-color: #f6fff5;
+    border: black 1px solid;
 
     > img {
         width: 100%;
+    }
+
+    .actions {
+        width: calc(100% - 30px);
+        height: 25px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 5px;
+        padding: 0px 15px;
+
+        .icons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            height: 100%;
+
+            a {
+                height: 100%;
+
+                img {
+                    height: 100%;
+                }
+            }
+        }
     }
 }
 

@@ -26,13 +26,26 @@ markers.forEach(markerInfo => {
         riseOnHover: true
     })
 
+    console.log(markerInfo)
+
+    // <p class="location"><a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank">Route: ${markerInfo.longitude}, ${markerInfo.latitude}</a></p>
     marker.bindPopup(`
         <div class="popup-container">
             <img src="${markerInfo.image}" alt="Marker Photo" class="popup-img">
-            <p class="type">Type: ${markerInfo.typeName}</p>
-            <p class="createdby">Created by: ${markerInfo.createdBy}</p>
-            <p class="season">Season: ${markerInfo.seasonName}</p>
-            <p class="location"><a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank">Route: ${markerInfo.longitude}, ${markerInfo.latitude}</a></p>
+            <table>
+                <tbody>
+                    <tr><td>Season</td><td>Summer</td></tr>
+                    <tr><td>Type</td><td>Apple</td></tr>
+                </tbody>
+            </table>
+
+            <div class="actions">
+                <span>John Doe</span>
+                <div class="icons">
+                    <a><img src="./assets/route.svg" alt="Favorite"/></a>
+                    <a><img src="./assets/route.svg" alt="Route"/></a>
+                </div>
+            </div>
         </div>
     `)
 

@@ -217,6 +217,7 @@ nav.header .bottom .logo > img {
 }
 
 .leaflet-popup-content {
+  width: unset !important;
   margin: 0px !important;
 }
 
@@ -229,12 +230,37 @@ nav.header .bottom .logo > img {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  gap: 10px;
   border-radius: 10px;
   overflow: hidden;
   width: 250px;
+  background-color: #f6fff5;
+  border: black 1px solid;
 }
 .popup-container > img {
   width: 100%;
+}
+.popup-container .actions {
+  width: calc(100% - 30px);
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  padding: 0px 15px;
+}
+.popup-container .actions .icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  height: 100%;
+}
+.popup-container .actions .icons a {
+  height: 100%;
+}
+.popup-container .actions .icons a img {
+  height: 100%;
 }
 
 @media screen and (max-width: 376px) {
