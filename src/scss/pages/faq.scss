@@ -1,4 +1,11 @@
-.topnav input[type=text] {
+.faq_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.faq_content input[type=text] {
     border: 1px solid #ccc; 
     background: #182450;
     border-radius: 100px;
@@ -6,5 +13,26 @@
     height: 69px;
     top: 236px;
     left: 615px;
+}
 
-  }
+.search {
+    button {
+        position: relative;
+        float: right;
+        right: 2.5rem;
+        top: 2rem;
+    }
+}
+
+.b-button{
+
+    border: 1px solid #ccc; 
+    background: #182450;
+    border-radius: 80px;
+    padding: 5px 25px;  
+    color: white;
+}
+.faq-div{
+    width: 200px;
+    height: 100px;
+}
