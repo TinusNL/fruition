@@ -1,4 +1,4 @@
-<div class="main_authenticate">
+    <div class="main_authenticate">
     <div class="left_authenticate">
         <h1 class="login-text">Sign Up</h1>
         <div class="login_error">

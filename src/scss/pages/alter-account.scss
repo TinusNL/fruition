@@ -1,4 +1,6 @@
-
+body{
+    background-color: #E5FFD2;
+}
 .main {
     background-color: #9BCE77; 
     margin: auto;
@@ -6,9 +8,58 @@
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center ;
 }
-.form{
+
+.alter-ac-form {
+    form {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+
+        label {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #182450;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 90%;
+            background-color: #E5FFD2;
+            border: none;
+            outline: none;
+            padding: 5px 15px;
+            border-radius: 15pt;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }       
+
+        button {
+            background-color: #182450;
+            border: none;
+            border-radius: 22px;
+            padding: 5px 55px;
+            color: white;
+        }
+    }
+}
+
+.container_aa {
+    display: flex;
+}
+
+.left_side, .right_side {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    width: 50%;
+}
+
+.right_side {
+    align-items: center;
+}
+
+.right_side button {
+    margin-top: 35px;
 }

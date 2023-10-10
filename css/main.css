@@ -467,12 +467,66 @@ h1 {
     display: block;
   }
 }
-body .main {
-  width: 100%;
+body {
+  background-color: #E5FFD2;
+}
+
+.main {
+  background-color: #9BCE77;
+  margin: auto;
+  width: 50vw;
   height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.alter-ac-form form {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+.alter-ac-form form label {
+  font-size: 14pt;
+  font-weight: bold;
+  color: #182450;
+}
+.alter-ac-form form input[type=text],
+.alter-ac-form form input[type=email],
+.alter-ac-form form input[type=password] {
+  width: 90%;
+  background-color: #E5FFD2;
+  border: none;
+  outline: none;
+  padding: 5px 15px;
+  border-radius: 15pt;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.alter-ac-form form button {
+  background-color: #182450;
+  border: none;
+  border-radius: 22px;
+  padding: 5px 55px;
+  color: white;
+}
+
+.container_aa {
+  display: flex;
+}
+
+.left_side, .right_side {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.right_side {
+  align-items: center;
+}
+
+.right_side button {
+  margin-top: 35px;
 }
 
 .fourofour_main {
