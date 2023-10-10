@@ -26,13 +26,29 @@ markers.forEach(markerInfo => {
         riseOnHover: true
     })
 
+    console.log(markerInfo)
+    markerInfo.description = 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+
     marker.bindPopup(`
         <div class="popup-container">
             <img src="${markerInfo.image}" alt="Marker Photo" class="popup-img">
-            <p class="type">Type: ${markerInfo.typeName}</p>
-            <p class="createdby">Created by: ${markerInfo.createdBy}</p>
-            <p class="season">Season: ${markerInfo.seasonName}</p>
-            <p class="location"><a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank">Route: ${markerInfo.longitude}, ${markerInfo.latitude}</a></p>
+            <h2>${markerInfo.typeLabel}</h2>
+            ${markerInfo.description ? `<p>${markerInfo.description}</p>` : ''}
+            <table>
+                <tbody>
+                    <tr><td>Type</td><td>${markerInfo.typeLabel}</td></tr>
+                    <tr><td>Season</td><td>${markerInfo.seasonName}</td></tr>
+                </tbody>
+            </table>
+
+            <div class="actions">
+                <span>${markerInfo.author}</span>
+                <div class="icons">
+                    <a href="#"><img src="./assets/icons/heart-empty.svg" alt="Favorite"/></a>
+                    <a href="#"><img src="./assets/icons/flag.svg" alt="Report"/></a>
+                    <a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/icons/route.svg" alt="Route"/></a>
+                </div>
+            </div>
         </div>
     `)
 

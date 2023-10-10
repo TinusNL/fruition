@@ -20,11 +20,13 @@
     }
 }
 
+// Marker Popup
 .leaflet-popup-content-wrapper {
     padding: 0px !important;
 }
 
 .leaflet-popup-content {
+    width: unset !important;
     margin: 0px !important;
 }
 
@@ -37,13 +39,77 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    gap: 10px;
     border-radius: 10px;
     overflow: hidden;
 
     width: 250px;
+    background-color: #f6fff5;
+    border: black 1px solid;
 
     > img {
         width: 100%;
+    }
+
+    > h2 {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    > p {
+        text-align: left;
+        margin: 0px !important;
+        padding: 0px 10px;
+    }
+
+    > table {
+        width: 95%;
+
+        tbody {
+            width: 100%;
+
+            tr {
+                width: 100%;
+
+                background-color: #e5ffd2;
+
+                td:first-child {
+                    width: 30%;
+                }
+            }
+        }
+    }
+
+    .actions {
+        width: calc(100% - 30px);
+        height: 25px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 5px;
+        padding: 0px 15px;
+
+        span {
+            color: #9bce77;
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            height: 70%;
+
+            a {
+                height: 100%;
+
+                img {
+                    height: 100%;
+                }
+            }
+        }
     }
 }
 
