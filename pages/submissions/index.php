@@ -1,5 +1,6 @@
 <div>
 <form action="submissions/send" method="post">
+
         Email <input type="email" name="email"><br>
 
         <label for="plant_name">Plant Name:</label>
@@ -11,8 +12,7 @@
         <input type="text" name="location" id="location" required>
         <button type="button" id="getLocationButton">Get Location</button><br><br>
 
-        <label for="photo">Photo:</label>
-        <input type="file" name="photo"  required><br><br>
+       
 
         <!-- Select element for season -->
         <label for="season">Season:</label>
@@ -31,6 +31,9 @@
             <option value="2">2. Unknown</option>
         </select><br><br>
 
+        <label for="photo">Photo:</label>
+        <input type="file" name="photo"  required><br><br>
+        
         <!-- Hidden fields to store latitude and longitude -->
         <input type="hidden" name="latitude" id="latitude">
         <input type="hidden" name="longitude" id="longitude">
