@@ -125,3 +125,15 @@ div.faq {
         width: 200px;
     }
 }
+
+@media screen and (max-width: 376px) {
+    div.faq {
+        .content {
+            width: 100%;
+        }
+
+        > img {
+            display: none;
+        }
+    }
+}
