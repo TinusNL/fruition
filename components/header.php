@@ -15,7 +15,13 @@
     </div>
     <div class="bottom">
         <div class="actions">
-            <a class="profile" href="#"><img src="./assets/icons/user.svg" alt="Profile"></a>
+            <?php
+            if (isset($_SESSION['user_id'])) {
+                echo '<a class="logout" href="/' . URL_PREFIX . '/logout"><img src="./assets/icons/backdoor.svg" alt="Logout"></a>';
+            } else {
+                echo '<a class="profile" href="#"><img src="./assets/icons/user.svg" alt="Profile"></a>';
+            }
+            ?>
             <div class="popup">
                 <div class="signup">
                     <a href="/<?= URL_PREFIX ?>/signup">Sign up</a>
