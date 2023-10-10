@@ -89,3 +89,11 @@ document.getElementById('search').addEventListener('focusout', function () {
         categoriesElement.style.display = 'none'
     }
 })
+
+window.addEventListener('resize', function (event) {
+    if (document.documentElement.clientWidth < 376 && document.getElementById('search').value.length == 0) {
+        categoriesElement.style.display = 'none'
+    } else {
+        categoriesElement.style.display = 'flex'
+    }
+})
