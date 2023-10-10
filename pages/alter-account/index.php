@@ -2,7 +2,7 @@
     // When the application is finished, remove following lines: 3-8
     $dev = true;
     if ($dev) {
-        $userId = $_SESSION['user_id'] ?? 12;
+        $userId = $_SESSION['user_id'] ?? 1;
     } else {
         $userId = $_SESSION['user_id'];
     }
@@ -27,7 +27,7 @@
                 <label for="profile-picture">Profile picture</label>
                 <!-- Delete the inline style from image when app is finished and ready for styling. -->
                 <!-- example ----→ <img src="" alt="Profile picture"> -->
-                <img style="width:100px;height:100px;" src="data:image/*;base64,<?= base64_encode($user['profile_image']) ?>" alt="Profile picture">
+                <img style="width:100px;height:100px;" src="data:image/*;base64,<?= !empty($user['profile_image']) ? base64_encode($user['profile_image']) : '' ?>" alt="Profile picture">
                 <input type="file" name="profile-picture" id="profile-picture" accept="image/*">
 
                 <label for="username">Username</label>
