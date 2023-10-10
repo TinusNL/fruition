@@ -28,7 +28,7 @@
                 <p>Fruition is a website that allows users to share their recipes with the world. Users can also search for recipes based on their ingredients.</p>
             </div>
         </div>
-        <h3 class="disclaimer">Need further assistance? Feel free to chat with our chatbot Fruity!</h3>
+        <h3 class="disclaimer">Need further assistance? Feel free to chat with our chatbot <i>Fruity</i>!</h3>
         <a href="#">Back</a>
     </div>
     <img src="./assets/logo.svg" alt="Fruition Logo">
