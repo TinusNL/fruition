@@ -26,7 +26,7 @@
                 <input class="input-box" type="password" name="confirm_password">
                 <input type="submit" name="signup" class="authenicate_l" value="Sign Up">
                 <div class="account-authenticate">
-                    <p>Already have an account? <a href="login" class="authenticate">Sign in</a></p>
+                    <p>Already have an account? <a href="login" class="authenticate">Login</a></p>
                 </div>
                 <div class="login_extra">
                     <a href="forgot">Forgot Password</a>
