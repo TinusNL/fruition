@@ -10,6 +10,7 @@ $conn = new Database;
 
 
 if (isset($_POST['send'])) {
+    
     if (isset($_POST["plant_name"], $_POST["types"], $_POST["season"], $_POST["location"])) {
         $id = $_SESSION['user_id'] ?? 1;
         $plant_name = $_POST["plant_name"];
