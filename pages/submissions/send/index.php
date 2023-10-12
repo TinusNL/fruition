@@ -10,8 +10,7 @@ $conn = new Database;
 
 
 if (isset($_POST['send'])) {
-    
-    if (isset($_POST["plant_name"], $_POST["types"], $_FILES["photo"], $_POST["season"], $_POST["location"]) && $_FILES["photo"]["error"] === 0) {
+    if (isset($_POST["short_desc"], $_POST["types"], $_FILES["photo"], $_POST["location"]) && $_FILES["photo"]["error"] === 0) {
         $imgContent = file_get_contents($_FILES["photo"]["tmp_name"]);
         
         $stmt = $conn->prepare("INSERT INTO `images` (`data`) VALUES (:data)");
@@ -20,18 +19,21 @@ if (isset($_POST['send'])) {
         $photo_id = $conn->lastInsertId();
 
         $id = $_SESSION['user_id'];
-        $plant_name = $_POST["plant_name"];
+        $short_desc = $_POST["short_desc"];
         $type = $_POST["types"];
-        $season = $_POST["season"];
-        $location = $_POST["location"];
+
+        // Split into long and lat
+        $location = explode(" ", $_POST["location"]);
+        $longitude = $location[0];
+        $latitude = $location[1];
         
-        $stmt = $conn->prepare("INSERT INTO items (userId, name, typeId, seasonId, location) VALUES (:id, :name, :type, :season, :location)");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':name', $plant_name, PDO::PARAM_STR);
+        $stmt = $conn->prepare("INSERT INTO items (author, description, type, image, longitude, latitude) VALUES (:author, :short_desc, :type, :image, :long, :lat)");
+        $stmt->bindParam(':author', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':short_desc', $short_desc, PDO::PARAM_STR);
         $stmt->bindParam(':type', $type, PDO::PARAM_INT);
-        $stmt->bindParam(':photo', $photo_id, PDO::PARAM_INT);
-        $stmt->bindParam(':season', $season, PDO::PARAM_INT);
-        $stmt->bindParam(':location', $location, PDO::PARAM_STR);
+        $stmt->bindParam(':image', $photo_id, PDO::PARAM_INT);
+        $stmt->bindParam(':long', $longitude, PDO::PARAM_STR);
+        $stmt->bindParam(':lat', $latitude, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             echo "Data has been inserted successfully!";
@@ -41,7 +43,7 @@ if (isset($_POST['send'])) {
     } else {
         echo "Not all required fields are filled in.";
     }
-  
+
     if (!empty($_POST['email'])) {
         $mail = new PHPMailer(true);
 
@@ -73,7 +75,7 @@ if (isset($_POST['send'])) {
         $mail->send();
     }
 
-    header("Location: http://localhost/fruition/map");
+    header('Location: /' . URL_PREFIX . '/');
     exit();
 }
 ?>

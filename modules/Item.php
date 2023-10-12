@@ -231,4 +231,23 @@ class Item
 
         return json_encode($items);
     }
+
+    public static function getTypeSeason(mixed $type)
+    {
+        $stmt = Database::prepare("
+        SELECT
+            s.id AS seasonId
+        FROM
+            types t,
+            seasons s
+        WHERE
+            t.id = :typeId
+        AND s.id = t.season;");
+        $stmt->bindParam(':typeId', $type);
+        $stmt->execute();
+
+        $season = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $season['seasonId'];
+    }
 }

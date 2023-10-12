@@ -16,12 +16,19 @@
     <?php include 'components/chatbot.php' ?>
 
 
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
+    <?php
+    // Get itemResults from the database
+    $markerJSON = Item::getAllJson($_GET['season'] ?? null, ($_GET['favorites'] ?? null) == 'on');
+    ?>
 
     <script>
-        const markerJson = '<?= Item::getAllJson($_GET['season'] ?? null, ($_GET['favorites'] ?? null) == 'on') ?>';
+        const markerJSON = '<?= !empty($markerJSON) ? $markerJSON : '[]' ?>';
         const loggedIn = <?= intval(isset($_SESSION['user_id'])) ?>;
-        loadAfterPageInit();
+
+        // Put in localStorage
+        localStorage.setItem('markerJSON', markerJSON); // TODO: Remove this line
     </script>
+
+    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
+    <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
 </div>

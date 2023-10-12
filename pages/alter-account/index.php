@@ -18,7 +18,9 @@
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!empty($user['profile_image'])) {
-        $profile_picture = base64_encode($user['profile_image']);
+        // Get profile picture from the database and store it in the $profile_picture variable
+        $photo_id = $user['profile_image'];
+        $profile_picture = User::getProfilePicture($photo_id);
     } else {
         // Load the default picture and store it in the $default_picture variable
         $default_picture = file_get_contents('././assets/default_profile.png');
@@ -48,7 +50,7 @@
                         <label for="profile-picture">Profile picture</label><br>
                         <img src="data:image/*;base64,<?= $profile_picture ?>" alt="Profile picture" >
                         <input type="file" name="profile-picture" id="profile-picture" accept="image/*" style="display:none">
-                        <button onclick="document.getElementById('profile-picture').click()">Upload picture</button>
+                        <button type="button" onclick="document.getElementById('profile-picture').click()">Upload picture</button>
                         <br>
                     </div>
                 </div>

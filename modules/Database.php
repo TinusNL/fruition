@@ -8,6 +8,11 @@ class Database
     {
         return self::$conn->prepare($query);
     }
+
+    public function lastInsertId(): bool|string
+    {
+        return self::$conn->lastInsertId();
+    }
 }
 
 try {

@@ -144,4 +144,13 @@ class User
         $stmt->execute();
         return (bool)$stmt->rowCount();
     }
+
+    public static function getProfilePicture(int $photo_id): string
+    {
+        $stmt = Database::prepare("SELECT data FROM images WHERE id = :id");
+        $stmt->bindParam(':id', $photo_id);
+        $stmt->execute();
+        $image = $stmt->fetch(PDO::FETCH_ASSOC);
+        return base64_encode($image['data']);
+    }
 }
