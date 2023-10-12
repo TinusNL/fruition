@@ -15,10 +15,13 @@
     <div id="leaflet-map"></div>
     <?php include 'components/chatbot.php' ?>
 
+
+    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
+    <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
+
     <script>
         const markerJson = '<?= Item::getAllJson($_GET['season'] ?? null, ($_GET['favorites'] ?? null) == 'on') ?>';
         const loggedIn = <?= intval(isset($_SESSION['user_id'])) ?>;
+        loadAfterPageInit();
     </script>
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
 </div>

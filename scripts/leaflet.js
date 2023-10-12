@@ -1,32 +1,33 @@
-// User Location
-let locationMarker
-var userLoc = localStorage.getItem('userLocation') ?? false
-if (!userLoc) {
-    navigator.geolocation.getCurrentPosition((position) => {
-        setCurrentLocation([position.coords.latitude, position.coords.longitude])
+function loadAfterPageInit() {
+    // User Location
+    let locationMarker
+    var userLoc = localStorage.getItem('userLocation') ?? false
+    if (!userLoc) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            setCurrentLocation([position.coords.latitude, position.coords.longitude])
 
-        localStorage.setItem('userLocation', JSON.stringify([position.coords.latitude, position.coords.longitude]))
-    })
-}
+            localStorage.setItem('userLocation', JSON.stringify([position.coords.latitude, position.coords.longitude]))
+        })
+    }
 
-userLoc = JSON.parse(userLoc)
+    userLoc = JSON.parse(userLoc)
 
 // Background
-const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-})
-
-// Set up marker layers
-const markerLayers = {}
-const markers = JSON.parse(markerJson)
-
-markers.forEach(markerInfo => {
-    const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
-        icon: leafletIcons[markerInfo.typeName],
-        riseOnHover: true
+    const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
     })
 
-    marker.bindPopup(`
+// Set up marker layers
+    const markerLayers = {}
+    const markers = JSON.parse(markerJson)
+
+    markers.forEach(markerInfo => {
+        const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
+            icon: leafletIcons[markerInfo.typeName],
+            riseOnHover: true
+        })
+
+        marker.bindPopup(`
         <div class="popup-container">
             <img src="${markerInfo.image}" alt="Marker Photo" class="popup-img">
             <h2>${markerInfo.typeLabel}</h2>
@@ -51,67 +52,82 @@ markers.forEach(markerInfo => {
         </div>
     `)
 
-    markerLayers[markerInfo.typeName] = markerLayers[markerInfo.typeName] || L.layerGroup()
-    marker.addTo(markerLayers[markerInfo.typeName])
-})
+        markerLayers[markerInfo.typeName] = markerLayers[markerInfo.typeName] || L.layerGroup()
+        marker.addTo(markerLayers[markerInfo.typeName])
+    })
 
 // Create map
-const map = L.map('leaflet-map', {
-    center: [0, 0],
-    zoom: 1,
-    layers: [tileLayer, ...Object.values(markerLayers).flat()],
-    attributionControl: false
-})
-if (userLoc) {
-    setCurrentLocation(userLoc, true)
-}
-
-// Current Location
-function setCurrentLocation(coords) {
-    map.setView(coords, 16, { pan: { animate: true } })
-
-    if (locationMarker) {
-        locationMarker.removeFrom(map)
+    const map = L.map('leaflet-map', {
+        center: [0, 0],
+        zoom: 1,
+        layers: [tileLayer, ...Object.values(markerLayers).flat()],
+        attributionControl: false
+    })
+    if (userLoc) {
+        setCurrentLocation(userLoc, true)
     }
 
-    locationMarker = L.circle(coords, {
-        color: '#006ACD',
-        fillColor: '#006ACD',
-        radius: 10
+// Current Location
+    function setCurrentLocation(coords) {
+        map.setView(coords, 16, { pan: { animate: true } })
+
+        if (locationMarker) {
+            locationMarker.removeFrom(map)
+        }
+
+        locationMarker = L.circle(coords, {
+            color: '#006ACD',
+            fillColor: '#006ACD',
+            radius: 10
+        }).addTo(map)
+    }
+
+    const btn = L.easyButton('<img src="./assets/icons/location-crosshair.svg" id="location-crosshair">', function () {
+        setCurrentLocation(userLoc)
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            setCurrentLocation([position.coords.latitude, position.coords.longitude])
+
+            localStorage.setItem('userLocation', JSON.stringify([position.coords.latitude, position.coords.longitude]))
+        })
     }).addTo(map)
-}
-
-const btn = L.easyButton('<img src="./assets/icons/location-crosshair.svg" id="location-crosshair">', function () {
-    setCurrentLocation(userLoc)
-
-    navigator.geolocation.getCurrentPosition((position) => {
-        setCurrentLocation([position.coords.latitude, position.coords.longitude])
-
-        localStorage.setItem('userLocation', JSON.stringify([position.coords.latitude, position.coords.longitude]))
-    })
-}).addTo(map)
 
 // Open Functions
-function hideMarkerType(type) {
-    if (!markerLayers[type]) return
+    function hideMarkerType(type) {
+        if (!markerLayers[type]) return
 
-    map.removeLayer(markerLayers[type])
-}
+        map.removeLayer(markerLayers[type])
+    }
 
-function showMarkerType(type) {
-    if (!markerLayers[type]) return
+    function showMarkerType(type) {
+        if (!markerLayers[type]) return
 
-    map.addLayer(markerLayers[type])
-}
+        map.addLayer(markerLayers[type])
+    }
 
 // Popup Actions
-function favoriteAction(elem, itemId) {
-    const img = elem.querySelector('img')
+    function favoriteAction(elem, itemId) {
+        const img = elem.querySelector('img')
 
-    if (img.src.includes('empty')) {
-        img.src = './assets/icons/heart-filled.svg'
+        if (img.src.includes('empty')) {
+            img.src = './assets/icons/heart-filled.svg'
 
-        fetch('./api/favorite', {
+            fetch('./api/favorite', {
+                method: 'POST',
+                body: JSON.stringify({
+                    id: itemId
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+
+            return
+        }
+
+        img.src = './assets/icons/heart-empty.svg'
+
+        fetch('./api/unfavorite', {
             method: 'POST',
             body: JSON.stringify({
                 id: itemId
@@ -120,19 +136,5 @@ function favoriteAction(elem, itemId) {
                 'Content-Type': 'application/json'
             },
         })
-
-        return
     }
-
-    img.src = './assets/icons/heart-empty.svg'
-
-    fetch('./api/unfavorite', {
-        method: 'POST',
-        body: JSON.stringify({
-            id: itemId
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
 }
