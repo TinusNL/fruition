@@ -2,16 +2,24 @@ body{
     background-color: #E5FFD2;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-    
-}
-
 .sub-form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-left: 68px !important;
+    padding-right: 68px !important;
+}
+
+h1{
+    font-size: 64px;
+    font-weight: 600;
+    color: #182450;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .sub-div{
@@ -26,15 +34,7 @@ body{
     max-width: 151px;
     
 }
-h1{
-    font-size: 64px;
-    font-weight: 600;
-    color: #182450;
-}
-.sub-form{
-    padding-left: 68px !important;
-    padding-right: 68px !important;
-}
+
 input{
     width: 622px;
     height: 32px;
@@ -54,8 +54,11 @@ input[name="location"], [name="season"], [name="types"] {
     background-color: #182450;
     color: #ffff;
 }
-label[for="plant_name"]{
+label[for="plant_name"], [for="location"], [for="location"], [for="types"], [for="season"], [for="photo"]{
     margin-bottom: 12px ;
+    margin-top: 12px;
+    font-weight: 600;
+    margin-left: 10px;
 }
 .input-group {
     display: flex;
@@ -82,8 +85,38 @@ input[name="photo"]{
     flex-direction: row;
     
 }
-#fileInput {
+.photo-button {
     width: 622px;
     background-color: #182450;
-    color: transparent; /* Verberg de tekst */
+    height: 32px;
+    border-radius: 52px;
+    color: white;
+    border: none;
+    
+}
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 622px;
+    margin-top: 25px;
+
+}
+.button-container > button{
+    width: 210px;
+    background-color: #182450;
+    height: 32px;
+    border-radius: 52px;
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: none;
+}
+
+@media screen and (max-width: 1023.9px){
+    .sub-div{
+        display: flex;
+        align-items: center;
+        width: 100% ;
+    }
 }

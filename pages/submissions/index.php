@@ -1,4 +1,4 @@
-<div class="side-div"></div>
+
 
 <div class="sub-div">
     <form class="sub-form" action="submissions/send" method="post">
@@ -46,16 +46,18 @@
         </div>
         </div>
 
-            <label for="photo">Ismage:</label>
-            <input type="file" name="photo" id="fileInput" required>
-
+            <label for="photo">Image:</label>
+            <input type="file" name="photo" id="fileInput" style="display:none;" required>
+            <button type="button" class="photo-button" onclick="document.getElementById('fileInput').click()">Upload image</button>
             
             <!-- Hidden fields to store latitude and longitude -->
             <input type="hidden" name="latitude" id="latitude">
             <input type="hidden" name="longitude" id="longitude">
 
-            <button type="submit" id="send" name="send">Send</button>
-
+            <div class="button-container">
+                <button type="submit" id="send" name="send">Send</button>
+                <button onclick="history.go(-1);">Back</button>
+            </div>
     </form>
 
             <script>
@@ -85,4 +87,3 @@
 </div>
 
 
-<div class="side-div"></div>
