@@ -89,15 +89,20 @@ nav.header {
                     gap: 10px;
 
                     > div {
+                        display: flex;
                         width: 100%;
+                        align-items: center;
                     }
 
                     > .dropdown {
+                        flex-direction: column;
+                        align-items: flex-start;
                         > label {
                             color: #a4a5a7;
 
                             position: relative;
                             top: 5px;
+                            margin-left: unset !important;
                         }
 
                         #season {
@@ -106,6 +111,10 @@ nav.header {
                     }
 
                     > .checkbox {
+                        > input {
+                            width: unset !important;
+                            height: unset !important;
+                        }
                         > label {
                             color: #a4a5a7;
                         }

@@ -15,10 +15,10 @@ if (isset($_SESSION['user_id'])) {
         <div class="form-authenticate">
             <form action="authenticate" method="post" class="login-form"><br>
                 <label for="email">Email</label><br>
-                <input class="input-box" type="email" name="email" placeholder="    janedoe@mail.com">
+                <input type="email" name="email" placeholder="    janedoe@mail.com">
                 <br>
                 <label for="password">Password</label><br>
-                <input class="input-box" type="password" name="password" placeholder="  *******">
+                <input type="password" name="password" placeholder="  *******">
                 <input type="submit" name="login" class="authenicate_l" value="Login">
                 <div class="account-authenticate">
                     <p>Don't have an account? <a href="signup" class="authenticate">Sign up</a></p>

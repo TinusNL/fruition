@@ -16,8 +16,8 @@
                         </select>
                     </div>
                     <div class="checkbox">
-                        <input type="checkbox" name="favorites" id="favorites" <?= ($_GET['favorites'] ?? false) == 'on' ? 'checked' : '' ?>>
                         <label for="favorites">Favorites</label>
+                        <input type="checkbox" name="favorites" id="favorites" <?= ($_GET['favorites'] ?? false) == 'on' ? 'checked' : '' ?>>
                     </div>
                 </form>
             </div>

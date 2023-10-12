@@ -1,8 +1,3 @@
-body{
-    background-color: #E5FFD2;
-    overflow: hidden;
-}
-
 .sub-form {
     display: flex;
     flex-direction: column;
@@ -11,7 +6,7 @@ body{
     padding-right: 68px !important;
 }
 
-h1{
+.sub-form h1{
     font-size: 64px;
     font-weight: 600;
     color: #182450;
@@ -20,7 +15,6 @@ h1{
 .column {
     display: flex;
     flex-direction: column;
-    
 }
 
 .sub-div{
@@ -33,16 +27,16 @@ h1{
 .side-div{
     width: 150px;
     max-width: 151px;
-    
+
 }
 
-input{
+.sub-form input{
     width: 622px;
     height: 32px;
     border-radius: 52px;
     border: none;
 }
-input[name="location"], [name="season"], [name="types"] {
+.sub-form input[name="location"], .sub-form input[name="season"], .sub-form input[name="types"] {
     width: 300px;
     text-align: center;
     margin-right: 20px;
@@ -55,7 +49,7 @@ input[name="location"], [name="season"], [name="types"] {
     background-color: #182450;
     color: #ffff;
 }
-label[for="plant_name"], [for="location"], [for="location"], [for="types"], [for="season"], [for="photo"]{
+.sub-form label[for="short_desc"], .sub-form input[for="location"], .sub-form input[for="location"], .sub-form input[for="types"], .sub-form input[for="season"], .sub-form input[for="photo"]{
     margin-bottom: 12px ;
     margin-top: 12px;
     font-weight: 600;
@@ -64,36 +58,34 @@ label[for="plant_name"], [for="location"], [for="location"], [for="types"], [for
 .input-group {
     display: flex;
     flex-direction: row;
-    margin-right: 20px; 
+    margin-right: 20px;
 
 }
-select[name="types"], [name="season"]{
+select[name="types"]{
     width: 300px;
     height: 32px;
     border-radius: 52px;
     border: none;
-    
 }
-input[name="photo"]{
+.sub-form input[name="photo"]{
     width: 622px;
     height: 32px;
     border-radius: 52px;
     border: none;
-    
 }
 .row{
     display: flex;
     flex-direction: row;
-    
+
 }
-.photo-button {
+.sub-form .photo-button {
     width: 622px;
     background-color: #182450;
     height: 32px;
     border-radius: 52px;
     color: white;
     border: none;
-    
+
 }
 .button-container {
     display: flex;
@@ -115,15 +107,14 @@ input[name="photo"]{
 }
 
 @media screen and (max-width: 1023.9px){
-    
-    .sub-form{
+    .sub-form {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center !important;
         width: 100%;
     }
-    h1{
+    .sub-form h1{
         font-size: 70px;
     }
     .sub-div{
@@ -137,7 +128,7 @@ input[name="photo"]{
         flex-direction: column;
         width: 622px;
         margin-top: 25px;
-    
+
     }
     .button-container > button{
         width: 300px;
@@ -150,11 +141,11 @@ input[name="photo"]{
         border: none;
         margin-bottom: 20px;
     }
-    label[for="plant_name"], [for="location"], [for="location"], [for="types"], [for="season"], [for="photo"]{
+    .sub-form label[for="short_desc"], .sub-form label[for="location"], .sub-form label[for="location"], .sub-form label[for="types"], .sub-form label[for="season"], .sub-form label[for="photo"]{
         width: 622px;
         font-size: 50px;
     }
-    input[name="plant_name"], [name="location"]{
+    .sub-form input[name="short_desc"], .sub-form input[name="location"]{
         height: 120px;
         font-size: 50px;
 
@@ -171,7 +162,7 @@ input[name="photo"]{
         font-size: 35px;
         width: 622px;
     }
-    .photo-button{
+    .sub-form .photo-button{
         height: 120px;
         font-size: 40px;
     }
