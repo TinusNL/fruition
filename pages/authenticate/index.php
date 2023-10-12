@@ -7,6 +7,19 @@ if (empty($_POST)) {
 
 // Check for login
 if (isset($_POST['login'])) {
+    // Check if ip has too many login attempts
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    $failed_attempts = User::getFailedAttempts($ip_address);
+    if ($failed_attempts >= MAX_LOGIN_ATTEMPTS) {
+        $still_locked = User::checkLastAttempt($ip_address);
+
+        if ($still_locked) {
+            $data['error'] = 'Too many failed login attempts. Please try again later.';
+            header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
+            exit();
+        }
+    }
+
     // Sanitize POST data
     $_POST = filter_input_array(INPUT_POST);
 
@@ -44,6 +57,9 @@ if (isset($_POST['login'])) {
             User::createUserSession($loggedInUser);
         } else {
             $data['error'] = 'Password incorrect';
+            // Add a failed attempt to db
+            $ip_address = $_SERVER['REMOTE_ADDR'];
+            User::addFailedAttempt($ip_address);
 
             header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
         }

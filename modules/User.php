@@ -58,4 +58,90 @@ class User
 
         return true;
     }
+
+    public static function addFailedAttempt(string $ip_address): void
+    {
+        // Get current attempts
+        $orig_attempts = self::getFailedAttempts($ip_address);
+        $entry_existed = self::getEntry($ip_address);
+
+        if (!$entry_existed) {
+            $new_attempts = 1;
+            self::insertFailedAttempt($ip_address, $new_attempts);
+        } else {
+            // Update the attempts
+            $new_attempts = $orig_attempts + 1;
+            self::updateFailedAttempt($ip_address, $new_attempts);
+        }
+    }
+
+    public static function getFailedAttempts(string $ip_address)
+    {
+        $query = "SELECT * FROM `failed_login_attempts` WHERE `ip_addr` = :ip_address";
+        $stmt = Database::prepare($query);
+        $stmt->bindParam(':ip_address', $ip_address);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['attempts'] ?? null;
+    }
+
+    private static function insertFailedAttempt(string $ip_address, int $new_attempts): void
+    {
+        $date = date('Y-m-d H:i:s');
+        $query = "INSERT INTO `failed_login_attempts` (`ip_addr`, `attempts`, `last_attempt`) VALUES (:ip_address, :attempts, :last_attempt)";
+        $stmt = Database::prepare($query);
+        $stmt->bindParam(':ip_address', $ip_address);
+        $stmt->bindParam(':attempts', $new_attempts);
+        $stmt->bindParam(':last_attempt', $date);
+        $stmt->execute();
+    }
+
+    private static function updateFailedAttempt(string $ip_address, int $new_attempts): void
+    {
+        $query = "UPDATE `failed_login_attempts` SET `attempts` = :attempts WHERE `ip_addr` = :ip_address";
+        $stmt = Database::prepare($query);
+        $stmt->bindParam(':attempts', $new_attempts);
+        $stmt->bindParam(':ip_address', $ip_address);
+        $stmt->execute();
+    }
+
+    public static function checkLastAttempt(string $ip_address): bool
+    {
+        $query = "SELECT * FROM `failed_login_attempts` WHERE `ip_addr` = :ip_address";
+        $stmt = Database::prepare($query);
+        $stmt->bindParam(':ip_address', $ip_address);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $last_attempt = strtotime($result['last_attempt']);
+
+        if (!$last_attempt) {
+            return false;
+        }
+
+        // Check if the last attempt was more than 5 minutes ago
+        $time_diff = $last_attempt - time();
+        if ($time_diff < 3300) {
+            self::resetFailedAttempts($ip_address);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private static function resetFailedAttempts(string $ip_address): void
+    {
+        $query = "DELETE FROM `failed_login_attempts` WHERE `ip_addr` = :ip_address";
+        $stmt = Database::prepare($query);
+        $stmt->bindParam(':ip_address', $ip_address);
+        $stmt->execute();
+    }
+
+    private static function getEntry(string $ip_address): bool
+    {
+        $query = "SELECT * FROM `failed_login_attempts` WHERE `ip_addr` = :ip_address";
+        $stmt = Database::prepare($query);
+        $stmt->bindParam(':ip_address', $ip_address);
+        $stmt->execute();
+        return (bool)$stmt->rowCount();
+    }
 }

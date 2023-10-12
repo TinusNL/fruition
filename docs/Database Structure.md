@@ -15,6 +15,14 @@
 | created_at    | DATETIME         | DEFAULT CURRENT_TIMESTAMP                          |
 | updated_at    | DATETIME         | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP |
 
+### failed_login_attempts
+| Column Name  | Data Type    | Constraints                           |
+|--------------|--------------|---------------------------------------|
+| id           | INT(11)      | NOT NULL, AUTO_INCREMENT, PRIMARY KEY |
+| ip_addr      | VARCHAR(255) | NOT NULL                              |
+| attempts     | int(11)      | NULL                                  |
+| last_attempt | datetime     | NOT NULL DEFAULT CURRENT_TIMESTAMP    |
+
 ### roles
 | Column Name | Data Type        | Constraints                   |
 |-------------|-----------------|-------------------------------|
