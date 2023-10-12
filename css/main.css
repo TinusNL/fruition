@@ -37,10 +37,56 @@ nav.header .top > .search > input {
 }
 nav.header .top > .search > img {
   position: absolute;
-  top: 0px;
-  right: 15px;
   height: 100%;
   width: 8%;
+}
+nav.header .top > .search > img.filter {
+  top: 0px;
+  right: 45px;
+  cursor: pointer;
+}
+nav.header .top > .search > img.magnify {
+  top: 0px;
+  right: 15px;
+}
+nav.header .top > .search > #filter-content {
+  display: none;
+  margin: 0px calc(10% - 10px);
+  padding: 10px;
+  padding-top: 0px;
+  width: 80%;
+  height: fit-content;
+  color: #f6fff5;
+  background-color: #182450;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+nav.header .top > .search > #filter-content.active {
+  display: block;
+}
+nav.header .top > .search > #filter-content form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+nav.header .top > .search > #filter-content form > div {
+  width: 100%;
+}
+nav.header .top > .search > #filter-content form > .dropdown > label {
+  color: #a4a5a7;
+  position: relative;
+  top: 5px;
+}
+nav.header .top > .search > #filter-content form > .dropdown #season {
+  width: 100%;
+}
+nav.header .top > .search > #filter-content form > .checkbox > label {
+  color: #a4a5a7;
 }
 nav.header .top > .categories {
   width: calc(100% - 40px);

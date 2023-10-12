@@ -51,8 +51,9 @@ class Item
         $this->favorited = $favorited;
     }
 
-    public static function getAll(): array
+    public static function getAll(int | null $season, bool $favorites): array
     {
+        $season = $season ?? 0;
         $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 
         $stmt = Database::prepare("
@@ -79,14 +80,22 @@ class Item
             i.author = u.id 
         AND i.type = t.id
         AND img.id = i.image
-        AND s.id = t.season;");
+        AND s.id = t.season
+        AND (:seasonId = 0 OR :seasonId2 = s.id);");
         $stmt->bindParam(':userId', $userId);
+        $stmt->bindParam(':seasonId', $season);
+        $stmt->bindParam(':seasonId2', $season);
         $stmt->execute();
 
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $itemObjects = array_map(function ($item) {
-            return new Item(
+        $itemObjects = [];
+        foreach ($items as $item) {
+            if ($favorites && !$item['favorited']) {
+                continue;
+            }
+
+            $itemObjects[] = new Item(
                 $item['id'],
                 $item['author'],
                 $item['description'],
@@ -100,14 +109,14 @@ class Item
                 $item['latitude'],
                 $item['favorited']
             );
-        }, $items);
+        }
 
         return $itemObjects;
     }
 
-    public static function getAllJson(): string
+    public static function getAllJson(int | null $season, bool $favorites): string
     {
-        $itemObjects = self::getAll();
+        $itemObjects = self::getAll($season, $favorites);
 
         $items = array_map(function ($item) {
             return [
@@ -129,6 +138,7 @@ class Item
         return json_encode($items);
     }
 
+    // Code works just not being used anymore.
     public static function getInRadius(
         int $longitude,
         int $latitude,
@@ -195,6 +205,7 @@ class Item
         return $itemObjects;
     }
 
+    // Code works just not being used anymore.
     public static function getInRadiusJson(
         int $longitude,
         int $latitude,
