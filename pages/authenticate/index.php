@@ -127,7 +127,7 @@ if (isset($_POST['signup'])) {
             header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
         }
     } else {
-        header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
+        header('Location: /' . URL_PREFIX . '/signup?error=' . $data['error']);
     }
 }
 
