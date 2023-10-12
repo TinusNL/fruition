@@ -1,14 +1,12 @@
-
-.popup-img{
+.popup-img {
     max-width: 150px;
     display: grid;
     place-content: center;
     place-items: center;
-   border-radius: 100%;
+    border-radius: 100%;
 }
 
 // Chatbot
-
 
 /* Chatbot Popup Button */
 
@@ -23,7 +21,7 @@
     padding: 10px;
     cursor: pointer;
     border-radius: 50%;
-    background-color: #9BCE77;
+    background-color: #9bce77;
     width: 50px;
     height: 50px;
     text-align: center;
@@ -52,22 +50,17 @@
 
 /* Show the chat popup when the 'show' class is added */
 
-
-
-
-
-
 .chat-bar-collapsible {
     position: relative;
-    bottom: 20px; /* Adjust this value to control the vertical position */
+    bottom: 80px; /* Adjust this value to control the vertical position */
     right: 90px;
     z-index: 9999; /* Set a higher z-index to make it appear in front of the map */
-    padding: 10px; /* Add padding to create a clickable area */
+    // padding: 10px; /* Add padding to create a clickable area */
     cursor: pointer; /* Add cursor style to indicate it's clickable */
     border-radius: 50%; /* Makes it round */
-    
-    width: 60px;
-    height: 60px; /* Set height to match the width for a perfect circle */
+
+    // width: 60px;
+    // height: 60px; /* Set height to match the width for a perfect circle */
     text-align: center;
     line-height: 50px; /* Center content vertically */
 }
@@ -81,12 +74,11 @@
     background: transparent; /* Remove background color */
 }
 
-
 .chat-title {
     position: fixed;
     display: flex;
     justify-content: center;
-    background-color: #9BCE77;
+    background-color: #9bce77;
     color: white;
     font-size: 18px;
     padding: 10px;
@@ -99,8 +91,6 @@
 .chat-title.hide {
     display: none;
 }
-
-
 
 .full-chat-block {
     width: 350px;
@@ -154,7 +144,7 @@
 }
 
 #chat-icon:hover {
-    opacity: .7;
+    opacity: 0.7;
 }
 
 /* Chat bubbles */
@@ -173,7 +163,7 @@
     font-size: 16px;
     color: #000;
     background-color: white;
-    outline: none
+    outline: none;
 }
 
 .userText {
@@ -194,7 +184,7 @@
     border-bottom-right-radius: 2px;
     max-width: 80%;
     margin-right: 10px;
-    animation: floatup .5s forwards
+    animation: floatup 0.5s forwards;
 }
 
 .botText {
@@ -214,13 +204,13 @@
     border-bottom-left-radius: 2px;
     max-width: 80%;
     margin-left: 10px;
-    animation: floatup .5s forwards
+    animation: floatup 0.5s forwards;
 }
 
 @keyframes floatup {
     from {
         transform: translateY(14px);
-        opacity: .0;
+        opacity: 0;
     }
 
     to {
@@ -229,7 +219,7 @@
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
     .full-chat-block {
         width: 100%;
         border-radius: 0px;
@@ -254,9 +244,7 @@
         justify-content: space-evenly;
         box-sizing: border-box;
         width: 15%;
-         float: right;
+        float: right;
         font-size: 20px;
-
-    }  
-
+    }
 }

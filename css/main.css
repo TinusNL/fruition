@@ -577,7 +577,7 @@ div.sign-up .signup_error {
   padding: 10px;
   cursor: pointer;
   border-radius: 50%;
-  background-color: #9BCE77;
+  background-color: #9bce77;
   width: 50px;
   height: 50px;
   text-align: center;
@@ -607,14 +607,11 @@ div.sign-up .signup_error {
 /* Show the chat popup when the 'show' class is added */
 .chat-bar-collapsible {
   position: relative;
-  bottom: 20px; /* Adjust this value to control the vertical position */
+  bottom: 80px; /* Adjust this value to control the vertical position */
   right: 90px;
   z-index: 9999; /* Set a higher z-index to make it appear in front of the map */
-  padding: 10px; /* Add padding to create a clickable area */
   cursor: pointer; /* Add cursor style to indicate it's clickable */
   border-radius: 50%; /* Makes it round */
-  width: 60px;
-  height: 60px; /* Set height to match the width for a perfect circle */
   text-align: center;
   line-height: 50px; /* Center content vertically */
 }
@@ -632,7 +629,7 @@ div.sign-up .signup_error {
   position: fixed;
   display: flex;
   justify-content: center;
-  background-color: #9BCE77;
+  background-color: #9bce77;
   color: white;
   font-size: 18px;
   padding: 10px;
