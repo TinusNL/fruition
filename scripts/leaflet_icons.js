@@ -22,4 +22,5 @@ const leafletIcons = {
     "orange": icon('./assets/markers/orange.svg'),
     "pear": icon('./assets/markers/pear.svg'),
     "strawberry": icon('./assets/markers/strawberry.svg'),
+    "other": icon('./assets/markers/berry.svg'),
 }  
