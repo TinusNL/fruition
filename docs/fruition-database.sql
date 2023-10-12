@@ -166,6 +166,23 @@ INSERT INTO `users` (`id`, `role`, `username`, `email`, `password`, `profile_ima
 	(1, 3, 'Admin', 'admin@example.com', '', NULL, '2023-10-09 13:09:20', '2023-10-09 13:09:20'),
 	(2, 1, 'Tinus123', 'tinus.nld@gmail.com', '$2y$10$x1mphw2W/caKplJvQp.o2.TGRvjY6gMrs8Yv3978RmJ9fuWmGDaq6', NULL, '2023-10-12 09:06:26', '2023-10-12 09:06:26');
 
+-- Structuur van  tabel fruition.favorites wordt geschreven
+CREATE TABLE IF NOT EXISTS `favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `item` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_item` (`user`,`item`),
+  KEY `FK_favorites_items` (`item`),
+  CONSTRAINT `FK_favorites_items` FOREIGN KEY (`item`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_favorites_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumpen data van tabel fruition.favorites: ~1 rows (ongeveer)
+DELETE FROM `favorites`;
+INSERT INTO `favorites` (`id`, `user`, `item`) VALUES
+	(1, 2, 1);
+
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
