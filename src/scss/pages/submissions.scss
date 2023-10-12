@@ -188,3 +188,9 @@ input[name="photo"]{
         width: 300px;
     }
 }
+
+@media screen and (min-width: 1024.9px){
+    .logo-mobile{
+        display: none;
+    }
+}
