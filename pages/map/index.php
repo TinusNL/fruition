@@ -2,7 +2,7 @@
 
 <div class="map">
     <div class="icon">
-        <a href="#"><img src="./<?= Router::getOffset() ?>assets/icons/chat.svg" alt=""></a>
+        <a href="#" id="chat-button" class="collapsible"><img src="./<?= Router::getOffset() ?>assets/icons/chat.svg" alt=""></a>
         <a href="./faq"><img src="./<?= Router::getOffset() ?>assets/icons/questionmark.svg" alt=""></a>
     </div>
     <!-- Leaflet -->

@@ -58,7 +58,7 @@
 
 
 .chat-bar-collapsible {
-    position: fixed;
+    position: relative;
     bottom: 20px; /* Adjust this value to control the vertical position */
     right: 90px;
     z-index: 9999; /* Set a higher z-index to make it appear in front of the map */
