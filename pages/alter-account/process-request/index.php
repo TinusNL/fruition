@@ -85,12 +85,32 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($_POST['delete-account'])) {
         if (isset($userId)) {
+            // Check if the default user is still in the database
+            $stmt = $conn->prepare("SELECT id FROM users WHERE email = 'no-reply@fruition.city'");
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (empty($user)) {
+                // Add the default user to the database
+                $stmt = $conn->prepare("INSERT INTO users (username, password, email, role) VALUES ('deleted user', '', 'no-reply@fruition.city', 5)");
+                $stmt->execute();
+                $defaultUserId = $conn->lastInsertId();
+            } else {
+                $defaultUserId = $user['id'];
+            }
+
+            // Update all items from the user to the default user
+            $stmt = $conn->prepare("UPDATE items SET author = :defaultUserId WHERE author = :userId");
+            $stmt->bindParam(':defaultUserId', $defaultUserId);
+            $stmt->bindParam(':userId', $userId);
+            $stmt->execute();
+
             $query = "DELETE FROM users WHERE id = :user_id";
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':user_id', $userId);
             $stmt->execute();
 
-            header('Location: /' . URL_PREFIX . '/');
+            header('Location: /' . URL_PREFIX . '/logout');
             exit;
         }
     }

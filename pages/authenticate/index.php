@@ -47,6 +47,11 @@ if (isset($_POST['login'])) {
         }
     }
 
+    // If trying to log in as no-reply@fruition.city
+    if ($data['email'] == 'no-reply@fruition.city') {
+        $data['error'] = 'No user found';
+    }
+
     // Make sure errors are empty
     if (empty($data['error'])) {
         // Check and set logged-in user
