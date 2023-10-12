@@ -7,13 +7,11 @@ if (isset($_SESSION['user_id'])) {
 <div class="main_authenticate">
     <div class="left_authenticate">
         <h1 class="login-text">Login</h1>
-        <div class="login_error">
-            <?php
-            if (isset($_GET['error'])) {
-                echo $_GET['error'];
-            }
-            ?>
-        </div>
+        <?php if (isset($_GET['error'])) { ?>
+            <div class="login_error">
+                <?= $_GET['error'] ?>
+            </div>
+        <?php } ?>
         <div class="form-authenticate">
             <form action="authenticate" method="post" class="login-form"><br>
                 <label for="email">Email</label><br>
