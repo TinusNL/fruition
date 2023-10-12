@@ -8,7 +8,7 @@ Router::loadPages('pages');
 Router::loadUrl($_SERVER['REQUEST_URI']);
 
 // Check if tables exist
-Setup::setup();
+//Setup::setup();
 
 // If the current page is not an api, load the header
 if (Router::isApi()) {

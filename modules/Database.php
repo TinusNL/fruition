@@ -16,7 +16,13 @@ class Database
 }
 
 try {
-    $dsn = "mysql:host=" . DATABASE_HOST . ";port=" . DATABASE_PORT . ";dbname=" . DATABASE_NAME;
+    if (DATABASE_PORT == 'null') {
+        $dsn = "mysql:host=" . DATABASE_HOST . ";dbname=" . DATABASE_NAME;
+    }
+    else {
+        $dsn = "mysql:host=" . DATABASE_HOST . ";port=" . DATABASE_PORT . ";dbname=" . DATABASE_NAME;
+    }
+
     $options = array(
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_EMULATE_PREPARES => false
