@@ -57,7 +57,7 @@
             <div class="button-container">
                 <button type="submit" id="send" name="send">Submit</button>
                 <button onclick="history.go(-1);">Back</button>
-                
+                <img src="./assets/logo_light.png" alt="logo" class="logo-mobile">
             </div>
     </form>
 

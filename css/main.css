@@ -600,6 +600,10 @@ input[name=photo] {
   .column > select > option {
     height: 100px !important;
   }
+  .logo-mobile {
+    margin-top: 40px;
+    width: 300px;
+  }
 }
 body .main {
   width: 100%;
