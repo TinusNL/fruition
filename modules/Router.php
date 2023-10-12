@@ -56,4 +56,9 @@ class Router
 
         return $dirs;
     }
+
+    public static function isApi(): bool
+    {
+        return str_contains(Router::$url, 'api/');
+    }
 }

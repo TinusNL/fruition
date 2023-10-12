@@ -6,8 +6,11 @@ require_once 'config.php';
 
 Router::loadPages('pages');
 Router::loadUrl($_SERVER['REQUEST_URI']);
-?>
 
+// If the current page is not an api, load the header
+if (Router::isApi()) {
+    Router::getContent();
+} else { ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,3 +28,4 @@ Router::loadUrl($_SERVER['REQUEST_URI']);
 </body>
 
 </html>
+<?php } ?>

@@ -22,7 +22,7 @@
     ?>
 
     <script>
-        const markerJSON = '<?= !empty($markerJSON) ? $markerJSON : '[]' ?>';
+        const markerJson = '<?= !empty($markerJSON) ? $markerJSON : '[]' ?>';
         const loggedIn = <?= intval(isset($_SESSION['user_id'])) ?>;
     </script>
 

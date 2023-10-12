@@ -17,7 +17,7 @@ const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
 
 // Set up marker layers
 const markerLayers = {}
-const markers = JSON.parse(localStorage.getItem('markerJSON') ?? '[]') // TODO: Replace with proper constant from the index page
+const markers = JSON.parse(markerJson)
 
 markers.forEach(markerInfo => {
     const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
@@ -25,30 +25,38 @@ markers.forEach(markerInfo => {
         riseOnHover: true
     })
 
-    marker.bindPopup(`
-    <div class="popup-container">
-        <img src="${markerInfo.image}" alt="Marker Photo" class="popup-img">
-        <h2>${markerInfo.typeLabel}</h2>
-        ${markerInfo.description ? `<p>${markerInfo.description}</p>` : ''}
-        <table>
-            <tbody>
-                <tr><td>Type</td><td>${markerInfo.typeLabel}</td></tr>
-                <tr><td>Season</td><td>${markerInfo.seasonName}</td></tr>
-            </tbody>
-        </table>
+    fetch(`./api/image/getFromItem?item_id=${markerInfo.id}`).then(r => r.json()).then(r => {
+        markerInfo.image = r // TODO: Make this work
 
-        <div class="actions">
-            <span>${markerInfo.author}</span>
-            <div class="icons">
-                ${loggedIn ?
-            `<a class="favorite-action" onclick="favoriteAction(this, ${markerInfo.id})"><img src="./assets/icons/${markerInfo.favorited ? 'heart-filled' : 'heart-empty'}.svg" alt="Favorite"/></a>
-                <a class="grey"><img src="./assets/icons/flag.svg" alt="Report"/></a>`
-            : ''}
-                <a href="https://www.google.com/maps/dir/?api=1&destination=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/icons/route.svg" alt="Route"/></a>
+        // Put in local storage
+        localStorage.setItem(`marker-${markerInfo.id}`,r) // TODO: Remove this
+    })
+
+    marker.bindPopup(`
+        <div class="popup-container" data-attr-id="${markerInfo.id}">
+            <!-- BASE64 IMAGE FROM LOCALSTORAGE -->
+            <img src='data:image/*;base64,${localStorage.getItem(`marker-${markerInfo.id}`)}' alt="Marker Photo" class="popup-img-map">
+            <h2>${markerInfo.typeLabel}</h2>
+            ${markerInfo.description ? `<p>${markerInfo.description}</p>` : ''}
+            <table>
+                <tbody>
+                    <tr><td>Type</td><td>${markerInfo.typeLabel}</td></tr>
+                    <tr><td>Season</td><td>${markerInfo.seasonName}</td></tr>
+                </tbody>
+            </table>
+    
+            <div class="actions">
+                <span>${markerInfo.author}</span>
+                <div class="icons">
+                    ${loggedIn ?
+        `<a class="favorite-action" onclick="favoriteAction(this, ${markerInfo.id})"><img src="./assets/icons/${markerInfo.favorited ? 'heart-filled' : 'heart-empty'}.svg" alt="Favorite"/></a>
+                    <a class="grey"><img src="./assets/icons/flag.svg" alt="Report"/></a>`
+        : ''}
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/icons/route.svg" alt="Route"/></a>
+                </div>
             </div>
         </div>
-    </div>
-`)
+    `)
 
     markerLayers[markerInfo.typeName] = markerLayers[markerInfo.typeName] || L.layerGroup()
     marker.addTo(markerLayers[markerInfo.typeName])

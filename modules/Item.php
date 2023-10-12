@@ -54,7 +54,7 @@ class Item
     public static function getAll(int | null $season, bool $favorites): array
     {
         $season = $season ?? 0;
-        $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
+        $userId = $_SESSION['user_id'] ?? -1;
 
         $stmt = Database::prepare("
         SELECT
@@ -118,12 +118,21 @@ class Item
     {
         $itemObjects = self::getAll($season, $favorites);
 
+        // Build register containing only the image data
+        $imageRegister = [];
+        foreach ($itemObjects as $item) {
+            $imageRegister[$item->id] = $item->image;
+        }
+
+        // Store the image register in the session
+        $_SESSION['image_register'] = $imageRegister;
+
+        // Build an array containing only the item data
         $items = array_map(function ($item) {
             return [
                 'id' => $item->id,
                 'author' => $item->author,
                 'description' => $item->description,
-                'image' => $item->image,
                 'typeId' => $item->typeId,
                 'typeName' => $item->typeName,
                 'typeLabel' => $item->typeLabel,
@@ -134,6 +143,7 @@ class Item
                 'favorited' => $item->favorited
             ];
         }, $itemObjects);
+
 
         return json_encode($items);
     }
