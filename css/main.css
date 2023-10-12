@@ -37,10 +37,56 @@ nav.header .top > .search > input {
 }
 nav.header .top > .search > img {
   position: absolute;
-  top: 0px;
-  right: 15px;
   height: 100%;
   width: 8%;
+}
+nav.header .top > .search > img.filter {
+  top: 0px;
+  right: 45px;
+  cursor: pointer;
+}
+nav.header .top > .search > img.magnify {
+  top: 0px;
+  right: 15px;
+}
+nav.header .top > .search > #filter-content {
+  display: none;
+  margin: 0px calc(10% - 10px);
+  padding: 10px;
+  padding-top: 0px;
+  width: 80%;
+  height: fit-content;
+  color: #f6fff5;
+  background-color: #182450;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+nav.header .top > .search > #filter-content.active {
+  display: block;
+}
+nav.header .top > .search > #filter-content form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+nav.header .top > .search > #filter-content form > div {
+  width: 100%;
+}
+nav.header .top > .search > #filter-content form > .dropdown > label {
+  color: #a4a5a7;
+  position: relative;
+  top: 5px;
+}
+nav.header .top > .search > #filter-content form > .dropdown #season {
+  width: 100%;
+}
+nav.header .top > .search > #filter-content form > .checkbox > label {
+  color: #a4a5a7;
 }
 nav.header .top > .categories {
   width: calc(100% - 40px);
@@ -161,6 +207,42 @@ nav.header .bottom .logo > img {
   height: 100%;
 }
 
+@media screen and (max-width: 376px) {
+  nav.header {
+    position: absolute;
+    background-color: transparent;
+    z-index: 401;
+    pointer-events: none;
+    padding: 0px;
+    width: calc(100% - 60px);
+    height: 100%;
+  }
+  nav.header .top {
+    padding: 30px;
+  }
+  nav.header .top > .search > input {
+    pointer-events: auto;
+  }
+  nav.header .top > .search > .filter {
+    pointer-events: auto;
+  }
+  nav.header .top > .categories {
+    display: none;
+  }
+  nav.header .top > .categories > button {
+    pointer-events: auto;
+  }
+  nav.header .bottom {
+    width: 100%;
+    height: 30px;
+    padding: 20px 30px;
+    background-color: #e5ffd2;
+  }
+  nav.header .bottom > .actions > a,
+  nav.header .bottom > .actions > .popup {
+    pointer-events: auto;
+  }
+}
 .map {
   width: calc(100% - 400px);
   height: 100%;
@@ -178,77 +260,110 @@ nav.header .bottom .logo > img {
   height: calc(100% - 2px);
   margin: 2px 0px;
 }
-
-.popup-img {
-  max-width: 150px;
-  display: grid;
-  place-content: center;
-  place-items: center;
-  border-radius: 100%;
+.map .icon {
+  position: absolute;
+  right: 10px;
+  height: 50px;
+  bottom: 10px;
+  z-index: 700;
+}
+.map .icon img {
+  height: 100%;
 }
 
-/* style.scss */
-/* Reset some default browser styles */
-body, h2, form {
-  margin: 0;
-  padding: 0;
+.leaflet-popup-content-wrapper {
+  padding: 0px !important;
 }
 
-/* Style the body */
-body {
-  background-color: #f0f0f0;
-  padding: 20px;
+.leaflet-popup-content {
+  width: unset !important;
+  margin: 0px !important;
 }
 
-/* Style the form container */
-form {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
+.leaflet-popup-close-button span {
+  color: white !important;
 }
 
-/* Style form labels */
-label {
-  display: block;
-  margin-bottom: 5px;
+.popup-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 250px;
+  background-color: #f6fff5;
+  border: black 1px solid;
 }
-
-/* Style form inputs and textareas */
-input[type=text],
-textarea {
+.popup-container > img {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
 }
-
-/* Style the file input */
-input[type=file] {
-  margin-top: 5px;
+.popup-container > h2 {
+  margin: 0px;
+  padding: 0px;
 }
-
-/* Style the submit button */
-input[type=submit] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
+.popup-container > p {
+  text-align: left;
+  margin: 0px !important;
+  padding: 0px 10px;
+}
+.popup-container > table {
+  width: 95%;
+}
+.popup-container > table tbody {
+  width: 100%;
+}
+.popup-container > table tbody tr {
+  width: 100%;
+  background-color: #e5ffd2;
+}
+.popup-container > table tbody tr td:first-child {
+  width: 30%;
+}
+.popup-container .actions {
+  width: calc(100% - 30px);
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  padding: 0px 15px;
+}
+.popup-container .actions span {
+  color: #9bce77;
+}
+.popup-container .actions .icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  height: 70%;
+}
+.popup-container .actions .icons a {
   cursor: pointer;
-  border-radius: 3px;
+  height: 100%;
+}
+.popup-container .actions .icons a img {
+  height: 100%;
+}
+.popup-container .actions .icons a.grey {
+  cursor: default;
+}
+.popup-container .actions .icons a.grey img {
+  opacity: 0.2;
 }
 
-/* Style the submit button on hover */
-input[type=submit]:hover {
-  background-color: #0056b3;
+@media screen and (max-width: 376px) {
+  .map {
+    width: 100%;
+  }
+  .map .icon {
+    bottom: 80px;
+  }
 }
-
 div.sign-up {
-  background-color: #9BCE77;
+  background-color: #9bce77;
   width: 45%;
   height: 100vh;
 }
@@ -272,8 +387,8 @@ div.sign-up #form label {
   font-weight: 500;
 }
 div.sign-up #form input {
-  background-color: #E5FFD2;
-  border: 0.5px solid #E5FFD2;
+  background-color: #e5ffd2;
+  border: 0.5px solid #e5ffd2;
   border-radius: 22px;
   box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
 }
@@ -295,7 +410,7 @@ div.sign-up #button .button {
 }
 div.sign-up .img_g {
   width: 25px;
-  background-color: #E5FFD2;
+  background-color: #e5ffd2;
   border-radius: 30px;
   padding: 5px;
 }
@@ -304,7 +419,7 @@ div.sign-up .img_g {
   font-family: "Poppins";
 }
 
-.main_login {
+.main_authenticate {
   font-family: "Poppins";
   width: 100vw;
   height: 100vh;
@@ -315,23 +430,23 @@ div.sign-up .img_g {
   background: linear-gradient(to right, #9BCE77 0%, #9BCE77 40%, #E5FFD2 40%, #E5FFD2 100%);
 }
 
-.left_login {
+.left_authenticate {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.form-login {
+.form-authenticate {
   color: #182450;
 }
 
-.form-login label {
+.form-authenticate label {
   font-size: 14pt;
   font-weight: bold;
   color: #182450;
 }
 
-.form-login input[type=password], input[type=email] {
+.form-authenticate input[type=password], .form-authenticate input[type=email], .form-authenticate input[type=text] {
   width: 90%;
   background-color: #E5FFD2;
   border: none;
@@ -342,7 +457,7 @@ div.sign-up .img_g {
   margin-bottom: 10px;
 }
 
-.account-signin {
+.account-authenticate {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -351,12 +466,12 @@ div.sign-up .img_g {
   font-weight: bold;
 }
 
-.sign-up a, a:active, a:visited {
+.authenticate a, a:active, a:visited {
   text-decoration: none;
   color: #182450;
 }
 
-.sign-in {
+.authenicate_l {
   background-color: #182450;
   color: #E5FFD2;
   border: none;
@@ -364,19 +479,20 @@ div.sign-up .img_g {
   border-radius: 15pt;
 }
 
-.left_login h1 {
+.left_authenticate h1 {
   font-weight: 900;
 }
 
-.right_login {
+.right_authenticate {
   width: 80%;
 }
 
-.right_login h2, p {
+.right_authenticate h2, p {
   text-align: center;
 }
 
-.logo-hidden-login {
+.logo-hidden-authenticate {
+  margin-top: 25px;
   display: none;
 }
 
@@ -395,25 +511,25 @@ div.sign-up .img_g {
   width: 80vw;
 }
 
-@media screen and (max-width: 375.9px) {
-  .main_login {
+@media screen and (max-width: 1023.9px) {
+  .main_authenticate {
     background: #9BCE77;
   }
-  .left_login {
+  .left_authenticate {
     grid-template-columns: 1fr;
-    width: 80vw;
+    width: 100vw;
     justify-content: center;
     align-items: center;
   }
-  .right_login {
+  .right_authenticate {
     display: none;
   }
-  .logo-hidden-login {
+  .logo-hidden-authenticate {
     display: block;
   }
 }
 .faq-div {
-  background-color: #E5FFD2;
+  background-color: #e5ffd2;
   width: 20%;
   max-height: 200%;
 }
@@ -423,7 +539,7 @@ div.sign-up .img_g {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: #9BCE77;
+  background-color: #9bce77;
 }
 .faq_content > .search {
   position: relative;
@@ -575,7 +691,8 @@ body .main {
   align-self: center;
 }
 
-body, html {
+body,
+html {
   margin: 0px;
   padding: 0px;
   width: 100%;
