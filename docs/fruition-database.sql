@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 12 okt 2023 om 14:35
+-- Gegenereerd op: 12 okt 2023 om 21:14
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `fruition`
 --
+CREATE DATABASE IF NOT EXISTS `fruition` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `fruition`;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `failed_login_attempts`
+--
+
+DROP TABLE IF EXISTS `failed_login_attempts`;
+CREATE TABLE IF NOT EXISTS `failed_login_attempts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip_addr` varchar(50) NOT NULL,
+  `Kolom 3` varchar(50) NOT NULL,
+  `attempts` int(11) DEFAULT 0,
+  `last_attempt` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -27,11 +45,15 @@ SET time_zone = "+00:00";
 -- Tabelstructuur voor tabel `favorites`
 --
 
-CREATE TABLE `favorites` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `favorites`;
+CREATE TABLE IF NOT EXISTS `favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) NOT NULL,
-  `item` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `item` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_item` (`user`,`item`),
+  KEY `FK_favorites_items` (`item`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `favorites`
@@ -46,10 +68,12 @@ INSERT INTO `favorites` (`id`, `user`, `item`) VALUES
 -- Tabelstructuur voor tabel `images`
 --
 
-CREATE TABLE `images` (
-  `id` int(11) NOT NULL,
-  `data` longblob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `images`;
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data` longblob NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `images`
@@ -64,22 +88,27 @@ INSERT INTO `images` (`id`, `data`) VALUES
 -- Tabelstructuur voor tabel `items`
 --
 
-CREATE TABLE `items` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `items`;
+CREATE TABLE IF NOT EXISTS `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` int(11) NOT NULL,
   `description` longtext DEFAULT NULL,
   `image` int(11) NOT NULL,
   `type` int(11) NOT NULL,
-  `longitude` decimal(8,6) NOT NULL,
-  `latitude` decimal(8,6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `longitude` decimal(18,16) NOT NULL,
+  `latitude` decimal(18,16) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `types` (`type`),
+  KEY `users` (`author`),
+  KEY `FK_items_images` (`image`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `items`
 --
 
 INSERT INTO `items` (`id`, `author`, `description`, `image`, `type`, `longitude`, `latitude`) VALUES
-(1, 1, NULL, 1, 1, 50.373324, -4.169167);
+(1, 1, NULL, 1, 1, 50.3733240000000000, -4.1691670000000000);
 
 -- --------------------------------------------------------
 
@@ -87,10 +116,12 @@ INSERT INTO `items` (`id`, `author`, `description`, `image`, `type`, `longitude`
 -- Tabelstructuur voor tabel `roles`
 --
 
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `roles`
@@ -108,12 +139,14 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 -- Tabelstructuur voor tabel `seasons`
 --
 
-CREATE TABLE `seasons` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `seasons`;
+CREATE TABLE IF NOT EXISTS `seasons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `start` date NOT NULL,
-  `end` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `end` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `seasons`
@@ -131,13 +164,15 @@ INSERT INTO `seasons` (`id`, `name`, `start`, `end`) VALUES
 -- Tabelstructuur voor tabel `submissions`
 --
 
-CREATE TABLE `submissions` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `submissions`;
+CREATE TABLE IF NOT EXISTS `submissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `approved` int(1) NOT NULL DEFAULT 0,
   `item` int(11) NOT NULL,
   `admin` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -146,12 +181,15 @@ CREATE TABLE `submissions` (
 -- Tabelstructuur voor tabel `types`
 --
 
-CREATE TABLE `types` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `types`;
+CREATE TABLE IF NOT EXISTS `types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `label` varchar(255) NOT NULL,
-  `season` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `season` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_types_seasons` (`season`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `types`
@@ -174,16 +212,22 @@ INSERT INTO `types` (`id`, `name`, `label`, `season`) VALUES
 -- Tabelstructuur voor tabel `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `role` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `profile_image` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`),
+  KEY `FK_users_roles` (`role`),
+  KEY `images` (`profile_image`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `users`
@@ -192,120 +236,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `role`, `username`, `email`, `password`, `profile_image`, `created_at`, `updated_at`) VALUES
 (1, 3, 'Admin', 'admin@example.com', '', NULL, '2023-10-09 13:09:20', '2023-10-09 13:09:20'),
 (2, 1, 'Tinus123', 'tinus.nld@gmail.com', '$2y$10$x1mphw2W/caKplJvQp.o2.TGRvjY6gMrs8Yv3978RmJ9fuWmGDaq6', NULL, '2023-10-12 09:06:26', '2023-10-12 09:06:26');
-
---
--- Indexen voor geëxporteerde tabellen
---
-
---
--- Indexen voor tabel `favorites`
---
-ALTER TABLE `favorites`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_item` (`user`,`item`),
-  ADD KEY `FK_favorites_items` (`item`);
-
---
--- Indexen voor tabel `images`
---
-ALTER TABLE `images`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `items`
---
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `types` (`type`),
-  ADD KEY `users` (`author`),
-  ADD KEY `FK_items_images` (`image`);
-
---
--- Indexen voor tabel `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `seasons`
---
-ALTER TABLE `seasons`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `submissions`
---
-ALTER TABLE `submissions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `types`
---
-ALTER TABLE `types`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_types_seasons` (`season`);
-
---
--- Indexen voor tabel `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD KEY `FK_users_roles` (`role`),
-  ADD KEY `images` (`profile_image`);
-
---
--- AUTO_INCREMENT voor geëxporteerde tabellen
---
-
---
--- AUTO_INCREMENT voor een tabel `favorites`
---
-ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT voor een tabel `images`
---
-ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT voor een tabel `items`
---
-ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT voor een tabel `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT voor een tabel `seasons`
---
-ALTER TABLE `seasons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT voor een tabel `submissions`
---
-ALTER TABLE `submissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT voor een tabel `types`
---
-ALTER TABLE `types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT voor een tabel `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
