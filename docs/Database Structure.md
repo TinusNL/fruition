@@ -51,6 +51,7 @@
 | id          | INT(11)         | NOT NULL, AUTO_INCREMENT, PRIMARY KEY |
 | author      | INT(11)         | NOT NULL, FOREIGN KEY (userId) REFERENCES users(id) |
 | description | LONGTEXT        | NOT NULL                       |
+| image       | INT(11)         | NOT NULL, FOREIGN KEY (imageId) REFERENCES images(id) |
 | type        | INT(11)         | NOT NULL, FOREIGN KEY (typeId) REFERENCES types(id) |
 | longitude   | INT(11)         | NOT NULL                       |
 | latitude    | INT(11)         | NOT NULL                       |

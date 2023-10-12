@@ -1,6 +1,8 @@
 .map {
     width: calc(100% - 400px);
     height: 100%;
+    position: relative;
+    
 
     #leaflet-map {
         height: 100%;
