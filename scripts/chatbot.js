@@ -1,19 +1,13 @@
 
-let coll = document.getElementsByClassName("collapsible");
-
-for (let i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-
-        let content = this.nextElementSibling;
-
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
+function toggleChatPopup() {
+    var chatPopup = document.querySelector('.full-chat-block');
+    chatPopup.classList.toggle('show');
+    // Trigger ChatTitle click event
+    chatTitle.click();
 }
+
+// Attach the toggle function to the chat button click event
+document.getElementById('chat-button').addEventListener('click', toggleChatPopup);
 
 function getTime() {
     let today = new Date();
@@ -116,4 +110,24 @@ document.getElementById("textInput").addEventListener("keydown", function (e) {
     if (e.code === "Enter" || e.code === "NumpadEnter") {
         getResponse();
     }
+});
+
+var chatTitle = document.querySelector(".chat-title");
+var chatContent = document.querySelector(".full-chat-block");
+
+
+var chatIsOpen = true; // Start with the chat open
+
+chatTitle.addEventListener("click", function () {
+    if (chatIsOpen) {
+        // Close the chat
+        chatTitle.style.display = "none";
+        chatContent.style.maxHeight = "0"; // Set the maximum height to 0 to hide the chat content
+        chatIsOpen = false;
+    } else if (!chatIsOpen) {
+        // Open the chat
+        chatTitle.style.display = "block";
+        chatContent.style.maxHeight = "500px"; // Set the maximum height to the desired height
+        chatIsOpen = true;
+    } 
 });

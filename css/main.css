@@ -188,35 +188,100 @@ nav.header .bottom .logo > img {
   border-radius: 100%;
 }
 
+/* Chatbot Popup Button */
+/* Chatbot Popup */
+/* Chatbot Popup Button */
+.open-chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 90px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #9BCE77;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  font-size: 18px;
+  outline: none;
+  border: none;
+}
+
+/* Chatbot Popup */
+.full-chat-block {
+  width: 350px;
+  background: white;
+  text-align: center;
+  overflow: auto;
+  scrollbar-width: none;
+  max-height: 0; /* Initially hide the chat popup */
+  transition: max-height 0.2s ease-out;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+  border-radius: 10px;
+}
+
+/* Show the chat popup when the 'show' class is added */
+.full-chat-block.show {
+  max-height: 500px; /* Adjust the maximum height as needed */
+}
+
 .chat-bar-collapsible {
   position: fixed;
   bottom: 20px; /* Adjust this value to control the vertical position */
-  right: 50px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  right: 90px;
   z-index: 9999; /* Set a higher z-index to make it appear in front of the map */
   padding: 10px; /* Add padding to create a clickable area */
   cursor: pointer; /* Add cursor style to indicate it's clickable */
+  border-radius: 50%; /* Makes it round */
+  width: 60px;
+  height: 60px; /* Set height to match the width for a perfect circle */
+  text-align: center;
+  line-height: 50px; /* Center content vertically */
 }
 
+/* Icon inside the button */
 .collapsible {
+  color: white;
+  font-size: 18px;
+  outline: none;
+  border: none; /* Remove border */
+  background: transparent; /* Remove background color */
+}
+
+/* Style the icon */
+.collapsible i {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* To change the icon, you can use a font icon library or provide a custom icon. For example, using Font Awesome: */
+.collapsible i::before {
+  content: "\f086"; /* Use the Unicode character for the desired Font Awesome icon */
+}
+
+.chat-title {
+  position: fixed;
+  display: flex;
+  justify-content: center;
   background-color: #9BCE77;
   color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 350px;
-  text-align: left;
-  outline: none;
   font-size: 18px;
-  border-radius: 10px 10px 0px 0px;
-  border: 3px solid white;
-  border-bottom: none;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  z-index: 9999;
+  width: 330px;
+  display: block;
 }
 
-.content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: #f1f1f1;
+.chat-title.hide {
+  display: none;
 }
 
 .full-chat-block {
@@ -236,10 +301,10 @@ nav.header .bottom .logo > img {
 }
 
 .chat-container {
-  max-height: 500px;
+  max-height: 600px;
   width: 100%;
-  position: absolute;
-  bottom: 0;
+  position: relative;
+  bottom: -95px;
   left: 0;
   scroll-behavior: smooth;
   hyphens: auto;
@@ -359,6 +424,14 @@ nav.header .bottom .logo > img {
     border: 0px;
     border-top: 3px solid white;
     border-radius: 0px;
+  }
+  .chat-bar-icons {
+    display: flex;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    width: 15%;
+    float: right;
+    font-size: 20px;
   }
 }
 /* style.scss */

@@ -16,90 +16,97 @@
     <script>
         var markerJson = '[{"id":1,"photoName":"77069d90-e7e1-47a9-b5e0-41d70e45a956.webp","type":"apple","location":{"lat":50.373380,"lng":-4.142650},"timestamp":1633440000,"createdBy":"John Doe", "userId": 123, "name": "Apple Tree 1", "typeId": 1, "seasonId": 2}, {"id":2,"type":"apple","location":{"lat":50.370380,"lng":-4.142650},"timestamp":1633441200,"createdBy":"Jane Smith","photoName":"andere-foto-naam.webp", "userId": 456, "name": "Apple Tree 2", "typeId": 1, "seasonId": 3}]';
     </script>
-
     <div class="chat-bar-collapsible">
-        <button id="chat-button" type="button" class="collapsible">Peary Bot
-            <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+        <button id="chat-button" type="button" class="collapsible">
+            <svg width="125" height="125">
+                <image x="0" y="0" width="50" height="50" xlink:href="assets\Group_125.svg" />
+            </svg>
+
         </button>
 
-        <div class="content">
-            <div class="full-chat-block">
-                <!-- Message Container -->
-                <div class="outer-container">
-                    <div class="chat-container">
-                        <!-- Messages -->
-                        <div id="chatbox">
-                            <h5 id="chat-timestamp"></h5>
-                            <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
-                        </div>
-                        <div id="question-container">
-                            <div id="question-text">Question Text</div>
-                            <button id="previous-button">Previous</button>
-                            <button id="next-button">Next</button>
-                            <button id="submit-button" onclick="questionSendButton();">Submit</button>
-                        </div>
-                        <!-- User input box -->
-                        <div class="chat-bar-input-block">
-                            <div id="userInput">
-                                <input id="textInput" class="input-box" type="text" name="msg" placeholder="Tap 'Enter' to send a message">
-                                <p></p>
-                            </div>
-
-                            <div class="chat-bar-icons">
-                                <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send" onclick="sendButton()"></i>
-                            </div>
-                        </div>
-                        <div id="chat-bar-bottom">
+        <!-- Add the full-chat-block element here within the chat-bar-collapsible div -->
+        <div class="full-chat-block">
+            <div class="chat-title">
+                Peary Chat
+            </div>
+            <!-- Message Container -->
+            <div class="outer-container">
+                <div class="chat-container">
+                    <!-- Messages -->
+                    <div id="chatbox">
+                        <h5 id="chat-timestamp"></h5>
+                        <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                    </div>
+                    <div id="question-container">
+                        <div id="question-text">Question Text</div>
+                        <button id="previous-button">Previous</button>
+                        <button id="next-button">Next</button>
+                        <button id="submit-button" onclick="questionSendButton();">Submit</button>
+                    </div>
+                    <!-- User input box -->
+                    <div class="chat-bar-input-block">
+                        <div id="userInput">
+                            <input id="textInput" class="input-box" type="text" name="msg" placeholder="Tap 'Enter' to send a message">
                             <p></p>
                         </div>
 
-                    
-                        <script src="./scripts/chatbot.js"></script>
-                        <script src="./scripts/chatbot_responses.js"></script>
+                        <div class="chat-bar-icons">
+                            <svg width="50" height="50" onclick="sendButton()">
+                                <image x="10" y="0" width="40" height="40" xlink:href="assets\comment-regular.svg" />
+                            </svg>
 
+                          
+                        </div>
                     </div>
+                    <div id="chat-bar-bottom">
+                        <p></p>
+                    </div>
+
+                    <script src="./scripts/chatbot.js"></script>
+                    <script src="./scripts/chatbot_responses.js"></script>
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+        <script src="./scripts/leaflet.js"></script>
+        </body>
+
+        <?php
+
+        // function getMarkerData($mysqli)
+        // {
+        //     $query = "SELECT * FROM EXAMPLE_TABLE";
+        //     $result = $mysqli->query($query);
+
+        //     if ($result->num_rows > 0) {
+        //         $data = array();
+
+        //         while ($row = $result->fetch_assoc()) {
+        //             $data[] = $row;
+        //         }
+
+        //         return json_encode($data);
+        //     } else {
+        //         return "[]"; 
+        //     }
+        // }
+
+        // $markerJSON = getMarkerData($mysqli);
+
+        // $mysqli->close();
+
+
+
+
+
+
+        ?>
+        </script>
+        <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
+        <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
     </div>
-
-
-
-
-    <script src="./scripts/leaflet.js"></script>
-    </body>
-
-    <?php
-
-    // function getMarkerData($mysqli)
-    // {
-    //     $query = "SELECT * FROM EXAMPLE_TABLE";
-    //     $result = $mysqli->query($query);
-
-    //     if ($result->num_rows > 0) {
-    //         $data = array();
-
-    //         while ($row = $result->fetch_assoc()) {
-    //             $data[] = $row;
-    //         }
-
-    //         return json_encode($data);
-    //     } else {
-    //         return "[]"; 
-    //     }
-    // }
-
-    // $markerJSON = getMarkerData($mysqli);
-
-    // $mysqli->close();
-
-
-
-
-
-
-    ?>
-    </script>
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
-</div>
