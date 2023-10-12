@@ -1,12 +1,12 @@
 .faq-div {
     background-color: #E5FFD2;
     width: 20%;
+    max-height: 200%;
 }
 
 .faq_content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
     background-color: #9BCE77;
@@ -41,21 +41,43 @@
         }
     }
 
-    h1{
-        margin-bottom: 30px;
+    h1 {
         color: #182450;
-    }
-
-    h3{
-        color: #182450;
-        text-align: center;
-    }
-
-    h5{
-        color: #182450;
-        text-align: center;
+        margin-top: 70px;
+        margin-bottom: 60px;
         font-weight: 600;
-        margin: 4px;
+        font-size: 40px;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    #text {
+        color: #182450;
+        margin-top: 50px;
+        text-decoration: underline;
+    }
+
+    .faq_questions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #182450;
+    }
+
+    summary {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    details[open=""] {
+        summary {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -68,18 +90,29 @@
     left: 615px;
 }
 
-.b-button {
-    border: none;
-    background: #182450;
-    border-radius: 80px;
+.button {
+    background-color: #182450;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 15px 90px;
+    border-radius: 80px;
+    margin-top: 30px;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.button:hover {
     color: white;
 }
 
-@media screen and (max-width: 376px){
+.arrow {
+    width: 20px;
+}
+
+@media screen and (max-width: 700px) {
     .faq-div {
-        background-color: #9BCE77;
-        width: 20%;
+        display: none;
     }
-    
 }

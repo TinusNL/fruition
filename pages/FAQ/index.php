@@ -7,16 +7,34 @@
     </div>
     <div class="faq_questions">
         <h3>Frequently asked questions:</h3>
-        <h5>How do I secure my account?</h5>
-        <h5>How to manage account?</h5>
-        <h5>How to add a new location?</h5>
-        <h5>How to upload images?</h5>
-        <h5>How to change email?</h5>
+        <details class="details">
+            <summary>How do I secure my account?</summary>
+            <p>First create a password. Make sure it is a unique password.</p>
+        </details>
+        <details>
+            <summary>How to manage account?</summary>
+            <p>Here you can find the answer of this question.</p>
+        </details>
+        <details>
+            <summary>How to add a new location?</summary>
+            <p>Here you can find the answer of this question.</p>
+        </details>
+        <details>
+            <summary>How to upload images?</summary>
+            <p>Here you can find the answer of this question.</p>
+        </details>
+        <details>
+            <summary>How to change email?</summary>
+            <p>Here you can find the answer of this question.</p>
+        </details>
     </div>
 
-    <h3>Need further assistance?
+    <h3 id="text">
+        Need further assistance?
         Feel free <br>to chat with our chatbot <i>Fruity!</i>
     </h3>
-    <a href=""><button class="b-button" type="button">Back</button></a>
+    <a href="javascript:history.back()" class="button"><img src="./assets/icons/arrow-left.svg" class="arrow">
+        <span>Back</span>
+    </a>
 </div>
 <div class="faq-div"></div>
