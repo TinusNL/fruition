@@ -24,9 +24,6 @@
     <script>
         const markerJSON = '<?= !empty($markerJSON) ? $markerJSON : '[]' ?>';
         const loggedIn = <?= intval(isset($_SESSION['user_id'])) ?>;
-
-        // Put in localStorage
-        localStorage.setItem('markerJSON', markerJSON); // TODO: Remove this line
     </script>
 
     <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>

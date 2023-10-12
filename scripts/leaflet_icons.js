@@ -12,7 +12,7 @@ function icon(img) {
 }
 
 
-var leafletIcons = {
+const leafletIcons = {
     "apple": icon('./assets/markers/apple.svg'),
     "apricot": icon('./assets/markers/apricot.svg'),
     "berry": icon('./assets/markers/berry.svg'),

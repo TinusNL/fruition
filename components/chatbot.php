@@ -43,46 +43,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-    <script src="./scripts/leaflet.js"></script>
-    </body>
-
-    <?php
-
-    // function getMarkerData($mysqli)
-    // {
-    //     $query = "SELECT * FROM EXAMPLE_TABLE";
-    //     $result = $mysqli->query($query);
-
-    //     if ($result->num_rows > 0) {
-    //         $data = array();
-
-    //         while ($row = $result->fetch_assoc()) {
-    //             $data[] = $row;
-    //         }
-
-    //         return json_encode($data);
-    //     } else {
-    //         return "[]";
-    //     }
-    // }
-
-    // $markerJSON = getMarkerData($mysqli);
-
-    // $mysqli->close();
-
-
-
-
-
-
-    ?>
-    </script>
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
 </div>

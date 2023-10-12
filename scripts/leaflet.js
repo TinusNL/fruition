@@ -41,9 +41,9 @@ markers.forEach(markerInfo => {
             <span>${markerInfo.author}</span>
             <div class="icons">
                 ${loggedIn ?
-        `<a class="favorite-action" onclick="favoriteAction(this, ${markerInfo.id})"><img src="./assets/icons/${markerInfo.favorited ? 'heart-filled' : 'heart-empty'}.svg" alt="Favorite"/></a>
+            `<a class="favorite-action" onclick="favoriteAction(this, ${markerInfo.id})"><img src="./assets/icons/${markerInfo.favorited ? 'heart-filled' : 'heart-empty'}.svg" alt="Favorite"/></a>
                 <a class="grey"><img src="./assets/icons/flag.svg" alt="Report"/></a>`
-        : ''}
+            : ''}
                 <a href="https://www.google.com/maps/dir/?api=1&destination=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/icons/route.svg" alt="Route"/></a>
             </div>
         </div>
