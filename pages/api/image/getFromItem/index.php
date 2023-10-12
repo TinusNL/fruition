@@ -4,19 +4,33 @@ if (!isset($_GET['item_id'])) {
     die();
 }
 
+// Get item image id
 $stmt = Database::prepare("
         SELECT
-            img.data AS image
+            image
         FROM
-            items i,
-            images img
+            items
         WHERE
-            i.id = :item_id");
-
+            id = :item_id");
 $stmt->bindParam(':item_id', $_GET['item_id']);
 $stmt->execute();
 
-$image = $stmt->fetch(PDO::FETCH_ASSOC);
+$imageId = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Get the image from the images table using the id
+$stmt = Database::prepare("
+        SELECT
+            data
+        FROM
+            images
+        WHERE
+            id = :image_id");
+$stmt->bindParam(':image_id', $imageId['image']);
+$stmt->execute();
+
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$image = $result['data'];
 
 if (!$image) {
     http_response_code(404);
@@ -24,7 +38,7 @@ if (!$image) {
 }
 
 // Convert to base64
-$imageData = base64_encode($image['image']);
+$imageData = base64_encode($image);
 
 // Return the image
 echo json_encode($imageData);

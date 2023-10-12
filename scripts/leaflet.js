@@ -19,23 +19,36 @@ const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
 const markerLayers = {}
 const markers = JSON.parse(markerJson)
 
+function fetchAndSetImage() {
+    // Go through every image that doesnt have a valid src
+    const imageTags = document.querySelectorAll('.popup-img-map');
+    imageTags.forEach(imgTag => {
+        if (!imgTag.src.includes('data:image')) {
+            const itemId = imgTag.parentElement.dataset.attrId;
+            fetch(`./api/image/getFromItem?item_id=${itemId}`)
+                .then(response => response.json()) // Assume the response is a base64 string
+                .then(base64String => {
+                    imgTag.src = `data:image/*;base64,${base64String}`;
+                    // Destroy the image style so it can be resized
+                    imgTag.style = '';
+                });
+        }
+    });
+}
+
+// Run on loop
+setInterval(fetchAndSetImage, 1000);
+
 markers.forEach(markerInfo => {
     const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
         icon: leafletIcons[markerInfo.typeName],
         riseOnHover: true
     })
 
-    fetch(`./api/image/getFromItem?item_id=${markerInfo.id}`).then(r => r.json()).then(r => {
-        markerInfo.image = r // TODO: Make this work
-
-        // Put in local storage
-        localStorage.setItem(`marker-${markerInfo.id}`,r) // TODO: Remove this
-    })
-
     marker.bindPopup(`
         <div class="popup-container" data-attr-id="${markerInfo.id}">
             <!-- BASE64 IMAGE FROM LOCALSTORAGE -->
-            <img src='data:image/*;base64,${localStorage.getItem(`marker-${markerInfo.id}`)}' alt="Marker Photo" class="popup-img-map">
+            <img src='./assets/logo.svg' alt="Marker Photo" class="popup-img-map" style="object-fit: contain !important;">
             <h2>${markerInfo.typeLabel}</h2>
             ${markerInfo.description ? `<p>${markerInfo.description}</p>` : ''}
             <table>
