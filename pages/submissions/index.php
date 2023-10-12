@@ -22,7 +22,7 @@
 
             <label for="types">types:</label>
             
-            <select name="types" required>
+            <select id="select" name="types" required>
                 <option value="" disabled selected>Select a type</option>
                 <option value="1">1. Food</option>
                 <option value="2">2. Unknown</option>
@@ -35,7 +35,7 @@
         <div class="column">
             <!-- Select element for season -->
             <label for="season">Season:</label>
-            <select name="season" required>
+            <select id="select" name="season" required>
                 <option value="" disabled selected>Select a season</option>
                 <option value="1">1. Autumn</option>
                 <option value="2">2. Spring</option>
@@ -55,8 +55,9 @@
             <input type="hidden" name="longitude" id="longitude">
 
             <div class="button-container">
-                <button type="submit" id="send" name="send">Send</button>
+                <button type="submit" id="send" name="send">Submit</button>
                 <button onclick="history.go(-1);">Back</button>
+                
             </div>
     </form>
 

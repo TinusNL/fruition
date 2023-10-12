@@ -418,6 +418,7 @@ h1 {
 }
 body {
   background-color: #E5FFD2;
+  overflow: hidden;
 }
 
 .sub-form {
@@ -444,7 +445,7 @@ h1 {
   margin: auto;
   height: 100vh;
   min-width: 764px;
-  padding-top: 129px;
+  padding-top: 100px;
 }
 
 .side-div {
@@ -535,10 +536,69 @@ input[name=photo] {
 }
 
 @media screen and (max-width: 1023.9px) {
+  .sub-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center !important;
+    width: 100%;
+  }
+  h1 {
+    font-size: 70px;
+  }
   .sub-div {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
+  }
+  .button-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 622px;
+    margin-top: 25px;
+  }
+  .button-container > button {
+    width: 300px;
+    background-color: #182450;
+    height: 32px;
+    border-radius: 52px;
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  label[for=plant_name], [for=location], [for=location], [for=types], [for=season], [for=photo] {
+    width: 622px;
+    font-size: 50px;
+  }
+  input[name=plant_name], [name=location] {
+    height: 120px;
+  }
+  .row {
+    display: block;
+  }
+  #getLocationButton {
+    height: 120px;
+    font-size: 40px;
+  }
+  #select {
+    height: 120px;
+    font-size: 35px;
+    width: 622px;
+  }
+  .photo-button {
+    height: 120px;
+    font-size: 40px;
+  }
+  .button-container > button {
+    height: 120px;
+    width: 622px;
+    font-size: 40px;
+  }
+  .column > select > option {
+    height: 100px !important;
   }
 }
 body .main {
