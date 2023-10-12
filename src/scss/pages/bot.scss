@@ -36,7 +36,7 @@
 
 /* Chatbot Popup */
 .full-chat-block {
-    width: 350px;
+    width: 300px;
     background: white;
     text-align: center;
     overflow: auto;
@@ -51,9 +51,6 @@
 }
 
 /* Show the chat popup when the 'show' class is added */
-.full-chat-block.show {
-    max-height: 500px; /* Adjust the maximum height as needed */
-}
 
 
 
@@ -124,7 +121,7 @@
 .chat-container {
     max-height: 600px;
     width: 100%;
-    position: relative;
+    position: absolute;
     bottom: -95px;
     left: 0;
     scroll-behavior: smooth;
