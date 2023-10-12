@@ -29,10 +29,25 @@ markers.forEach(markerInfo => {
     marker.bindPopup(`
         <div class="popup-container">
             <img src="${markerInfo.image}" alt="Marker Photo" class="popup-img">
-            <p class="type">Type: ${markerInfo.typeName}</p>
-            <p class="createdby">Created by: ${markerInfo.createdBy}</p>
-            <p class="season">Season: ${markerInfo.seasonName}</p>
-            <p class="location"><a href="https://www.google.com/maps?q=${markerInfo.longitude},${markerInfo.latitude}" target="_blank">Route: ${markerInfo.longitude}, ${markerInfo.latitude}</a></p>
+            <h2>${markerInfo.typeLabel}</h2>
+            ${markerInfo.description ? `<p>${markerInfo.description}</p>` : ''}
+            <table>
+                <tbody>
+                    <tr><td>Type</td><td>${markerInfo.typeLabel}</td></tr>
+                    <tr><td>Season</td><td>${markerInfo.seasonName}</td></tr>
+                </tbody>
+            </table>
+
+            <div class="actions">
+                <span>${markerInfo.author}</span>
+                <div class="icons">
+                    ${loggedIn ?
+            `<a class="favorite-action" onclick="favoriteAction(this, ${markerInfo.id})"><img src="./assets/icons/${markerInfo.favorited ? 'heart-filled' : 'heart-empty'}.svg" alt="Favorite"/></a>
+                    <a class="grey"><img src="./assets/icons/flag.svg" alt="Report"/></a>`
+            : ''}
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/icons/route.svg" alt="Route"/></a>
+                </div>
+            </div>
         </div>
     `)
 
@@ -44,7 +59,8 @@ markers.forEach(markerInfo => {
 const map = L.map('leaflet-map', {
     center: [0, 0],
     zoom: 1,
-    layers: [tileLayer, ...Object.values(markerLayers).flat()]
+    layers: [tileLayer, ...Object.values(markerLayers).flat()],
+    attributionControl: false
 })
 if (userLoc) {
     setCurrentLocation(userLoc, true)
@@ -88,27 +104,35 @@ function showMarkerType(type) {
     map.addLayer(markerLayers[type])
 }
 
+// Popup Actions
+function favoriteAction(elem, itemId) {
+    const img = elem.querySelector('img')
 
+    if (img.src.includes('empty')) {
+        img.src = './assets/icons/heart-filled.svg'
 
+        fetch('./api/favorite', {
+            method: 'POST',
+            body: JSON.stringify({
+                id: itemId
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
 
+        return
+    }
 
+    img.src = './assets/icons/heart-empty.svg'
 
-
-
-
-
-// var marker = JSON_parse('<?php echo $markerJSON ?>')
-
-// marker.forEach( function (markerInfo) {
-//     var marker = L.marker([markerInfo.lat, markerInfo.lng]).addTo(map)
-//     marker.bindPopup(`<b>${markerInfo.type}</b></br>${markerInfo.id}`)
-// })
-
-// var popupContent = `
-//         <b>${markerInfo.type}</b><br>
-//         ${markerInfo.description}<br>
-//         <img src="${markerInfo.imageURL}" alt="${markerInfo.type}" width="100" height="100">
-//     `;
-
-// marker.bindPopup(popupContent);
-// Open Functions
+    fetch('./api/unfavorite', {
+        method: 'POST',
+        body: JSON.stringify({
+            id: itemId
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+}

@@ -1,3 +1,9 @@
+<?php
+// If the user is already logged in, redirect to the homepage
+if (isset($_SESSION['user_id'])) {
+    header('Location: /' . URL_PREFIX . '/');
+}
+?>
 <div class="main_authenticate">
     <div class="left_authenticate">
         <h1 class="login-text">Login</h1>
@@ -15,12 +21,13 @@
                 <br>
                 <label for="password">Password</label><br>
                 <input class="input-box" type="password" name="password" placeholder="  *******">
-                <input type="submit" name="login" class="authenicate_l" value="Sign in">
+                <input type="submit" name="login" class="authenicate_l" value="Login">
                 <div class="account-authenticate">
                     <p>Don't have an account? <a href="signup" class="authenticate">Sign up</a></p>
                 </div>
                 <div class="login_extra">
                     <a href="forgot">Forgot Password</a>
+                    <a href="/<?= URL_PREFIX ?>/">Back to home</a>
                 </div>
             </form>
             <div class="socials">

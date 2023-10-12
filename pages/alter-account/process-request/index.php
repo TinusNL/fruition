@@ -1,7 +1,7 @@
 <?php
 $dev = true;
 if ($dev) {
-    $userId = $_SESSION['user_id'] ?? 12;
+    $userId = $_SESSION['user_id'] ?? 11;
 } else {
     $userId = $_SESSION['user_id'];
 }
@@ -19,15 +19,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $newProfilePicture = $imgContent;
         }
 
-        if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['phone-number'])) {
+        if(!empty($_POST['username']) && !empty($_POST['email'])) {
             $newUsername = $_POST['username'];
             $newEmail = $_POST['email'];
-            $newPhoneNumber = $_POST['phone-number'];
 
-            $stmt = Database::prepare("UPDATE users SET username = :username, email = :email, phone_number = :phone_number WHERE id = :id");
+            $stmt = Database::prepare("UPDATE users SET username = :username, email = :email WHERE id = :id");
             $stmt->bindParam(':username', $newUsername);
             $stmt->bindParam(':email', $newEmail);
-            $stmt->bindParam(':phone_number', $newPhoneNumber);
             $stmt->bindParam(':id', $userId);
             $stmt->execute();
         }
