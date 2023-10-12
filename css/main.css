@@ -294,6 +294,9 @@ nav.header .bottom .logo > img {
 .popup-container .actions .icons a {
   height: 100%;
 }
+.popup-container .actions .icons a.grey img {
+  opacity: 0.2;
+}
 .popup-container .actions .icons a img {
   height: 100%;
 }

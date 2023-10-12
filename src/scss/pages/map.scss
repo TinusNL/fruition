@@ -19,15 +19,14 @@
         margin: 2px 0px;
     }
 
-    .icon{
+    .icon {
         position: absolute;
         right: 10px;
         height: 50px;
         bottom: 10px;
         z-index: 700;
 
-        img 
-        {
+        img {
             height: 100%;
         }
     }
@@ -117,6 +116,10 @@
 
             a {
                 height: 100%;
+
+                &.grey img {
+                    opacity: 0.2;
+                }
 
                 img {
                     height: 100%;
