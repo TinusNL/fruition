@@ -137,5 +137,9 @@
 @media screen and (max-width: 376px) {
     .map {
         width: 100%;
+
+        .icon {
+            bottom: 80px;
+        }
     }
 }

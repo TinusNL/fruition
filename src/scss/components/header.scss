@@ -277,8 +277,14 @@ nav.header {
         .top {
             padding: 30px;
 
-            > .search > input {
-                pointer-events: auto;
+            > .search {
+                > input {
+                    pointer-events: auto;
+                }
+
+                > .filter {
+                    pointer-events: auto;
+                }
             }
 
             > .categories {

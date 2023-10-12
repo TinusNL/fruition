@@ -223,6 +223,9 @@ nav.header .bottom .logo > img {
   nav.header .top > .search > input {
     pointer-events: auto;
   }
+  nav.header .top > .search > .filter {
+    pointer-events: auto;
+  }
   nav.header .top > .categories {
     display: none;
   }
@@ -354,6 +357,9 @@ nav.header .bottom .logo > img {
 @media screen and (max-width: 376px) {
   .map {
     width: 100%;
+  }
+  .map .icon {
+    bottom: 80px;
   }
 }
 .authenticate {
