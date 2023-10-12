@@ -1,4 +1,5 @@
 const categoriesElement = document.getElementById('categories-holder')
+const filterElement = document.getElementById('filter-content')
 
 // Searching
 function refreshSearch(value) {
@@ -13,6 +14,11 @@ function refreshSearch(value) {
         } else {
             child.style.display = 'none'
         }
+    }
+
+
+    if (document.documentElement.clientWidth < 376 && value.length > 0) {
+        categoriesElement.style.display = 'flex'
     }
 }
 
@@ -38,6 +44,7 @@ function refreshFilter() {
             child.classList.remove('selected')
             continue
         }
+
 
         if (selectedFilters.includes(child.dataset.type)) {
             if (child.classList.contains('selected')) {
@@ -70,3 +77,34 @@ for (let i = 0; i < children.length; i++) {
         toggleFilter(this.dataset.type)
     })
 }
+
+// Hide categories when on mobile
+document.getElementById('search').addEventListener('focusin', function () {
+    if (document.documentElement.clientWidth < 376 && this.value.length == 0) {
+        categoriesElement.style.display = 'flex'
+    }
+})
+
+document.getElementById('search').addEventListener('focusout', function () {
+    if (document.documentElement.clientWidth < 376 && this.value.length == 0) {
+        categoriesElement.style.display = 'none'
+    }
+})
+
+window.addEventListener('resize', function (event) {
+    if (document.documentElement.clientWidth < 376 && document.getElementById('search').value.length == 0) {
+        categoriesElement.style.display = 'none'
+    } else {
+        categoriesElement.style.display = 'flex'
+    }
+})
+
+// Show/Hide filter dropdown
+document.getElementById('filter-action').addEventListener('click', function () {
+    filterElement.classList.toggle('active')
+})
+
+// Submit filter form on change
+document.getElementById('filter-form').addEventListener('change', function () {
+    this.submit()
+})
