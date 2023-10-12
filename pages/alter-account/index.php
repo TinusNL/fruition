@@ -28,7 +28,7 @@
 
 <main class="main">
     <div class="alter-account">
-    <a href="/<?= URL_PREFIX ?>/">Go back</a>
+    
         <h1 class="alter-account-text">Alter Account</h1>
         <div class="form alter-ac-form">
             <form action="/<?= URL_PREFIX ?>/alter-account/process-request" method="post" enctype="multipart/form-data">
@@ -59,7 +59,7 @@
                 <label for="confirm-password">Confirm new password</label>
                 <input type="password" name="confirm-password" id="confirm-password">
                 
-                <button type="submit" name="alter-account">Submit</button>
+                <button type="submit" name="alter-account">Submit</button> <a href="/<?= URL_PREFIX ?>/" class="go-back">Go back</a>
                 <p>Or delete your account & data here</p>
             </form>
             
@@ -69,3 +69,6 @@
         </div>
     </div>
 </main>
+        <div class="small-logo">
+        <img src="./assets/logo.svg" alt="logo">
+        </div>
