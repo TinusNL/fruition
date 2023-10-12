@@ -11,17 +11,25 @@ $conn = new Database;
 
 if (isset($_POST['send'])) {
     
-    if (isset($_POST["plant_name"], $_POST["types"], $_POST["season"], $_POST["location"])) {
+    if (isset($_POST["plant_name"], $_POST["types"], $_FILES["photo"], $_POST["season"], $_POST["location"]) && $_FILES["photo"]["error"] === 0) {
+        $imgContent = file_get_contents($_FILES["photo"]["tmp_name"]);
+        
+        $stmt = $conn->prepare("INSERT INTO `images` (`data`) VALUES (:data)");
+        $stmt->bindParam(':data', $imgContent, PDO::PARAM_LOB);
+        $stmt->execute();
+        $photo_id = $conn->lastInsertId();
+
         $id = $_SESSION['user_id'];
         $plant_name = $_POST["plant_name"];
         $type = $_POST["types"];
         $season = $_POST["season"];
         $location = $_POST["location"];
-
+        
         $stmt = $conn->prepare("INSERT INTO items (userId, name, typeId, seasonId, location) VALUES (:id, :name, :type, :season, :location)");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':name', $plant_name, PDO::PARAM_STR);
         $stmt->bindParam(':type', $type, PDO::PARAM_INT);
+        $stmt->bindParam(':photo', $photo_id, PDO::PARAM_INT);
         $stmt->bindParam(':season', $season, PDO::PARAM_INT);
         $stmt->bindParam(':location', $location, PDO::PARAM_STR);
 
