@@ -115,14 +115,19 @@
             height: 70%;
 
             a {
+                cursor: pointer;
                 height: 100%;
-
-                &.grey img {
-                    opacity: 0.2;
-                }
 
                 img {
                     height: 100%;
+                }
+
+                &.grey {
+                    cursor: default;
+
+                    img {
+                        opacity: 0.2;
+                    }
                 }
             }
         }

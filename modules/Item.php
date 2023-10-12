@@ -21,6 +21,8 @@ class Item
     public float $longitude;
     public float $latitude;
 
+    public float $favorited;
+
     public function __construct(
         int $id,
         string $author,
@@ -32,7 +34,8 @@ class Item
         int $seasonId,
         string $seasonName,
         float $longitude,
-        float $latitude
+        float $latitude,
+        bool $favorited
     ) {
         $this->id = $id;
         $this->author = $author;
@@ -45,10 +48,13 @@ class Item
         $this->seasonName = $seasonName;
         $this->longitude = $longitude;
         $this->latitude = $latitude;
+        $this->favorited = $favorited;
     }
 
     public static function getAll(): array
     {
+        $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
+
         $stmt = Database::prepare("
         SELECT
             i.id AS id,
@@ -61,7 +67,8 @@ class Item
             s.id AS seasonId,
             s.name AS seasonName,
             i.longitude AS longitude,
-            i.latitude AS latitude
+            i.latitude AS latitude,
+            (SELECT COUNT(*) FROM favorites f WHERE f.user = :userId AND f.item = i.id) AS favorited
         FROM
             items i,
             users u,
@@ -73,6 +80,7 @@ class Item
         AND i.type = t.id
         AND img.id = i.image
         AND s.id = t.season;");
+        $stmt->bindParam(':userId', $userId);
         $stmt->execute();
 
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -89,7 +97,8 @@ class Item
                 $item['seasonId'],
                 $item['seasonName'],
                 $item['longitude'],
-                $item['latitude']
+                $item['latitude'],
+                $item['favorited']
             );
         }, $items);
 
@@ -112,7 +121,8 @@ class Item
                 'seasonId' => $item->seasonId,
                 'seasonName' => $item->seasonName,
                 'longitude' => $item->longitude,
-                'latitude' => $item->latitude
+                'latitude' => $item->latitude,
+                'favorited' => $item->favorited
             ];
         }, $itemObjects);
 
@@ -124,6 +134,8 @@ class Item
         int $latitude,
         int $radius
     ): array {
+        $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
+
         $minLongitude = $longitude - $radius;
         $maxLongitude = $longitude + $radius;
 
@@ -141,7 +153,8 @@ class Item
             s.id AS seasonId,
             s.name AS seasonName,
             i.longitude AS longitude,
-            i.latitude AS latitude
+            i.latitude AS latitude,
+            (SELECT COUNT(*) FROM favorites f WHERE f.user = :userId AND f.item = i.id) AS favorited
         FROM
             items i,
             types t,
@@ -153,6 +166,7 @@ class Item
         AND s.id = t.season
         AND i.longitude BETWEEN :minLongitude AND :maxLongitude 
         AND i.latitude BETWEEN :minLatitude AND :maxLatitude;");
+        $stmt->bindParam(':userId', $userId);
         $stmt->bindParam(':minLongitude', $minLongitude);
         $stmt->bindParam(':maxLongitude', $maxLongitude);
         $stmt->bindParam(':minLatitude', $minLatitude);
@@ -173,7 +187,8 @@ class Item
                 $item['seasonId'],
                 $item['seasonName'],
                 $item['longitude'],
-                $item['latitude']
+                $item['latitude'],
+                $item['favorited']
             );
         }, $items);
 
@@ -198,7 +213,8 @@ class Item
                 'seasonId' => $item->seasonId,
                 'seasonName' => $item->seasonName,
                 'longitude' => $item->longitude,
-                'latitude' => $item->latitude
+                'latitude' => $item->latitude,
+                'favorited' => $item->favorited
             ];
         }, $itemObjects);
 

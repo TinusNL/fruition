@@ -292,13 +292,17 @@ nav.header .bottom .logo > img {
   height: 70%;
 }
 .popup-container .actions .icons a {
+  cursor: pointer;
   height: 100%;
-}
-.popup-container .actions .icons a.grey img {
-  opacity: 0.2;
 }
 .popup-container .actions .icons a img {
   height: 100%;
+}
+.popup-container .actions .icons a.grey {
+  cursor: default;
+}
+.popup-container .actions .icons a.grey img {
+  opacity: 0.2;
 }
 
 @media screen and (max-width: 376px) {
