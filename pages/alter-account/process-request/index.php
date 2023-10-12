@@ -1,7 +1,7 @@
 <?php
 $dev = true;
 if ($dev) {
-    $userId = $_SESSION['user_id'] ?? 12;
+    $userId = $_SESSION['user_id'] ?? 11;
 } else {
     $userId = $_SESSION['user_id'];
 }

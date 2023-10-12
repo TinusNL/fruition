@@ -2,7 +2,7 @@
     // When the application is finished, remove following lines: 3-8
     $dev = true;
     if ($dev) {
-        $userId = $_SESSION['user_id'] ?? 1;
+        $userId = $_SESSION['user_id'] ?? 11;
     } else {
         $userId = $_SESSION['user_id'];
     }
@@ -34,16 +34,19 @@
             <form action="/<?= URL_PREFIX ?>/alter-account/process-request" method="post" enctype="multipart/form-data">
                 <div class="container_aa">
                     <div class="left_side">
-                        <label for="username">Username</label><br>
-                        <input type="text" name="username" id="username" value="<?= $user['username'] ?>"><br>
-
-                        <label for="email">Email</label><br>
-                        <input type="email" name="email" id="email" value="<?= $user['email'] ?>"><br>
+                        <div>
+                            <label for="username">Username</label><br>
+                            <input type="text" name="username" id="username" value="<?= $user['username'] ?>"><br>
+                        </div>
+                        <div>
+                            <label for="email">Email</label><br>
+                            <input type="email" name="email" id="email" value="<?= $user['email'] ?>"><br>
+                        </div>
                     </div>
 
                     <div class="right_side">
                         <label for="profile-picture">Profile picture</label><br>
-                        <img style="width:100px;height:100px;" src="data:image/*;base64,<?= $profile_picture ?>" alt="Profile picture">
+                        <img src="data:image/*;base64,<?= $profile_picture ?>" alt="Profile picture" >
                         <input type="file" name="profile-picture" id="profile-picture" accept="image/*" style="display:none">
                         <button onclick="document.getElementById('profile-picture').click()">Upload picture</button>
                         <br>
@@ -58,17 +61,20 @@
 
                 <label for="confirm-password">Confirm new password</label>
                 <input type="password" name="confirm-password" id="confirm-password">
-                
-                <button type="submit" name="alter-account">Submit</button> <a href="/<?= URL_PREFIX ?>/" class="go-back">Go back</a>
-                <p>Or delete your account & data here</p>
+                <div class="buttons-alter">
+                <button type="submit" name="alter-account">Submit</button> 
+                    <button type="submit" name="delete-account">Delete account</button>
+                   
+                    <button type="button" onclick="window.location.href='/<?= URL_PREFIX ?>/'" class="go-back">Go back</a>
+                </div>
             </form>
-            
-            <form action="/<?= URL_PREFIX ?>/alter-account/process-request" method="post">
-                <button type="submit" name="delete-account">Delete account</button>
-            </form>
-        </div>
+        </div> 
+            <div class="logo-light-alter">
+                 <img src="../assets/logo_light.png" alt="logo">
+            </div>
     </div>
 </main>
         <div class="small-logo">
-        <img src="./assets/logo.svg" alt="logo">
+            <img src="../assets/logo.svg" alt="logo">
         </div>
+       
