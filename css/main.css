@@ -595,6 +595,9 @@ div.sign-up .img_g {
 .faq_content details[open=""] summary {
   text-decoration: underline;
 }
+.faq_content details p {
+  padding: 0px 50px;
+}
 
 .faq_content input[type=text] {
   background: #182450;
@@ -616,6 +619,7 @@ div.sign-up .img_g {
   margin-top: 30px;
   text-decoration: none;
   gap: 10px;
+  margin-bottom: 30px;
 }
 
 .button:hover {
