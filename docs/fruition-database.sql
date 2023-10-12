@@ -19,6 +19,23 @@
 CREATE DATABASE IF NOT EXISTS `fruition` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `fruition`;
 
+-- Structuur van  tabel fruition.favorites wordt geschreven
+CREATE TABLE IF NOT EXISTS `favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `item` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_item` (`user`,`item`),
+  KEY `FK_favorites_items` (`item`),
+  CONSTRAINT `FK_favorites_items` FOREIGN KEY (`item`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_favorites_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumpen data van tabel fruition.favorites: ~1 rows (ongeveer)
+DELETE FROM `favorites`;
+INSERT INTO `favorites` (`id`, `user`, `item`) VALUES
+	(1, 2, 1);
+
 -- Structuur van  tabel fruition.images wordt geschreven
 CREATE TABLE IF NOT EXISTS `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -52,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Dumpen data van tabel fruition.items: ~1 rows (ongeveer)
 DELETE FROM `items`;
 INSERT INTO `items` (`id`, `author`, `description`, `image`, `type`, `longitude`, `latitude`) VALUES
-	(1, 1, NULL, 1, 1, 50.373380, -4.142650);
+	(1, 1, NULL, 1, 1, 50.373324, -4.169167);
 
 -- Structuur van  tabel fruition.roles wordt geschreven
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -130,7 +147,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `phone_number` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `profile_image` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
@@ -142,12 +158,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `images` (`profile_image`),
   CONSTRAINT `FK_users_images` FOREIGN KEY (`profile_image`) REFERENCES `images` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `FK_users_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumpen data van tabel fruition.users: ~1 rows (ongeveer)
 DELETE FROM `users`;
-INSERT INTO `users` (`id`, `role`, `username`, `email`, `phone_number`, `password`, `profile_image`, `created_at`, `updated_at`) VALUES
-	(1, 3, 'Admin', 'admin@example.com', '0612345678', '', NULL, '2023-10-09 13:09:20', '2023-10-09 13:09:20');
+INSERT INTO `users` (`id`, `role`, `username`, `email`, `password`, `profile_image`, `created_at`, `updated_at`) VALUES
+	(1, 3, 'Admin', 'admin@example.com', '', NULL, '2023-10-09 13:09:20', '2023-10-09 13:09:20'),
+	(2, 1, 'Tinus123', 'tinus.nld@gmail.com', '$2y$10$x1mphw2W/caKplJvQp.o2.TGRvjY6gMrs8Yv3978RmJ9fuWmGDaq6', NULL, '2023-10-12 09:06:26', '2023-10-12 09:06:26');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

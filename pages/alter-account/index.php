@@ -25,9 +25,9 @@
                 <input type="hidden" name="user_id" data-value="<?= $userId ?>">
 
                 <label for="profile-picture">Profile picture</label>
-                <!-- Delete the inline style from image when app is finished and ready for styling. -->
+                <!-- Delete the inline style from image when the app is finished and ready for styling. -->
                 <!-- example ----→ <img src="" alt="Profile picture"> -->
-                <img style="width:100px;height:100px;" src="data:image/*;base64,<?= base64_encode($user['profile_image']) ?>" alt="Profile picture">
+                <img style="width:100px;height:100px;" src="data:image/*;base64,<?= !empty($user['profile_image']) ? base64_encode($user['profile_image']) : '' ?>" alt="Profile picture">
                 <input type="file" name="profile-picture" id="profile-picture" accept="image/*">
 
                 <label for="username">Username</label>
@@ -35,10 +35,6 @@
 
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" value="<?= $user['email'] ?>">
-                
-                <label for="phone-number">Phone number</label>
-                <input type="tel" name="phone-number" id="phone-number" value="<?= $user['phone_number'] ?>">
-
 
                 <label for="current-password">Current password</label>
                 <input type="password" name="current-password" id="current-password">

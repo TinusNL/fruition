@@ -42,11 +42,75 @@ nav.header {
 
             > img {
                 position: absolute;
-                top: 0px;
-                right: 15px;
 
                 height: 100%;
                 width: 8%;
+
+                &.filter {
+                    top: 0px;
+                    right: 45px;
+
+                    cursor: pointer;
+                }
+
+                &.magnify {
+                    top: 0px;
+                    right: 15px;
+                }
+            }
+
+            > #filter-content {
+                display: none;
+                margin: 0px calc(10% - 10px);
+                padding: 10px;
+                padding-top: 0px;
+                width: 80%;
+                height: fit-content;
+
+                color: #f6fff5;
+                background-color: #182450;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+                &.active {
+                    display: block;
+                }
+
+                form {
+                    width: 100%;
+                    height: 100%;
+
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    > div {
+                        width: 100%;
+                    }
+
+                    > .dropdown {
+                        > label {
+                            color: #a4a5a7;
+
+                            position: relative;
+                            top: 5px;
+                        }
+
+                        #season {
+                            width: 100%;
+                        }
+                    }
+
+                    > .checkbox {
+                        > label {
+                            color: #a4a5a7;
+                        }
+                    }
+                }
             }
         }
 
@@ -195,6 +259,55 @@ nav.header {
 
         .logo > img {
             height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 376px) {
+    nav.header {
+        position: absolute;
+        background-color: transparent;
+        z-index: 401;
+        pointer-events: none;
+        padding: 0px;
+
+        width: calc(100% - 60px);
+        height: 100%;
+
+        .top {
+            padding: 30px;
+
+            > .search {
+                > input {
+                    pointer-events: auto;
+                }
+
+                > .filter {
+                    pointer-events: auto;
+                }
+            }
+
+            > .categories {
+                display: none;
+
+                > button {
+                    pointer-events: auto;
+                }
+            }
+        }
+
+        .bottom {
+            width: 100%;
+            height: 30px;
+            padding: 20px 30px;
+            background-color: #e5ffd2;
+
+            > .actions {
+                > a,
+                > .popup {
+                    pointer-events: auto;
+                }
+            }
         }
     }
 }
