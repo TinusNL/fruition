@@ -1,36 +1,39 @@
-<div class="faq">
-    <div class="content">
-        <h1>FAQ</h1>
-        <div class="search">
-            <input id="search" type="text" placeholder="Search">
-            <img src="./assets/icons/magnifying-glass.svg" alt="Magnifying Glass">
-        </div>
-        <h3>Frequently Asked Questions</h3>
-        <div class="cards">
-            <div class="question-card active">
-                <h4>How do i secure my account?</h4>
-                <p>Fruition is a website that allows users to share their recipes with the world. Users can also search for recipes based on their ingredients.</p>
-            </div>
-            <div class="question-card">
-                <h4>How to manage account?</h4>
-                <p>Fruition is a website that allows users to share their recipes with the world. Users can also search for recipes based on their ingredients.</p>
-            </div>
-            <div class="question-card">
-                <h4>How to add a new location?</h4>
-                <p>Fruition is a website that allows users to share their recipes with the world. Users can also search for recipes based on their ingredients.</p>
-            </div>
-            <div class="question-card">
-                <h4>How to upload images?</h4>
-                <p>Fruition is a website that allows users to share their recipes with the world. Users can also search for recipes based on their ingredients.</p>
-            </div>
-            <div class="question-card">
-                <h4>How to change email?</h4>
-                <p>Fruition is a website that allows users to share their recipes with the world. Users can also search for recipes based on their ingredients.</p>
-            </div>
-        </div>
-        <h3 class="disclaimer">Need further assistance? Feel free to chat with our chatbot <i>Fruity</i>!</h3>
-        <a href="./">Back</a>
+<div class="faq-div"></div>
+<div class="faq_content">
+    <h1>FAQ</h1>
+    <div class="search">
+        <input id="search" type="text" placeholder="Search..">
+        <img src="./assets/icons/magnifying-glass.svg" alt="Magnifying Glass">
     </div>
-    <img src="./assets/logo.svg" alt="Fruition Logo">
-    <script src="./<?= Router::getOffset() ?>scripts/faq.js"></script>
+    <div class="faq_questions">
+        <h3>Frequently asked questions:</h3>
+        <details class="details">
+            <summary>How do I secure my account?</summary>
+            <p>First create a password. Make sure it is a unique password.</p>
+        </details>
+        <details>
+            <summary>How to manage account?</summary>
+            <p>Here you can find the answer of this question.</p>
+        </details>
+        <details>
+            <summary>How to add a new location?</summary>
+            <p>Here you can find the answer of this question.</p>
+        </details>
+        <details>
+            <summary>How to upload images?</summary>
+            <p>Here you can find the answer of this question.</p>
+        </details>
+        <details>
+            <summary>How to change email?</summary>
+            <p>Here you can find the answer of this question.</p>
+        </details>
+    </div>
+    <h3 id="text">
+        Need further assistance?
+        Feel free <br>to chat with our chatbot <i>Fruity!</i>
+    </h3>
+    <a href="javascript:history.back()" class="button"><img src="./assets/icons/arrow-left.svg" class="arrow">
+        <span>Back</span>
+    </a>
 </div>
+<div class="faq-div"></div>
