@@ -14,7 +14,8 @@
 
     <div id="leaflet-map"></div>
     <script>
-        var markerJson = '<?= Item::getAllJson() ?>';
+        const markerJson = '<?= Item::getAllJson() ?>';
+        const loggedIn = <?= intval(isset($_SESSION['user_id'])) ?>;
     </script>
     <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
     <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
