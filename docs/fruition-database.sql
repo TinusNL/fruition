@@ -25,14 +25,16 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   `user` int(11) NOT NULL,
   `item` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_favorites_users` (`user`),
+  UNIQUE KEY `user_item` (`user`,`item`),
   KEY `FK_favorites_items` (`item`),
   CONSTRAINT `FK_favorites_items` FOREIGN KEY (`item`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_favorites_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumpen data van tabel fruition.favorites: ~0 rows (ongeveer)
+-- Dumpen data van tabel fruition.favorites: ~1 rows (ongeveer)
 DELETE FROM `favorites`;
+INSERT INTO `favorites` (`id`, `user`, `item`) VALUES
+	(1, 2, 1);
 
 -- Structuur van  tabel fruition.images wordt geschreven
 CREATE TABLE IF NOT EXISTS `images` (

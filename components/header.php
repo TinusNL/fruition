@@ -2,7 +2,25 @@
     <div class="top">
         <div class="search">
             <input id="search" type="text" placeholder="Search">
-            <img src="./assets/icons/magnifying-glass.svg" alt="Magnifying Glass">
+            <img class="filter" id="filter-action" src="./assets/icons/filter.svg" alt="Filter">
+            <img class="magnify" src="./assets/icons/magnifying-glass.svg" alt="Magnifying Glass">
+            <div id="filter-content">
+                <form id="filter-form" action="" method="get">
+                    <div class="dropdown">
+                        <label for="season">Season</label>
+                        <select name="season" id="season">
+                            <option <?= ($_GET['season'] ?? null) == 0 ? 'selected' : '' ?> value="0">All</option>
+                            <?php foreach (Season::getAll() as $season) : ?>
+                                <option <?= ($_GET['season'] ?? null) == $season->id  ? 'selected' : '' ?> value="<?= $season->id ?>"><?= $season->name ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" name="favorites" id="favorites" <?= ($_GET['favorites'] ?? false) == 'on' ? 'checked' : '' ?>>
+                        <label for="favorites">Favorites</label>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="categories" id="categories-holder">
             <?php foreach (Type::getAll() as $type) : ?>

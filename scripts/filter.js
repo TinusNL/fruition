@@ -1,4 +1,5 @@
 const categoriesElement = document.getElementById('categories-holder')
+const filterElement = document.getElementById('filter-content')
 
 // Searching
 function refreshSearch(value) {
@@ -96,4 +97,14 @@ window.addEventListener('resize', function (event) {
     } else {
         categoriesElement.style.display = 'flex'
     }
+})
+
+// Show/Hide filter dropdown
+document.getElementById('filter-action').addEventListener('click', function () {
+    filterElement.classList.toggle('active')
+})
+
+// Submit filter form on change
+document.getElementById('filter-form').addEventListener('change', function () {
+    this.submit()
 })
