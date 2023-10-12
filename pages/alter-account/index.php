@@ -61,11 +61,12 @@
 
                 <label for="confirm-password">Confirm new password</label>
                 <input type="password" name="confirm-password" id="confirm-password">
+
                 <div class="buttons-alter">
                 <button type="submit" name="alter-account">Submit</button> 
                     <button type="submit" name="delete-account">Delete account</button>
                    
-                    <button type="button" onclick="window.location.href='/<?= URL_PREFIX ?>/'" class="go-back">Go back</a>
+                    <button type="button" onclick="window.location.href='/<?= URL_PREFIX ?>/'" class="go-back">Go back</button>
                 </div>
             </form>
         </div> 

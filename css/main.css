@@ -37,10 +37,56 @@ nav.header .top > .search > input {
 }
 nav.header .top > .search > img {
   position: absolute;
-  top: 0px;
-  right: 15px;
   height: 100%;
   width: 8%;
+}
+nav.header .top > .search > img.filter {
+  top: 0px;
+  right: 45px;
+  cursor: pointer;
+}
+nav.header .top > .search > img.magnify {
+  top: 0px;
+  right: 15px;
+}
+nav.header .top > .search > #filter-content {
+  display: none;
+  margin: 0px calc(10% - 10px);
+  padding: 10px;
+  padding-top: 0px;
+  width: 80%;
+  height: fit-content;
+  color: #f6fff5;
+  background-color: #182450;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+nav.header .top > .search > #filter-content.active {
+  display: block;
+}
+nav.header .top > .search > #filter-content form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+nav.header .top > .search > #filter-content form > div {
+  width: 100%;
+}
+nav.header .top > .search > #filter-content form > .dropdown > label {
+  color: #a4a5a7;
+  position: relative;
+  top: 5px;
+}
+nav.header .top > .search > #filter-content form > .dropdown #season {
+  width: 100%;
+}
+nav.header .top > .search > #filter-content form > .checkbox > label {
+  color: #a4a5a7;
 }
 nav.header .top > .categories {
   width: calc(100% - 40px);
@@ -177,6 +223,9 @@ nav.header .bottom .logo > img {
   nav.header .top > .search > input {
     pointer-events: auto;
   }
+  nav.header .top > .search > .filter {
+    pointer-events: auto;
+  }
   nav.header .top > .categories {
     display: none;
   }
@@ -210,6 +259,16 @@ nav.header .bottom .logo > img {
   width: 100%;
   height: calc(100% - 2px);
   margin: 2px 0px;
+}
+.map .icon {
+  position: absolute;
+  right: 10px;
+  height: 50px;
+  bottom: 10px;
+  z-index: 700;
+}
+.map .icon img {
+  height: 100%;
 }
 
 .leaflet-popup-content-wrapper {
@@ -282,24 +341,33 @@ nav.header .bottom .logo > img {
   height: 70%;
 }
 .popup-container .actions .icons a {
+  cursor: pointer;
   height: 100%;
 }
 .popup-container .actions .icons a img {
   height: 100%;
+}
+.popup-container .actions .icons a.grey {
+  cursor: default;
+}
+.popup-container .actions .icons a.grey img {
+  opacity: 0.2;
 }
 
 @media screen and (max-width: 376px) {
   .map {
     width: 100%;
   }
+  .map .icon {
+    bottom: 80px;
+  }
 }
-.authenticate {
-  background-color: #9BCE77;
+div.sign-up {
+  background-color: #9bce77;
   width: 45%;
   height: 100vh;
 }
-
-h1 {
+div.sign-up h1 {
   text-align: center;
   padding-top: 8vh;
   margin-bottom: 0;
@@ -308,48 +376,41 @@ h1 {
   font-size: 40px;
   margin: 0;
 }
-
-#form {
+div.sign-up #form {
   background-color: transparent;
   border: none;
   box-shadow: none;
 }
-
-#form label {
+div.sign-up #form label {
   color: #182450;
   padding-left: 1vw;
   font-weight: 500;
 }
-
-#form input {
-  background-color: #E5FFD2;
-  border: 0.5px solid #E5FFD2;
+div.sign-up #form input {
+  background-color: #e5ffd2;
+  border: 0.5px solid #e5ffd2;
   border-radius: 22px;
   box-shadow: rgb(91, 91, 91) 0.1em 0.1em 0.2em;
 }
-
-#button {
+div.sign-up #button {
   display: flex;
   margin-top: 30px;
 }
-
-#button label {
+div.sign-up #button label {
   margin-right: 2vw;
   font-size: 12px;
   font-weight: 300;
 }
-
-#button .button {
+div.sign-up #button .button {
   background-color: #182450;
   border: none;
   border-radius: 22px;
   padding: 5px 55px;
   color: white;
 }
-
-.img_g {
+div.sign-up .img_g {
   width: 25px;
-  background-color: #E5FFD2;
+  background-color: #e5ffd2;
   border-radius: 30px;
   padding: 5px;
 }
@@ -467,66 +528,115 @@ h1 {
     display: block;
   }
 }
-body {
-  background-color: #E5FFD2;
+.faq-div {
+  background-color: #e5ffd2;
+  width: 20%;
+  max-height: 200%;
 }
 
-.main {
-  background-color: #9BCE77;
-  margin: auto;
-  width: 50vw;
+.faq_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #9bce77;
+}
+.faq_content > .search {
+  position: relative;
+  margin-bottom: 20px;
+}
+.faq_content > .search > input {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  border-radius: 60px;
+  background-color: #182450;
+  color: #f6fff5;
+  padding: 15px;
+  margin: 0px;
+  outline: none;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.faq_content > .search > img {
+  position: absolute;
+  top: 0px;
+  right: 15px;
   height: 100%;
+  width: 5%;
+}
+.faq_content h1 {
+  color: #182450;
+  margin-top: 70px;
+  margin-bottom: 60px;
+  font-weight: 600;
+  font-size: 40px;
+}
+.faq_content h3 {
+  font-size: 1.3rem;
+}
+.faq_content #text {
+  color: #182450;
+  margin-top: 50px;
+  text-decoration: underline;
+}
+.faq_content .faq_questions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #182450;
+}
+.faq_content summary {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.faq_content details[open=""] summary {
+  text-decoration: underline;
+}
+
+.faq_content input[type=text] {
+  background: #182450;
+  border-radius: 10px;
+  width: 400px;
+  height: 20px;
+  top: 236px;
+  left: 615px;
+}
+
+.button {
+  background-color: #182450;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 15px 90px;
+  border-radius: 80px;
+  margin-top: 30px;
+  text-decoration: none;
+  gap: 10px;
 }
 
-.alter-ac-form form {
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-}
-.alter-ac-form form label {
-  font-size: 14pt;
-  font-weight: bold;
-  color: #182450;
-}
-.alter-ac-form form input[type=text],
-.alter-ac-form form input[type=email],
-.alter-ac-form form input[type=password] {
-  width: 90%;
-  background-color: #E5FFD2;
-  border: none;
-  outline: none;
-  padding: 5px 15px;
-  border-radius: 15pt;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.alter-ac-form form button {
-  background-color: #182450;
-  border: none;
-  border-radius: 22px;
-  padding: 5px 55px;
+.button:hover {
   color: white;
 }
 
-.container_aa {
-  display: flex;
+.arrow {
+  width: 20px;
 }
 
-.left_side, .right_side {
+@media screen and (max-width: 700px) {
+  .faq-div {
+    display: none;
+  }
+}
+body .main {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  width: 50%;
-}
-
-.right_side {
   align-items: center;
-}
-
-.right_side button {
-  margin-top: 35px;
 }
 
 .fourofour_main {
@@ -581,11 +691,12 @@ body {
   align-self: center;
 }
 
-body, html {
+body,
+html {
   margin: 0px;
   padding: 0px;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: row;
 }

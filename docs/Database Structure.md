@@ -10,7 +10,6 @@
 | role          | INT(11)         | NOT NULL, FOREIGN KEY (userRoleId) REFERENCES user_roles(id) |
 | username      | VARCHAR(255)    | NOT NULL                                            |
 | email         | VARCHAR(255)    | NOT NULL                                            |
-| phone_number  | VARCHAR(255)    | NOT NULL                                            |
 | password      | VARCHAR(255)    | NOT NULL                                            |
 | profile_image | VARCHAR(36)     | NULL, FOREING KEY (imagesId) REFERENCES images(id)  |
 | created_at    | DATETIME         | DEFAULT CURRENT_TIMESTAMP                          |
