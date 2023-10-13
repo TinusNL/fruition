@@ -4,27 +4,17 @@ if (!isset($_GET['item_id'])) {
     die();
 }
 
+$item_id = intval($_GET['item_id']);
+
 // Get item image id
-$stmt = Database::prepare("
-        SELECT
-            image
-        FROM
-            items
-        WHERE
-            id = :item_id");
-$stmt->bindParam(':item_id', $_GET['item_id']);
+$stmt = Database::prepare("SELECT `image` FROM `items` WHERE `id` = :item_id");
+$stmt->bindParam(':item_id', $item_id, PDO::PARAM_INT);
 $stmt->execute();
 
 $imageId = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Get the image from the images table using the id
-$stmt = Database::prepare("
-        SELECT
-            data
-        FROM
-            images
-        WHERE
-            id = :image_id");
+// Get the image from the image table using the id
+$stmt = Database::prepare(" SELECT `data` FROM `images` WHERE `id` = :image_id");
 $stmt->bindParam(':image_id', $imageId['image']);
 $stmt->execute();
 
