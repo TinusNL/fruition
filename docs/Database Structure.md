@@ -23,6 +23,13 @@
 | attempts     | int(11)      | NULL                                  |
 | last_attempt | datetime     | NOT NULL DEFAULT CURRENT_TIMESTAMP    |
 
+### schedule
+| Column Name | Data Type    | Constraints                   |
+|-------------|--------------|-------------------------------|
+| id          | INT(11)      | NOT NULL, AUTO_INCREMENT, PRIMARY KEY |
+| task        | VARCHAR(255) | NOT NULL                       |
+| last_run    | TIMESTAMP    | NULL ON UPDATE CURRENT_TIMESTAMP |
+
 ### roles
 | Column Name | Data Type        | Constraints                   |
 |-------------|-----------------|-------------------------------|
