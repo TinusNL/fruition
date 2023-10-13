@@ -31,5 +31,7 @@ try {
     Database::$conn = new PDO($dsn, DATABASE_USER, DATABASE_PASS, $options);
 } catch (PDOException $e) {
     // Redirect to error page
-    header('Location: /' . URL_PREFIX . '/error?details=' . $e->getCode());
+    echo '<script type="text/javascript">
+        window.location = "/' . URL_PREFIX . '/error?details=' . $e->getCode() . '"
+    </script>';
 }

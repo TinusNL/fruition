@@ -41,7 +41,10 @@ class User
         $_SESSION['user_id'] = $loggedInUser['id'];
         $_SESSION['user_email'] = $loggedInUser['email'];
         $_SESSION['user_username'] = $loggedInUser['username'];
-        header('Location: /' . URL_PREFIX . '/');
+
+        echo '<script type="text/javascript">
+            window.location = "/' . URL_PREFIX . '/"
+        </script>';
         exit();
     }
 

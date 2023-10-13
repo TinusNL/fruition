@@ -18,6 +18,11 @@ if (Router::isApi()) {
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fruition">
+    <meta name="keywords" content="Fruition">
+    <meta name="author" content="Plymouth City College & MBORijnland exchange project team">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fruition</title>
     <link rel="stylesheet" href="./<?= Router::getOffset() ?>css/main.css">
 </head>

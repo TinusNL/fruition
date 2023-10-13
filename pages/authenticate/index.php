@@ -1,7 +1,9 @@
 <?php
 // Check for POST submit
 if (empty($_POST)) {
-    header('Location: /' . URL_PREFIX . '/login');
+    echo '<script type="text/javascript">
+        window.location = "/' . URL_PREFIX . '/login"
+    </script>';
     exit();
 }
 
@@ -15,7 +17,9 @@ if (isset($_POST['login'])) {
 
         if ($still_locked) {
             $data['error'] = 'Too many failed login attempts. Please try again later.';
-            header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
+            echo '<script type="text/javascript">
+                window.location = "/' . URL_PREFIX . '/login?error=' . $data['error'] . '"
+            </script>';
             exit();
         }
     }
@@ -62,14 +66,18 @@ if (isset($_POST['login'])) {
             User::createUserSession($loggedInUser);
         } else {
             $data['error'] = 'Password incorrect';
-            // Add a failed attempt to db
+            // Add a suicide attempt to db
             $ip_address = $_SERVER['REMOTE_ADDR'];
             User::addFailedAttempt($ip_address);
 
-            header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
+            echo '<script type="text/javascript">
+                window.location = "/' . URL_PREFIX . '/login?error=' . $data['error'] . '"
+            </script>';
         }
     } else {
-        header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
+        echo '<script type="text/javascript">
+            window.location = "/' . URL_PREFIX . '/login?error=' . $data['error'] . '"
+        </script>';
     }
 }
 
@@ -141,14 +149,20 @@ if (isset($_POST['signup'])) {
 
         // Register user
         if (User::register($data)) {
-            header('Location: /' . URL_PREFIX . '/login');
+            echo '<script type="text/javascript">
+                window.location = "/' . URL_PREFIX . '/login"
+            </script>';
         } else {
             $data['error'] = 'Something went wrong';
 
-            header('Location: /' . URL_PREFIX . '/login?error=' . $data['error']);
+            echo '<script type="text/javascript">
+                window.location = "/' . URL_PREFIX . '/login?error=' . $data['error'] . '"
+            </script>';
         }
     } else {
-        header('Location: /' . URL_PREFIX . '/signup?error=' . $data['error']);
+        echo '<script type="text/javascript">
+            window.location = "/' . URL_PREFIX . '/signup?error=' . $data['error'] . '"
+        </script>';
     }
 }
 

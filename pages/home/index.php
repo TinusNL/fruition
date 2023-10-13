@@ -1,2 +1,4 @@
 <?php
-header('Location: ' . URL_PREFIX . '/map');
+echo '<script type="text/javascript">
+    window.location = "/' . URL_PREFIX . '/map"
+</script>';

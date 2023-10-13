@@ -1,6 +1,6 @@
 <?php
     // When the application is finished, remove following lines: 3-8
-    $dev = true;
+    $dev = false;
     if ($dev) {
         $userId = $_SESSION['user_id'] ?? 11;
     } else {
@@ -8,7 +8,9 @@
     }
 
     if($userId == '') {
-        header('Location: /' . URL_PREFIX . '/');
+        echo '<script type="text/javascript">
+            window.location = "/' . URL_PREFIX . '/"
+        </script>';
     }
 
     // get the user from the database

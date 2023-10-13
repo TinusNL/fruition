@@ -75,7 +75,9 @@ if (isset($_POST['send'])) {
         $mail->send();
     }
 
-    header('Location: /' . URL_PREFIX . '/');
+    echo '<script type="text/javascript">
+        window.location = "/' . URL_PREFIX . '/"
+    </script>';
     exit();
 }
 ?>

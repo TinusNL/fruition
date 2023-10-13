@@ -1,7 +1,9 @@
 <?php
 // If the user is already logged in, redirect to the homepage
 if (isset($_SESSION['user_id'])) {
-    header('Location: /' . URL_PREFIX . '/');
+    echo '<script type="text/javascript">
+        window.location = "/' . URL_PREFIX . '/"
+    </script>';
 }
 ?>
 <div class="main_authenticate">
