@@ -2,6 +2,7 @@
 // Start Session
 session_start();
 
+require 'vendor/autoload.php';
 require_once 'config.php';
 
 Router::loadPages('pages');

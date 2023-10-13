@@ -1,19 +1,16 @@
 <?php
-use  PHPMailer\PHPMailer\PHPMailer;
-use  PHPMailer\PHPMailer\Exception;
-
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 $conn = new Database;
 
-function send_email($conn, $type, $longitude, $latitude): void
+function send_email($type, $longitude, $latitude): void
 {
     if (!empty($_SESSION['user_email'])) {
         // Get a type from database
         try {
-            $stmt = $conn->prepare("SELECT * FROM types WHERE id = :id");
+            $stmt = Database::prepare("SELECT * FROM types WHERE id = :id");
             $stmt->bindParam(':id', $type);
             $stmt->execute();
             $type = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -61,14 +58,14 @@ function send_email($conn, $type, $longitude, $latitude): void
                         <br>
                         <p>Kind regards,</p>
                         <p>The Fruition team</p>
-                        <img src='cid:logoSVG' alt='Fruition logo' width='100px'>
+                        <img src='cid:logoPNG' alt='Fruition logo' width='100px'>
                         
                         <p style='font-size: 10px;'>This email was sent automatically. Please do not reply to this email.</p>
                     </body>
                 </html>
                 ";
             $mail->Body = $body;
-            $mail->AddEmbeddedImage('assets/logo.svg', 'logoSVG');
+            $mail->AddEmbeddedImage('assets/logo.png', 'logoPNG');
             $mail->addAttachment($_FILES["photo"]["tmp_name"], $_FILES["photo"]["name"]);
 
             $mail->send();
@@ -105,7 +102,7 @@ if (isset($_POST['send'])) {
         $stmt->bindParam(':lat', $latitude, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-            send_email($conn, $type, $longitude, $latitude);
+            send_email($type, $longitude, $latitude);
         }
     }
 

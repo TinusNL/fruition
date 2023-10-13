@@ -1,6 +1,8 @@
 <?php
-
 use JetBrains\PhpStorm\NoReturn;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class User
 {
@@ -58,6 +60,8 @@ class User
         $stmt->bindParam(':password', $data['password']);
         $stmt->bindParam(':role', $default_role);
         $stmt->execute();
+
+        self::send_email($data['email'], $data['username'], $default_role);
 
         return true;
     }
@@ -155,5 +159,73 @@ class User
         $stmt->execute();
         $image = $stmt->fetch(PDO::FETCH_ASSOC);
         return base64_encode($image['data']);
+    }
+
+    public static function send_email($email, $username, $role): void
+    {
+        if (!empty($email || $username || $role)) {
+            // Get a type from database
+            try {
+                $stmt = Database::prepare("SELECT * FROM roles WHERE id = :id");
+                $stmt->bindParam(':id', $role);
+                $stmt->execute();
+                $role = $stmt->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                // TODO: add logger
+            }
+
+            $role = $role['name'];
+            $role = ucfirst($role);
+
+            // Send email
+            try {
+                $mail = new PHPMailer(true);
+
+                $mail->isSMTP();
+                $mail->Host = 'smtp.stackmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'no-reply@fruition.city';
+                $mail->Password = ']wQ=]]Kz~€F|';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+
+                $mail->setFrom('no-reply@fruition.city');
+                $mail->addAddress($email);
+
+                $mail->isHTML(true);
+
+                // Set the subject
+                $mail->Subject = 'Your account has been created!';
+
+                $body = "
+                <html>
+                    <head>
+                        <title>Account creation</title>
+                    </head>
+                    <body>
+                        <h1>Your account has been created!</h1>
+                        <p>Thank you for registering. We hope you enjoy using our website.</p>
+                        <br>
+                        <h2>Details</h2>
+                        <p>Username: " . $username . "</p>
+                        <p>Role: " . $role . "</p>
+                        <br>
+                        <p><a href='https://fruition.city/" . URL_PREFIX . "'>Click here to log into your account</a></p>
+                        <p>Kind regards,</p>
+                        <p>The Fruition team</p>
+                        <img src='cid:logoPNG' alt='Fruition logo' width='100px'>
+                        
+                        <p style='font-size: 10px;'>This email was sent automatically. Please do not reply to this email.</p>
+                    </body>
+                </html>
+                ";
+                $mail->Body = $body;
+                $mail->AddEmbeddedImage('assets/logo.png', 'logoPNG');
+
+                $mail->send();
+            } catch (Exception $e) {
+                // TODO: add logger
+            }
+        }
     }
 }
