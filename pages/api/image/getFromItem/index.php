@@ -29,14 +29,15 @@ $stmt->bindParam(':image_id', $imageId['image']);
 $stmt->execute();
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
+$imageData = $result['data'] ?? null;
 
-if (!$result) {
+if (!$result || !$imageData) {
     http_response_code(404);
     die();
 }
 
 // Return the image
-echo json_encode($result);
+echo $imageData;
 
 http_response_code(200);
 die();

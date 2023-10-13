@@ -116,15 +116,19 @@ map.on('popupopen', function (e) {
     const img = node.querySelector('.popup-img-map')
 
     fetch(`./api/image/getFromItem?item_id=${itemId}`)
-        .then(response => response.json()) // Assume the response is a base64 string
+        .then(response => response.text()) // Assume the response is a base64 string
         .then(imageData => {
-            img.src = imageData['data']
+            img.src = imageData
             // Destroy the image style so it can be resized
             img.style = ''
         })
 
 
     const favoriteActionElem = node.querySelector('.favorite-action')
+    if (favoriteActionElem == undefined) {
+        return
+    }
+
     const favoriteActionImg = favoriteActionElem.querySelector('img')
 
     if (savedFavorites[itemId] == undefined) {
