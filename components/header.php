@@ -15,10 +15,15 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <?php
+                    // If logged in
+                    if (!empty($_SESSION['user_id'])) :
+                    ?>
                     <div class="checkbox">
                         <label for="favorites">Favorites</label>
                         <input type="checkbox" name="favorites" id="favorites" <?= ($_GET['favorites'] ?? false) == 'on' ? 'checked' : '' ?>>
                     </div>
+                    <?php endif; ?>
                 </form>
             </div>
         </div>
