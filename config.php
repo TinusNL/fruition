@@ -1,28 +1,29 @@
 <?php
 // Router
 // Production
-define('URL_PREFIX', '.');
+//define('URL_PREFIX', '.');
 
 // Local
-//define('URL_PREFIX', 'fruition');
+define('URL_PREFIX', 'fruition');
 
 // Database Connection
 // Production
-define('DATABASE_HOST', 'sdb-64.hosting.stackcp.net');
-define('DATABASE_PORT', 'null');
-define('DATABASE_USER', 'fruition');
-define('DATABASE_PASS', 'Zne2V9e%T!JB');
-define('DATABASE_NAME', 'fruition-35303337e6d1');
+//define('DATABASE_HOST', 'sdb-64.hosting.stackcp.net');
+//define('DATABASE_PORT', 'null');
+//define('DATABASE_USER', 'fruition');
+//define('DATABASE_PASS', 'Zne2V9e%T!JB');
+//define('DATABASE_NAME', 'fruition-35303337e6d1');
 
 // Local
-//define('DATABASE_HOST', 'localhost');
-//define('DATABASE_PORT', '3306');
-//define('DATABASE_USER', 'root');
-//define('DATABASE_PASS', '1234');
-//define('DATABASE_NAME', 'fruition');
+define('DATABASE_HOST', 'localhost');
+define('DATABASE_PORT', '3306');
+define('DATABASE_USER', 'root');
+define('DATABASE_PASS', '1234');
+define('DATABASE_NAME', 'fruition');
 
 define('MAX_LOGIN_ATTEMPTS', 5);
 define('DELETED_USER_REMAINS', false);
+define('IMAGE_PREFERRED_FORMAT', 'png');
 
 // Set error reporting
 error_reporting(E_ALL);

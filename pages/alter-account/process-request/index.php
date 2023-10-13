@@ -11,32 +11,12 @@ $conn = new Database;
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['alter-account'])) {
         if(isset($_FILES['profile-picture']) && $_FILES['profile-picture']['error'] === 0) {
-            $imgContent = file_get_contents($_FILES['profile-picture']['tmp_name']);
-
-            // Remove old profile picture
-            $stmt = $conn->prepare("SELECT profile_image FROM users WHERE id = :id");
-            $stmt->bindParam(':id', $userId);
-            $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if(!empty($user['profile_image'])) {
-                $stmt = $conn->prepare("DELETE FROM images WHERE id = :id");
-                $stmt->bindParam(':id', $user['profile_image']);
-                $stmt->execute();
-            }
-
             // Add new profile picture
-            $stmt = $conn->prepare("INSERT INTO images (`data`) VALUES (:data)");
-            $stmt->bindParam(':data', $imgContent, PDO::PARAM_LOB);
-            $stmt->execute();
-            $imgId = $conn->lastInsertId();
-
-            $stmt = $conn->prepare("UPDATE users SET profile_image = :profile_image WHERE id = :id");
-            $stmt->bindParam(':profile_image', $imgId, PDO::PARAM_INT);
-            $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
-            $stmt->execute();
-
-            $newProfilePicture = $imgContent;
+            try {
+                FileManager::uploadProfileImage($_FILES['profile-picture']);
+            } catch (ImagickException $e) {
+                // TODO: add logger
+            }
         }
 
         if(!empty($_POST['username']) && !empty($_POST['email'])) {

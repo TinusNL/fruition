@@ -55,4 +55,34 @@ class Type
 
         return $typeObjects;
     }
+
+    public static function get($type): Type
+    {
+        $stmt = Database::prepare("
+            SELECT
+                t.id AS id,
+                t.name AS name,
+                t.label AS label,
+                s.id AS seasonId,
+                s.name AS seasonName
+            FROM
+                types t,
+                seasons s
+            WHERE
+                s.id = t.season
+            AND t.id = :typeId;
+        ");
+        $stmt->bindParam(':typeId', $type);
+        $stmt->execute();
+
+        $type = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Type(
+            $type['id'],
+            $type['name'],
+            $type['label'],
+            $type['seasonId'],
+            $type['seasonName']
+        );
+    }
 }

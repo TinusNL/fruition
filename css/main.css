@@ -254,6 +254,192 @@ nav.header .bottom .logo > img {
     pointer-events: auto;
   }
 }
+.approval_wrapper {
+  background: #E5FFD2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #F6FFF5; /* White text */
+}
+
+.approval_wrapper a {
+  color: #F6FFF5; /* White text */
+  text-decoration: none;
+}
+
+.approval_wrapper .title {
+  font-size: 32px;
+  position: fixed;
+  top: 200px;
+  color: #182450; /* Dark blue */
+}
+
+.approval_wrapper .logo {
+  max-width: 200px;
+  height: auto;
+  margin: 20px 0;
+  position: fixed;
+  bottom: 0;
+}
+
+.approve_container {
+  display: flex;
+  background: linear-gradient(180deg, #182450 0%, #182450 100%);
+  border: 1px solid #E5FFD2;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.approve_image {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.approve_image img {
+  height: auto;
+  border-radius: 8px;
+}
+
+.approve_info {
+  flex: 2;
+  color: #F6FFF5; /* White text */
+}
+
+.approve_info h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.approve_info h2 {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #F6FFF5; /* Golden yellow for author */
+}
+
+.approve_info p {
+  font-size: 16px;
+}
+
+.approve_buttons {
+  margin-top: 10px;
+}
+
+.approve_form {
+  display: flex;
+}
+
+.approve_form input[type=submit] {
+  background-color: #000000; /* Golden yellow button background */
+  color: #F6FFF5; /* Dark text */
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.approve_form input[type=submit]:hover {
+  background-color: rgba(0, 0, 0, 0.41); /* Lighter yellow on hover */
+}
+
+@media screen and (max-width: 768px) {
+  .approve_container {
+    flex-direction: column;
+  }
+  .approval_wrapper .title {
+    top: 95px;
+  }
+  .approve_image {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+/* Add this complete CSS to your existing stylesheet */
+.submission_wrapper {
+  background: #E5FFD2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #F6FFF5; /* White text */
+  justify-content: center;
+}
+
+.submission_wrapper a {
+  color: #182450; /* White text */
+  text-decoration: none;
+}
+
+.submissions_table-wrapper {
+  min-height: 500px; /* Define the maximum height of the table to enable scrolling */
+  overflow-y: auto; /* Enable vertical scrolling when content exceeds the maximum height */
+}
+
+.submissions_table {
+  width: 900px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.submissions_table, .submissions_table th, .submissions_table td {
+  border: 1px solid #E5FFD2; /* Your border color */
+}
+
+.submissions_table th, .submissions_table td {
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.submissions_table thead tr {
+  position: sticky;
+  top: 0;
+  background-color: #9BCE77 !important; /* Light green background */
+  color: #F6FFF5; /* White text */
+}
+
+.submissions_table tr:nth-child(even) {
+  background-color: #182450; /* Dark blue background for even rows */
+  color: #F6FFF5; /* White text for even rows */
+}
+
+.submissions_table tr:nth-child(odd) {
+  background-color: #182450; /* Light green background for odd rows */
+  color: #F6FFF5; /* Dark blue text for odd rows */
+}
+
+.submissions_title {
+  font-size: 24px;
+  color: #182450; /* Dark blue */
+}
+
+.submissions_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #E5FFD2;
+  color: #F6FFF5; /* White text */
+}
+
+.submissions_logo {
+  max-width: 200px;
+  height: auto;
+  margin: 20px 0;
+  position: fixed;
+  bottom: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .submissions_table {
+    width: 100%;
+  }
+}
 .map {
   width: calc(100% - 400px);
   height: 100%;
@@ -513,7 +699,7 @@ div.sign-up .signup_error {
   width: 80%;
 }
 
-.right_authenticate h2, p {
+.right_authenticate h2, .right_authenticate p {
   text-align: center;
 }
 
@@ -1371,9 +1557,7 @@ html {
   margin: 0px;
   padding: 0px;
   width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: row;
+  min-height: 100vh;
 }
 
 * {
@@ -1383,6 +1567,13 @@ html {
 * {
   font-family: "Dancing Script", cursive;
   font-family: "Poppins", sans-serif;
+}
+
+.global_wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
 }
 
 /*# sourceMappingURL=main.css.map */
