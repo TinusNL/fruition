@@ -48,7 +48,7 @@ markers.forEach(markerInfo => {
     marker.bindPopup(`
         <div class="popup-container" data-attr-id="${markerInfo.id}">
             <!-- BASE64 IMAGE FROM LOCALSTORAGE -->
-            <img src='./assets/logo.svg' alt="Marker Photo" class="popup-img-map" style="object-fit: contain !important;">
+            <img src='./assets/logo.svg' alt="Marker Photo" class="popup-img-map">
             <h2>${markerInfo.typeLabel}</h2>
             ${markerInfo.description ? `<p>${markerInfo.description}</p>` : ''}
             <table>

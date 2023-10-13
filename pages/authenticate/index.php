@@ -102,7 +102,7 @@ if (isset($_POST['signup'])) {
         $data['error'] = 'Please make sure all fields are filled out';
     } else {
         // Check username
-        if (!preg_match('/^[a-zA-Z0-9]{6,12}+$/', $data['username'])) {
+        if (!preg_match('/^[a-zA-Z0-9]{4,12}+$/', $data['username'])) {
             $data['error'] = 'Please enter a valid username <span class="details">(6-12 characters, letters and numbers only)</span>';
         }
     }
@@ -156,13 +156,21 @@ function password_strength_check($password, $min_len = 8, $max_len = 70, $req_di
 {
     // Build regex string depending on requirements for the password
     $regex = '/^';
-    if ($req_digit == 1) { $regex .= '(?=.*\d)'; }              // Match at least 1 digit
-    if ($req_lower == 1) { $regex .= '(?=.*[a-z])'; }           // Match at least 1 lowercase letter
-    if ($req_upper == 1) { $regex .= '(?=.*[A-Z])'; }           // Match at least 1 uppercase letter
-    if ($req_symbol == 1) { $regex .= '(?=.*[^a-zA-Z\d])'; }    // Match at least 1 character that is none of the above
+    if ($req_digit == 1) {
+        $regex .= '(?=.*\d)';
+    }              // Match at least 1 digit
+    if ($req_lower == 1) {
+        $regex .= '(?=.*[a-z])';
+    }           // Match at least 1 lowercase letter
+    if ($req_upper == 1) {
+        $regex .= '(?=.*[A-Z])';
+    }           // Match at least 1 uppercase letter
+    if ($req_symbol == 1) {
+        $regex .= '(?=.*[^a-zA-Z\d])';
+    }    // Match at least 1 character that is none of the above
     $regex .= '.{' . $min_len . ',' . $max_len . '}$/';
 
-    if(preg_match($regex, $password)) {
+    if (preg_match($regex, $password)) {
         return TRUE;
     } else {
         return FALSE;
