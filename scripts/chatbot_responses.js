@@ -53,7 +53,7 @@ function getBotResponse(userInput) {
             return randomResponse;
         }
     }
-    const randomAlternative = alternatives[Math.floor(Math.random() * alternatives.length)];
+    let randomAlternative = alternatives[Math.floor(Math.random() * alternatives.length)];
     // Don't show the same alternative twice in a row 
     while (randomAlternative === getBotResponse.previousResponse) {
         randomAlternative = alternatives[Math.floor(Math.random() * alternatives.length)];

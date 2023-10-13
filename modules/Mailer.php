@@ -16,7 +16,7 @@ class Mailer
                 $stmt->execute();
                 $role = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
 
             $role = $role['name'];
@@ -59,7 +59,7 @@ class Mailer
 
                 $mail->send();
             } catch (Exception $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
         }
     }
@@ -74,7 +74,7 @@ class Mailer
                 $stmt->execute();
                 $type = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
 
             // Send email
@@ -119,7 +119,7 @@ class Mailer
 
                 $mail->send();
             } catch (Exception $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
         }
     }
@@ -138,7 +138,7 @@ class Mailer
                 $stmt->execute();
                 $type = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
 
             // Send email
@@ -183,7 +183,7 @@ class Mailer
 
                 $mail->send();
             } catch (Exception $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
         }
     }
@@ -223,7 +223,7 @@ class Mailer
 
                 $mail->send();
             } catch (Exception $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
         }
     }
@@ -238,7 +238,7 @@ class Mailer
                 $stmt->execute();
                 $submission = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
 
             // Get the item from a database
@@ -248,7 +248,7 @@ class Mailer
                 $stmt->execute();
                 $item = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
 
             // Get the authors email from a database
@@ -258,7 +258,7 @@ class Mailer
                 $stmt->execute();
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
 
             // Get the reviewer email from a database
@@ -268,7 +268,7 @@ class Mailer
                 $stmt->execute();
                 $reviewer = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
 
             // Check if stuff is defined at this point
@@ -289,7 +289,7 @@ class Mailer
                 $stmt->execute();
                 $type = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
 
             // Send email
@@ -336,7 +336,7 @@ class Mailer
 
                 $mail->send();
             } catch (Exception $e) {
-                // TODO: add logger
+                Logger::log('Mailer', 'ERROR', $e);
             }
         }
     }

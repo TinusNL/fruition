@@ -29,7 +29,7 @@ if (isset($_POST['send'])) {
         try {
             FileManager::uploadSubmissionImage($_FILES["photo"], $item_id);
         } catch (Exception $e) {
-            // TODO: add logger
+            Logger::log('Submission upload', 'ERROR', $e);
         }
 
         // Find everyone with the admin role

@@ -14,8 +14,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Add new profile picture
             try {
                 FileManager::uploadProfileImage($_FILES['profile-picture']);
-            } catch (ImagickException $e) {
-                // TODO: add logger
+            } catch (Exception $e) {
+                Logger::log('Alter account', 'ERROR', $e);
             }
         }
 
@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt = $conn->prepare("INSERT INTO users (username, password, email, role) VALUES ('deleted user', '', 'no-reply@fruition.city', 5)");
                     $stmt->execute();
                 } catch (PDOException $e) {
-                    // TODO: add logger
+                    Logger::log('Alter account', 'ERROR', $e);
                 }
 
                 $defaultUserId = $conn->lastInsertId();
@@ -99,7 +99,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt->execute();
                     $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 } catch (PDOException $e) {
-                    // TODO: add logger
+                    Logger::log('Alter account', 'ERROR', $e);
                 }
 
                 // Delete the favorites
@@ -108,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt->bindParam(':userId', $userId);
                     $stmt->execute();
                 } catch (PDOException $e) {
-                    // TODO: add logger
+                    Logger::log('Alter account', 'ERROR', $e);
                 }
 
                 // Delete the items
@@ -117,7 +117,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt->bindParam(':userId', $userId);
                     $stmt->execute();
                 } catch (PDOException $e) {
-                    // TODO: add logger
+                    Logger::log('Alter account', 'ERROR', $e);
                 }
 
                 // Delete the images
@@ -128,7 +128,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $stmt->bindParam(':imageId', $image['image']);
                         $stmt->execute();
                     } catch (PDOException $e) {
-                        // TODO: add logger
+                        Logger::log('Alter account', 'ERROR', $e);
                     }
                 }
             } else {
@@ -139,7 +139,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt->bindParam(':userId', $userId);
                     $stmt->execute();
                 } catch (PDOException $e) {
-                    // TODO: add logger
+                    Logger::log('Alter account', 'ERROR', $e);
                 }
 
                 // Update all favorites from the user to the default user
@@ -149,7 +149,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt->bindParam(':userId', $userId);
                     $stmt->execute();
                 } catch (PDOException $e) {
-                    // TODO: add logger
+                    Logger::log('Alter account', 'ERROR', $e);
                 }
             }
 
@@ -161,7 +161,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $profileImage = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Alter account', 'ERROR', $e);
             }
 
             // Delete user
@@ -170,7 +170,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt->bindParam(':user_id', $userId);
                 $stmt->execute();
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Alter account', 'ERROR', $e);
             }
 
             // Delete profile picture
@@ -179,7 +179,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt->bindParam(':image_id', $profileImage['profile_image']);
                 $stmt->execute();
             } catch (PDOException $e) {
-                // TODO: add logger
+                Logger::log('Alter account', 'ERROR', $e);
             }
 
             // Redirect using html

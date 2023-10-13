@@ -30,7 +30,7 @@ class FileManager
         $succeeded = self::resizeImage($image, 200, 250, $path);
 
         if (!$succeeded) {
-            // TODO: add logger
+            Logger::log('FileManager', 'ERROR', 'Something went wrong whilst uploading a file to `' . $path . '`');
         }
     }
 
@@ -63,7 +63,7 @@ class FileManager
         $succeeded = self::resizeImage($image, 200, 250, $path);
 
         if (!$succeeded) {
-            // TODO: add logger
+            Logger::log('FileManager', 'ERROR', 'Something went wrong whilst uploading a file to `' . $path . '`');
         }
     }
 
