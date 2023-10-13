@@ -11,7 +11,6 @@
 | username      | VARCHAR(255)    | NOT NULL                                            |
 | email         | VARCHAR(255)    | NOT NULL                                            |
 | password      | VARCHAR(255)    | NOT NULL                                            |
-| profile_image | VARCHAR(36)     | NULL, FOREING KEY (imagesId) REFERENCES images(id)  |
 | created_at    | DATETIME         | DEFAULT CURRENT_TIMESTAMP                          |
 | updated_at    | DATETIME         | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP |
 
@@ -59,7 +58,6 @@
 | id          | INT(11)         | NOT NULL, AUTO_INCREMENT, PRIMARY KEY |
 | author      | INT(11)         | NOT NULL, FOREIGN KEY (userId) REFERENCES users(id) |
 | description | LONGTEXT        | NOT NULL                       |
-| image       | INT(11)         | NOT NULL, FOREIGN KEY (imageId) REFERENCES images(id) |
 | type        | INT(11)         | NOT NULL, FOREIGN KEY (typeId) REFERENCES types(id) |
 | longitude   | INT(11)         | NOT NULL                       |
 | latitude    | INT(11)         | NOT NULL                       |
