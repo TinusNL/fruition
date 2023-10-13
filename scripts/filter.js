@@ -17,7 +17,7 @@ function refreshSearch(value) {
     }
 
 
-    if (document.documentElement.clientWidth < 376 && value.length > 0) {
+    if (document.documentElement.clientWidth < 550 && value.length > 0) {
         categoriesElement.style.display = 'flex'
     }
 }
@@ -80,19 +80,19 @@ for (let i = 0; i < children.length; i++) {
 
 // Hide categories when on mobile
 document.getElementById('search').addEventListener('focusin', function () {
-    if (document.documentElement.clientWidth < 376 && this.value.length == 0) {
+    if (document.documentElement.clientWidth < 550 && this.value.length == 0) {
         categoriesElement.style.display = 'flex'
     }
 })
 
 document.getElementById('search').addEventListener('focusout', function () {
-    if (document.documentElement.clientWidth < 376 && this.value.length == 0) {
+    if (document.documentElement.clientWidth < 550 && this.value.length == 0) {
         categoriesElement.style.display = 'none'
     }
 })
 
 window.addEventListener('resize', function (event) {
-    if (document.documentElement.clientWidth < 376 && document.getElementById('search').value.length == 0) {
+    if (document.documentElement.clientWidth < 550 && document.getElementById('search').value.length == 0) {
         categoriesElement.style.display = 'none'
     } else {
         categoriesElement.style.display = 'flex'

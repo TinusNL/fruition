@@ -14,21 +14,23 @@ Router::loadUrl($_SERVER['REQUEST_URI']);
 if (Router::isApi()) {
     Router::getContent();
 } else { ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <title>Fruition</title>
-    <link rel="stylesheet" href="./<?= Router::getOffset() ?>css/main.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./<?= Router::getOffset() ?>css/main.css">
+        <title>Fruition</title>
+    </head>
 
-<body>
-    <?php
+    <body>
+        <?php
 
-    Router::getContent();
+        Router::getContent();
 
-    ?>
-</body>
+        ?>
+    </body>
 
-</html>
+    </html>
 <?php } ?>
