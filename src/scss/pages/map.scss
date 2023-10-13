@@ -2,7 +2,6 @@
     width: calc(100% - 400px);
     height: 100%;
     position: relative;
-    
 
     #leaflet-map {
         height: 100%;
@@ -38,7 +37,8 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 // Marker Popup

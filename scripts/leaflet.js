@@ -21,23 +21,23 @@ const markers = JSON.parse(markerJson)
 
 function fetchAndSetImage() {
     // Go through every image that doesnt have a valid src
-    const imageTags = document.querySelectorAll('.popup-img-map');
+    const imageTags = document.querySelectorAll('.popup-img-map')
     imageTags.forEach(imgTag => {
         if (!imgTag.src.includes('data:image')) {
-            const itemId = imgTag.parentElement.dataset.attrId;
+            const itemId = imgTag.parentElement.dataset.attrId
             fetch(`./api/image/getFromItem?item_id=${itemId}`)
                 .then(response => response.json()) // Assume the response is a base64 string
-                .then(base64String => {
-                    imgTag.src = `data:image/*;base64,${base64String}`;
+                .then(imageData => {
+                    imgTag.src = imageData['data']
                     // Destroy the image style so it can be resized
-                    imgTag.style = '';
-                });
+                    imgTag.style = ''
+                })
         }
-    });
+    })
 }
 
 // Run on loop
-setInterval(fetchAndSetImage, 1000);
+setInterval(fetchAndSetImage, 1000)
 
 markers.forEach(markerInfo => {
     const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
@@ -62,9 +62,9 @@ markers.forEach(markerInfo => {
                 <span>${markerInfo.author}</span>
                 <div class="icons">
                     ${loggedIn ?
-        `<a class="favorite-action" onclick="favoriteAction(this, ${markerInfo.id})"><img src="./assets/icons/${markerInfo.favorited ? 'heart-filled' : 'heart-empty'}.svg" alt="Favorite"/></a>
+            `<a class="favorite-action" onclick="favoriteAction(this, ${markerInfo.id})"><img src="./assets/icons/${markerInfo.favorited ? 'heart-filled' : 'heart-empty'}.svg" alt="Favorite"/></a>
                     <a class="grey"><img src="./assets/icons/flag.svg" alt="Report"/></a>`
-        : ''}
+            : ''}
                     <a href="https://www.google.com/maps/dir/?api=1&destination=${markerInfo.longitude},${markerInfo.latitude}" target="_blank"><img src="./assets/icons/route.svg" alt="Route"/></a>
                 </div>
             </div>

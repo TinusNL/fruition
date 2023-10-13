@@ -30,18 +30,13 @@ $stmt->execute();
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$image = $result['data'];
-
-if (!$image) {
+if (!$result) {
     http_response_code(404);
     die();
 }
 
-// Convert to base64
-$imageData = base64_encode($image);
-
 // Return the image
-echo json_encode($imageData);
+echo json_encode($result);
 
 http_response_code(200);
 die();
