@@ -19,26 +19,6 @@ const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
 const markerLayers = {}
 const markers = JSON.parse(markerJson)
 
-// function fetchAndSetImage() {
-//     // Go through every image that doesnt have a valid src
-//     const imageTags = document.querySelectorAll('.popup-img-map')
-//     imageTags.forEach(imgTag => {
-//         if (!imgTag.src.includes('data:image')) {
-//             const itemId = imgTag.parentElement.dataset.attrId
-//             fetch(`./api/image/getFromItem?item_id=${itemId}`)
-//                 .then(response => response.json()) // Assume the response is a base64 string
-//                 .then(imageData => {
-//                     imgTag.src = imageData['data']
-//                     // Destroy the image style so it can be resized
-//                     imgTag.style = ''
-//                 })
-//         }
-//     })
-// }
-
-// // Run on loop
-// setInterval(fetchAndSetImage, 1000)
-
 markers.forEach(markerInfo => {
     const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
         icon: leafletIcons[markerInfo.typeName],
