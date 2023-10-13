@@ -125,7 +125,7 @@ class Setup
                 (4, 'owner'),
                 (5, 'bot');",
             "INSERT IGNORE INTO `users` (`id`, `role`, `username`, `email`, `password`, `profile_image`, `created_at`, `updated_at`) VALUES
-                (1, 5, 'deleted user', 'technical@fruition.city', '', NULL, '2020-05-01 00:00:00', '2020-05-01 00:00:00');"
+                (1, 5, 'deleted user', 'no-reply@fruition.city', '', NULL, '2020-05-01 00:00:00', '2020-05-01 00:00:00');"
         ];
         foreach ($insertStatements as $sql) {
             $stmt = $conn->prepare($sql);
