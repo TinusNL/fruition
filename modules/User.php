@@ -174,4 +174,11 @@ class User
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function clearFailedAttempts(): void
+    {
+        $query = "DELETE FROM `failed_login_attempts`";
+        $stmt = Database::prepare($query);
+        $stmt->execute();
+    }
 }

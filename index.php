@@ -8,6 +8,9 @@ require_once 'config.php';
 Router::loadPages('pages');
 Router::loadUrl($_SERVER['REQUEST_URI']);
 
+// Check for tasks
+Task::checkTasks();
+
 // Check if tables exist
 //Setup::setup();
 
