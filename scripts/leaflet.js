@@ -19,25 +19,25 @@ const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
 const markerLayers = {}
 const markers = JSON.parse(markerJson)
 
-function fetchAndSetImage() {
-    // Go through every image that doesnt have a valid src
-    const imageTags = document.querySelectorAll('.popup-img-map')
-    imageTags.forEach(imgTag => {
-        if (!imgTag.src.includes('data:image')) {
-            const itemId = imgTag.parentElement.dataset.attrId
-            fetch(`./api/image/getFromItem?item_id=${itemId}`)
-                .then(response => response.json()) // Assume the response is a base64 string
-                .then(imageData => {
-                    imgTag.src = imageData['data']
-                    // Destroy the image style so it can be resized
-                    imgTag.style = ''
-                })
-        }
-    })
-}
+// function fetchAndSetImage() {
+//     // Go through every image that doesnt have a valid src
+//     const imageTags = document.querySelectorAll('.popup-img-map')
+//     imageTags.forEach(imgTag => {
+//         if (!imgTag.src.includes('data:image')) {
+//             const itemId = imgTag.parentElement.dataset.attrId
+//             fetch(`./api/image/getFromItem?item_id=${itemId}`)
+//                 .then(response => response.json()) // Assume the response is a base64 string
+//                 .then(imageData => {
+//                     imgTag.src = imageData['data']
+//                     // Destroy the image style so it can be resized
+//                     imgTag.style = ''
+//                 })
+//         }
+//     })
+// }
 
-// Run on loop
-setInterval(fetchAndSetImage, 1000)
+// // Run on loop
+// setInterval(fetchAndSetImage, 1000)
 
 markers.forEach(markerInfo => {
     const marker = L.marker([markerInfo.longitude, markerInfo.latitude], {
@@ -46,9 +46,9 @@ markers.forEach(markerInfo => {
     })
 
     marker.bindPopup(`
-        <div class="popup-container" data-attr-id="${markerInfo.id}">
+        <div class="popup-container" data-itemid="${markerInfo.id}">
             <!-- BASE64 IMAGE FROM LOCALSTORAGE -->
-            <img src='./assets/logo.svg' alt="Marker Photo" class="popup-img-map">
+            <img src='./assets/logo.svg' alt="Marker Photo" class="popup-img-map" style="object-fit: contain !important;">
             <h2>${markerInfo.typeLabel}</h2>
             ${markerInfo.description ? `<p>${markerInfo.description}</p>` : ''}
             <table>
@@ -124,11 +124,46 @@ function showMarkerType(type) {
     map.addLayer(markerLayers[type])
 }
 
+const savedFavorites = {}
+
+// On popup open
+map.on('popupopen', function (e) {
+    const popup = e.popup
+    const node = popup._contentNode
+    const itemId = node.querySelector('.popup-container').dataset.itemid
+
+    // Set the image to the base64 image
+    const img = node.querySelector('.popup-img-map')
+
+    fetch(`./api/image/getFromItem?item_id=${itemId}`)
+        .then(response => response.json()) // Assume the response is a base64 string
+        .then(imageData => {
+            img.src = imageData['data']
+            // Destroy the image style so it can be resized
+            img.style = ''
+        })
+
+
+    const favoriteActionElem = node.querySelector('.favorite-action')
+    const favoriteActionImg = favoriteActionElem.querySelector('img')
+
+    if (savedFavorites[itemId] == undefined) {
+        return
+    }
+
+    if (savedFavorites[itemId]) {
+        favoriteActionImg.src = './assets/icons/heart-filled.svg'
+    } else {
+        favoriteActionImg.src = './assets/icons/heart-empty.svg'
+    }
+})
+
 // Popup Actions
 function favoriteAction(elem, itemId) {
     const img = elem.querySelector('img')
 
     if (img.src.includes('empty')) {
+        savedFavorites[itemId] = true
         img.src = './assets/icons/heart-filled.svg'
 
         fetch('./api/favorite', {
@@ -144,6 +179,7 @@ function favoriteAction(elem, itemId) {
         return
     }
 
+    savedFavorites[itemId] = false
     img.src = './assets/icons/heart-empty.svg'
 
     fetch('./api/unfavorite', {
