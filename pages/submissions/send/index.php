@@ -8,6 +8,75 @@ require 'PHPMailer/src/SMTP.php';
 
 $conn = new Database;
 
+function send_email($conn, $type, $longitude, $latitude): void
+{
+    if (!empty($_SESSION['user_email'])) {
+        // Get a type from database
+        try {
+            $stmt = $conn->prepare("SELECT * FROM types WHERE id = :id");
+            $stmt->bindParam(':id', $type);
+            $stmt->execute();
+            $type = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // TODO: add logger
+        }
+
+        // Send email
+        try {
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.stackmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'no-reply@fruition.city';
+            $mail->Password = ']wQ=]]Kz~€F|';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('no-reply@fruition.city');
+            $mail->addAddress($_SESSION['user_email']);
+
+            $mail->isHTML(true);
+
+            // Set the subject
+            $mail->Subject = 'Your contribution has been received!';
+
+            // Construct a map link using $longitude and $latitude
+            $map_link = "https://www.google.com/maps/dir/?api=1&destination=" . $longitude . "," . $latitude;
+
+            $body = "
+                <html>
+                    <head>
+                        <title>Submission</title>
+                    </head>
+                    <body>
+                        <h1>Your contribution has been received!</h1>
+                        <p>Thank you for your submission. We will review it as soon as possible.</p>
+                        <br>
+                        <h2>Details</h2>
+                        <p>Short description: " . $_POST['short_desc'] . "</p>
+                        <p>Type: " . $type['label'] . "</p>
+                        <p><a href='" . $map_link . "'>Click here to view the location on Google Maps</a></p>
+                        <p>The image you've provided should be in the attachment</p>
+                        <br>
+                        <p>Kind regards,</p>
+                        <p>The Fruition team</p>
+                        <img src='cid:logoSVG' alt='Fruition logo' width='100px'>
+                        
+                        <p style='font-size: 10px;'>This email was sent automatically. Please do not reply to this email.</p>
+                    </body>
+                </html>
+                ";
+            $mail->Body = $body;
+            $mail->AddEmbeddedImage('assets/logo.svg', 'logoSVG');
+            $mail->addAttachment($_FILES["photo"]["tmp_name"], $_FILES["photo"]["name"]);
+
+            $mail->send();
+        } catch (Exception $e) {
+            // TODO: add logger
+        }
+    }
+}
 
 if (isset($_POST['send'])) {
     if (isset($_POST["short_desc"], $_POST["types"], $_FILES["photo"], $_POST["location"]) && $_FILES["photo"]["error"] === 0) {
@@ -36,43 +105,8 @@ if (isset($_POST['send'])) {
         $stmt->bindParam(':lat', $latitude, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-            echo "Data has been inserted successfully!";
-        } else {
-            echo "Error inserting data: " . $stmt->error;
+            send_email($conn, $type, $longitude, $latitude);
         }
-    } else {
-        echo "Not all required fields are filled in.";
-    }
-
-    if (!empty($_POST['email'])) {
-        $mail = new PHPMailer(true);
-
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'fruitioneuropa@gmail.com';
-        $mail->Password = 'kckqnopsmgiehsux';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port = 465;
-
-        $mail->setFrom('fruitioneuropa@gmail.com');
-
-        $mail->addAddress($_POST['email']);
-
-        $mail->isHTML(true);
-
-        $body = "Name: " . $_POST['plant_name']. "<br>";
-        $body .= "Location: " . $_POST['location']. "<br>". "Season:  ". $_POST['season']. "<br>". "Type: ".$_POST['types'];
-
-        
-
-        $mail->Subject = "Thank you for ur submission!";
-        $mail->Body = $body;
-        // $mail->$attachment = chunk_split(base64_encode(file_get_contents($_POST['photo'])));
-    
-
-        
-        $mail->send();
     }
 
     echo '<script type="text/javascript">
