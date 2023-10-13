@@ -287,7 +287,8 @@ nav.header .bottom .logo > img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .leaflet-popup-content-wrapper {
@@ -788,7 +789,6 @@ div.sign-up .signup_error {
   .collapsible {
     width: 100%;
     border: 0px;
-    border-top: 3px solid white;
     border-radius: 0px;
   }
   .chat-bar-icons {
