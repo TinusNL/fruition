@@ -14,26 +14,25 @@ Router::loadUrl($_SERVER['REQUEST_URI']);
 if (Router::isApi()) {
     Router::getContent();
 } else { ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Fruition">
+        <meta name="keywords" content="Fruition">
+        <meta name="author" content="Plymouth City College & MBORijnland exchange project team">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./<?= Router::getOffset() ?>css/main.css">
+        <title>Fruition</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Fruition">
-    <meta name="keywords" content="Fruition">
-    <meta name="author" content="Plymouth City College & MBORijnland exchange project team">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruition</title>
-    <link rel="stylesheet" href="./<?= Router::getOffset() ?>css/main.css">
-</head>
+    <body>
+        <?php
 
-<body>
-    <?php
+        Router::getContent();
 
-    Router::getContent();
+        ?>
+    </body>
 
-    ?>
-</body>
-
-</html>
+    </html>
 <?php } ?>

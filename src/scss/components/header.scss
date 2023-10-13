@@ -44,11 +44,11 @@ nav.header {
                 position: absolute;
 
                 height: 100%;
-                width: 8%;
+                width: 30px;
 
                 &.filter {
                     top: 0px;
-                    right: 45px;
+                    right: 50px;
 
                     cursor: pointer;
                 }
@@ -272,7 +272,7 @@ nav.header {
     }
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 550px) {
     nav.header {
         position: absolute;
         background-color: transparent;

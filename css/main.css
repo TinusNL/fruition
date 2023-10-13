@@ -38,11 +38,11 @@ nav.header .top > .search > input {
 nav.header .top > .search > img {
   position: absolute;
   height: 100%;
-  width: 8%;
+  width: 30px;
 }
 nav.header .top > .search > img.filter {
   top: 0px;
-  right: 45px;
+  right: 50px;
   cursor: pointer;
 }
 nav.header .top > .search > img.magnify {
@@ -218,7 +218,7 @@ nav.header .bottom .logo > img {
   height: 100%;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 550px) {
   nav.header {
     position: absolute;
     background-color: transparent;
@@ -374,7 +374,7 @@ nav.header .bottom .logo > img {
   opacity: 0.2;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 550px) {
   .map {
     width: 100%;
   }
