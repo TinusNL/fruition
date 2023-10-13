@@ -26,6 +26,6 @@
         const loggedIn = <?= intval(isset($_SESSION['user_id'])) ?>;
     </script>
 
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js"></script>
-    <script src="./<?= Router::getOffset() ?>scripts/leaflet.js"></script>
+    <script src="./<?= Router::getOffset() ?>scripts/leaflet_icons.js?v=1"></script>
+    <script src="./<?= Router::getOffset() ?>scripts/leaflet.js?v=1"></script>
 </div>
