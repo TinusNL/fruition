@@ -1,5 +1,4 @@
 <?php
-
 // Router
 // Production
 define('URL_PREFIX', '.');
