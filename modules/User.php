@@ -54,9 +54,8 @@ class User
         $stmt->bindParam(':username', $data['username']);
         $stmt->bindParam(':password', $data['password']);
         $stmt->bindParam(':role', $default_role);
-        $stmt->execute();
 
-        return true;
+        return $stmt->execute();
     }
 
     public static function addFailedAttempt(string $ip_address): void
