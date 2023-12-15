@@ -1,5 +1,4 @@
 <?php
-require '../../../../modules/User.php';
 
 $result = User::register($_POST);
 
