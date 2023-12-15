@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\NoReturn;
-
 class User
 {
     public static function findUserByEmail(string $email): bool
@@ -36,7 +34,7 @@ class User
         }
     }
 
-    #[NoReturn] public static function createUserSession($loggedInUser): void
+    public static function createUserSession($loggedInUser): void
     {
         $_SESSION['user_id'] = $loggedInUser['id'];
         $_SESSION['user_email'] = $loggedInUser['email'];
