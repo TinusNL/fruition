@@ -36,7 +36,7 @@ class User
         }
     }
 
-    #[NoReturn] public static function createUserSession($loggedInUser): void
+    public static function createUserSession($loggedInUser): void
     {
         $_SESSION['user_id'] = $loggedInUser['id'];
         $_SESSION['user_email'] = $loggedInUser['email'];
