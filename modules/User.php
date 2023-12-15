@@ -45,16 +45,15 @@ class User
 
     public static function register(array $data): bool
     {
-        $default_role = 1;
+        $default_role = 2;
         $query = "INSERT INTO users (email, username, password, role) VALUES (:email, :username, :password, :role)";
         $stmt = Database::prepare($query);
         $stmt->bindParam(':email', $data['email']);
         $stmt->bindParam(':username', $data['username']);
         $stmt->bindParam(':password', $data['password']);
         $stmt->bindParam(':role', $default_role);
-        $stmt->execute();
 
-        return true;
+        return $stmt->execute();
     }
 
     public static function addFailedAttempt(string $ip_address): void
