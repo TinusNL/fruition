@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\NoReturn;
-
 class User
 {
     public static function findUserByEmail(string $email): bool
