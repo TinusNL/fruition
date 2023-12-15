@@ -47,7 +47,7 @@ class User
 
     public static function register(array $data): bool
     {
-        $default_role = 1;
+        $default_role = 2;
         $query = "INSERT INTO users (email, username, password, role) VALUES (:email, :username, :password, :role)";
         $stmt = Database::prepare($query);
         $stmt->bindParam(':email', $data['email']);
