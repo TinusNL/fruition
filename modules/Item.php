@@ -118,16 +118,6 @@ class Item
     {
         $itemObjects = self::getAll($season, $favorites);
 
-        // Build register containing only the image data
-        $imageRegister = [];
-        foreach ($itemObjects as $item) {
-            $imageRegister[$item->id] = $item->image;
-        }
-
-        // Store the image register in the session
-        $_SESSION['image_register'] = $imageRegister;
-
-        // Build an array containing only the item data
         $items = array_map(function ($item) {
             return [
                 'id' => $item->id,
@@ -148,11 +138,10 @@ class Item
         return json_encode($items);
     }
 
-    // Code works just not being used anymore.
     public static function getInRadius(
-        int $longitude,
-        int $latitude,
-        int $radius
+        float $longitude,
+        float $latitude,
+        float $radius
     ): array {
         $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 
@@ -165,11 +154,12 @@ class Item
         $stmt = Database::prepare("
         SELECT
             i.id AS id,
-            i.author AS author,
+            u.username AS author,
             i.description AS description,
             img.data AS image,
             t.id AS typeId,
             t.name AS typeName,
+            t.label AS typeLabel,
             s.id AS seasonId,
             s.name AS seasonName,
             i.longitude AS longitude,
@@ -177,11 +167,13 @@ class Item
             (SELECT COUNT(*) FROM favorites f WHERE f.user = :userId AND f.item = i.id) AS favorited
         FROM
             items i,
+            users u,
             types t,
             images img,
             seasons s
         WHERE
-            i.type = t.id
+            i.author = u.id 
+        AND i.type = t.id
         AND img.id = i.image
         AND s.id = t.season
         AND i.longitude BETWEEN :minLongitude AND :maxLongitude 
@@ -215,11 +207,10 @@ class Item
         return $itemObjects;
     }
 
-    // Code works just not being used anymore.
     public static function getInRadiusJson(
-        int $longitude,
-        int $latitude,
-        int $radius
+        float $longitude,
+        float $latitude,
+        float $radius
     ): string {
         $itemObjects = self::getInRadius($longitude, $latitude, $radius);
 
@@ -228,7 +219,6 @@ class Item
                 'id' => $item->id,
                 'author' => $item->author,
                 'description' => $item->description,
-                'image' => $item->image,
                 'typeId' => $item->typeId,
                 'typeName' => $item->typeName,
                 'seasonId' => $item->seasonId,

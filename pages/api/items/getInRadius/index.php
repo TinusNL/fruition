@@ -1,12 +1,13 @@
 <?php
 
-$result = User::login($_POST['email'], $_POST['password']);
+$result = Item::getInRadiusJson($_GET['longitude'], $_GET['latitude'], $_GET['radius']);
 
 if (!$result) {
     http_response_code(404);
     die();
 }
 
+// Return the image
 echo $result;
 
 http_response_code(200);
