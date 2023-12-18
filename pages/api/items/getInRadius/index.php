@@ -1,6 +1,6 @@
 <?php
 
-$result = Item::getInRadiusJson($_GET['longitude'], $_GET['latitude'], $_GET['radius']);
+$result = Item::getInRadiusJson($_GET['longitude'], $_GET['latitude'], $_GET['radius'], $_GET['user'] ?? null);
 
 if (!$result) {
     http_response_code(404);

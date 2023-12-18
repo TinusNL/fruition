@@ -141,9 +141,10 @@ class Item
     public static function getInRadius(
         float $longitude,
         float $latitude,
-        float $radius
+        float $radius,
+        int $userId = null
     ): array {
-        $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
+        $userId = $userId ?? (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1);
 
         $minLongitude = $longitude - $radius;
         $maxLongitude = $longitude + $radius;
@@ -210,9 +211,10 @@ class Item
     public static function getInRadiusJson(
         float $longitude,
         float $latitude,
-        float $radius
+        float $radius,
+        int $userId = null
     ): string {
-        $itemObjects = self::getInRadius($longitude, $latitude, $radius);
+        $itemObjects = self::getInRadius($longitude, $latitude, $radius, $userId);
 
         $items = array_map(function ($item) {
             return [
