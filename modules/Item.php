@@ -221,6 +221,7 @@ class Item
                 'description' => $item->description,
                 'typeId' => $item->typeId,
                 'typeName' => $item->typeName,
+                'typeLabel' => $item->typeLabel,
                 'seasonId' => $item->seasonId,
                 'seasonName' => $item->seasonName,
                 'longitude' => $item->longitude,
