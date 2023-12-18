@@ -7,7 +7,7 @@ if (!$result) {
     die();
 }
 
-// Return the image
+// Return the results
 echo $result;
 
 http_response_code(200);

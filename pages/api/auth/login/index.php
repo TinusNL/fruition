@@ -7,7 +7,7 @@ if (!$result) {
     die();
 }
 
-echo $result;
+echo json_encode($result);
 
 http_response_code(200);
 die();
